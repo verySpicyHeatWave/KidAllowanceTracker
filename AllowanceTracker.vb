@@ -13,7 +13,6 @@ Public Class AllowanceTracker
         Dim PepperAllowance As Double
         Dim RubyAllowance As Double
 
-        Dim Headers As String
         Dim SaveFile As String
 
         Dim NextMonday As Date
@@ -183,6 +182,7 @@ Public Class AllowanceTracker
 
     Private Sub SaveData(sender As Object, e As EventArgs) Handles SaveButton.Click
 
+        If Not PasswordIsCorrect() Then Exit Sub
         WriteToCSVFile(stats.SaveFile)
         SaveButton.Enabled = False
         LoadButton.Enabled = False
@@ -192,6 +192,7 @@ Public Class AllowanceTracker
 
     Private Sub LoadData(sender As Object, e As EventArgs) Handles LoadButton.Click
 
+        If Not PasswordIsCorrect() Then Exit Sub
         GetTheMondays()
         ReportTheCSVData()
         UpdateLabels()
@@ -226,6 +227,7 @@ Public Class AllowanceTracker
 
     Private Sub OpenSettingsWindow(sender As Object, e As EventArgs) Handles SettingsButton.Click
 
+        If Not PasswordIsCorrect() Then Exit Sub
         Dim Settingswindow As New Settings
         Settingswindow.Show()
 
@@ -233,6 +235,7 @@ Public Class AllowanceTracker
 
     Private Sub BeginANewWeek(sender As Object, e As EventArgs) Handles NewWeekButton.Click
 
+        If Not PasswordIsCorrect() Then Exit Sub
         Dim AllData As List(Of String) = ReadCSVFile(stats.SaveFile)
         Dim str() As String
         Dim HasLastMonday As Boolean = False
@@ -254,6 +257,15 @@ Public Class AllowanceTracker
         ReportTheCSVData()
 
     End Sub
+
+    Public Function PasswordIsCorrect() As Boolean
+
+        Dim PasswordCheck As New PasswordForm
+        PasswordCheck.ShowDialog()
+        If PasswordCheck.AccessGranted = False Then Return False
+        Return True
+
+    End Function
 
     Private Sub PepperRainbowWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles PepperRainbowWorker.DoWork
         FlashRainbowText(Pepper_NameLabel)
