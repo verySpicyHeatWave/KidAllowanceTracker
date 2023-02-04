@@ -70,6 +70,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
+        Friend ReadOnly Property Balloon_Heart() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Balloon_Heart", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property BehaviorButton() As System.Drawing.Bitmap
@@ -126,6 +136,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
+        Friend ReadOnly Property Lock() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Lock", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         '''</summary>
         Friend ReadOnly Property MonkeyApplause() As System.IO.UnmanagedMemoryStream
@@ -160,6 +180,16 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("SaveButton", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
+        Friend ReadOnly Property Settings() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Settings", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
             End Get
         End Property
         

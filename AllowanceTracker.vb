@@ -42,6 +42,8 @@ Public Class AllowanceTracker
         ReportTheCSVData()
         UpdateLabels()
 
+        Me.Icon = My.Resources.Balloon_Heart
+
         SaveButton.Enabled = False
         LoadButton.Enabled = False
 

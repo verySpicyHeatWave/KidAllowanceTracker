@@ -235,7 +235,9 @@ Partial Class AllowanceTracker
         Me.Controls.Add(Me.Ruby_AddBehavior)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Ruby_AddWorksheet)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "AllowanceTracker"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Allowance Tracker"
         Me.ResumeLayout(False)
 

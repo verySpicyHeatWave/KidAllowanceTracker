@@ -8,6 +8,8 @@
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
+        Me.Icon = My.Resources.Lock
+
         AccessGranted = False
     End Sub
 

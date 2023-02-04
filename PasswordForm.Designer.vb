@@ -51,8 +51,11 @@ Partial Class PasswordForm
         Me.ClientSize = New System.Drawing.Size(289, 69)
         Me.Controls.Add(Me.PasswordEntryBox)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "PasswordForm"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Enter the Password"
+        Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -36,25 +36,25 @@ Partial Class Settings
         '
         'lblLastMon
         '
-        Me.lblLastMon.AutoSize = True
         Me.lblLastMon.Location = New System.Drawing.Point(12, 9)
         Me.lblLastMon.Name = "lblLastMon"
-        Me.lblLastMon.Size = New System.Drawing.Size(78, 15)
+        Me.lblLastMon.Size = New System.Drawing.Size(100, 15)
         Me.lblLastMon.TabIndex = 0
         Me.lblLastMon.Text = "Last Monday:"
+        Me.lblLastMon.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lblNextMonday
         '
-        Me.lblNextMonday.AutoSize = True
         Me.lblNextMonday.Location = New System.Drawing.Point(12, 35)
         Me.lblNextMonday.Name = "lblNextMonday"
-        Me.lblNextMonday.Size = New System.Drawing.Size(82, 15)
+        Me.lblNextMonday.Size = New System.Drawing.Size(100, 15)
         Me.lblNextMonday.TabIndex = 1
         Me.lblNextMonday.Text = "Next Monday:"
+        Me.lblNextMonday.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lblLastMondayRead
         '
-        Me.lblLastMondayRead.Location = New System.Drawing.Point(100, 9)
+        Me.lblLastMondayRead.Location = New System.Drawing.Point(135, 9)
         Me.lblLastMondayRead.Name = "lblLastMondayRead"
         Me.lblLastMondayRead.Size = New System.Drawing.Size(93, 15)
         Me.lblLastMondayRead.TabIndex = 3
@@ -63,7 +63,7 @@ Partial Class Settings
         '
         'lblNextMondayRead
         '
-        Me.lblNextMondayRead.Location = New System.Drawing.Point(100, 35)
+        Me.lblNextMondayRead.Location = New System.Drawing.Point(135, 35)
         Me.lblNextMondayRead.Name = "lblNextMondayRead"
         Me.lblNextMondayRead.Size = New System.Drawing.Size(93, 15)
         Me.lblNextMondayRead.TabIndex = 4
@@ -72,26 +72,27 @@ Partial Class Settings
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 61)
+        Me.Label1.Location = New System.Drawing.Point(12, 60)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(65, 15)
+        Me.Label1.Size = New System.Drawing.Size(100, 15)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Price/wkst:"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 87)
+        Me.Label2.Location = New System.Drawing.Point(12, 86)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(65, 15)
+        Me.Label2.Size = New System.Drawing.Size(100, 15)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Price/bhvr:"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtPricePerWkst
         '
         Me.txtPricePerWkst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPricePerWkst.Location = New System.Drawing.Point(93, 58)
+        Me.txtPricePerWkst.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtPricePerWkst.Location = New System.Drawing.Point(128, 58)
         Me.txtPricePerWkst.Name = "txtPricePerWkst"
         Me.txtPricePerWkst.Size = New System.Drawing.Size(100, 23)
         Me.txtPricePerWkst.TabIndex = 7
@@ -99,24 +100,26 @@ Partial Class Settings
         'txtPricePerBhvr
         '
         Me.txtPricePerBhvr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPricePerBhvr.Location = New System.Drawing.Point(93, 84)
+        Me.txtPricePerBhvr.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtPricePerBhvr.Location = New System.Drawing.Point(128, 84)
         Me.txtPricePerBhvr.Name = "txtPricePerBhvr"
         Me.txtPricePerBhvr.Size = New System.Drawing.Size(100, 23)
         Me.txtPricePerBhvr.TabIndex = 8
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(12, 113)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(53, 15)
+        Me.Label3.Size = New System.Drawing.Size(100, 15)
         Me.Label3.TabIndex = 9
         Me.Label3.Text = "Baseline:"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtBaselinePrice
         '
         Me.txtBaselinePrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtBaselinePrice.Location = New System.Drawing.Point(93, 111)
+        Me.txtBaselinePrice.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtBaselinePrice.Location = New System.Drawing.Point(128, 111)
         Me.txtBaselinePrice.Name = "txtBaselinePrice"
         Me.txtBaselinePrice.Size = New System.Drawing.Size(100, 23)
         Me.txtBaselinePrice.TabIndex = 10
@@ -125,7 +128,7 @@ Partial Class Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(201, 145)
+        Me.ClientSize = New System.Drawing.Size(240, 145)
         Me.Controls.Add(Me.txtBaselinePrice)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtPricePerBhvr)
@@ -136,8 +139,11 @@ Partial Class Settings
         Me.Controls.Add(Me.lblLastMondayRead)
         Me.Controls.Add(Me.lblNextMonday)
         Me.Controls.Add(Me.lblLastMon)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Settings"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Settings"
+        Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

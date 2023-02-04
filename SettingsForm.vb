@@ -11,6 +11,8 @@
         txtPricePerBhvr.Text = FormatNumber(CDbl(txtPricePerBhvr.Text), 2).ToString
         txtBaselinePrice.Text = FormatNumber(CDbl(txtBaselinePrice.Text), 2).ToString
 
+        Me.Icon = My.Resources.Settings
+
     End Sub
 
 
@@ -45,7 +47,7 @@
 
     End Sub
 
-    Private Sub UpdateBaselinePrice(sender As Object, e As EventArgs) Handles txtBaselinePrice.TextChanged
+    Private Sub UpdateBaselinePrice() Handles txtBaselinePrice.TextChanged
 
         If Not IsNumeric(txtBaselinePrice.Text) Then
             MessageBox.Show("You must enter a number here!", "Error!")
@@ -65,6 +67,7 @@
 
         UpdatePricePerWorksheet()
         UpdatePricePerBehavior()
+        UpdateBaselinePrice()
         WriteToCSVFile(AllowanceTracker.stats.SaveFile)
         AllowanceTracker.UpdateLabels()
 
