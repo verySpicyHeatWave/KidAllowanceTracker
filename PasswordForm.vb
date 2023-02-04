@@ -14,7 +14,7 @@
     Public Sub PasswordEntryBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles PasswordEntryBox.KeyPress
 
         If e.KeyChar <> Chr(13) Then Exit Sub
-        If PasswordEntryBox.Text.ToString <> "k33pL@UGH!NG1234LRP" Then
+        If PasswordEntryBox.Text <> AllowanceTracker.stats.Password Then
             MessageBox.Show("Password is incorrect. Please try again.", "Invalid Password")
             Exit Sub
         End If

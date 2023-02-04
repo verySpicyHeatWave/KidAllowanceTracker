@@ -3,9 +3,13 @@ Imports System.Security.Principal
 
 Module FileUtilities
 
-    Public Function ReadCSVFile(file As String) As List(Of String)
+    Public Function ReadCSVFile(savefile As String) As List(Of String)
 
-        Dim reader As New StreamReader(file)
+        If Not System.IO.File.Exists(savefile) Then
+            CreateNewCSVFile()
+        End If
+
+        Dim reader As New StreamReader(savefile)
         Dim resp As New List(Of String)
 
         Do While Not reader.EndOfStream
@@ -54,6 +58,30 @@ Module FileUtilities
         Next
 
         If AddNewWeek = True Then writer.WriteLine(AllowanceTracker.stats.NextMonday.ToShortDateString + ",0,0,0,0,1,1")
+
+        writer.Close()
+
+    End Sub
+
+    Public Sub CreateNewCSVFile()
+
+        Dim headerstring As String = "Date (Monday),RubyWorksheets,PepperWorksheets,RubyBehavior,PepperBehavior,RubyAllowance,PepperAllowance"
+        Dim lastmon As String = AllowanceTracker.stats.LastMonday
+
+
+        Dim filestream As FileStream = File.Create(AllowanceTracker.stats.SaveFile)
+        filestream.Close()
+
+
+        Dim writer As New StreamWriter(AllowanceTracker.stats.SaveFile)
+
+        writer.WriteLine("Prices")
+        writer.WriteLine("Worksheets,0.5")
+        writer.WriteLine("Behavior,1")
+        writer.WriteLine("Baseline,1")
+        writer.WriteLine("")
+        writer.WriteLine(headerstring)
+        writer.WriteLine(lastmon + ",0,0,0,0,1,1")
 
         writer.Close()
 

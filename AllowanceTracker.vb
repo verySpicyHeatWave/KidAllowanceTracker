@@ -10,6 +10,7 @@ Public Class AllowanceTracker
         Dim PepperBehavior As Integer
         Dim RubyBehavior As Integer
 
+
         Dim PepperAllowance As Double
         Dim RubyAllowance As Double
 
@@ -20,6 +21,9 @@ Public Class AllowanceTracker
 
         Dim PricePerWorksheet As Double
         Dim PricePerBehavior As Double
+        Dim PriceBaseline As Double
+
+        Dim Password As String
 
     End Structure
 
@@ -30,8 +34,9 @@ Public Class AllowanceTracker
 
         stats.PepperAllowance = 1
         stats.RubyAllowance = 1
+        stats.Password = "coolcoolcool"
 
-        stats.SaveFile = "C:\Users\smash\Desktop\Dad's Stuff\Coding\KidBehaviorLog.csv"
+        stats.SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
 
         GetTheMondays()
         ReportTheCSVData()
@@ -102,8 +107,8 @@ Public Class AllowanceTracker
             Pepper_WorksheetCount.Text = "Worksheets: " + .PepperWorksheets.ToString
             Pepper_BehaviorCount.Text = "Behavior: " + .PepperBehavior.ToString
 
-            stats.RubyAllowance = 1 + (.PricePerBehavior * .RubyBehavior) + (.PricePerWorksheet * .RubyWorksheets)
-            stats.PepperAllowance = 1 + (.PricePerBehavior * .PepperBehavior) + (.PricePerWorksheet * .PepperWorksheets)
+            stats.RubyAllowance = .PriceBaseline + (.PricePerBehavior * .RubyBehavior) + (.PricePerWorksheet * .RubyWorksheets)
+            stats.PepperAllowance = .PriceBaseline + (.PricePerBehavior * .PepperBehavior) + (.PricePerWorksheet * .PepperWorksheets)
 
             Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
             Pepper_Allowance.Text = "$" + FormatNumber(.PepperAllowance, 2).ToString
@@ -173,6 +178,9 @@ Public Class AllowanceTracker
             ElseIf str(0).Contains("Worksheet") Then
                 AllowanceTracker.stats.PricePerWorksheet = str(1)
 
+            ElseIf str(0).Contains("Baseline") Then
+                AllowanceTracker.stats.PriceBaseline = str(1)
+
             End If
 
         Next
@@ -229,7 +237,8 @@ Public Class AllowanceTracker
 
         If Not PasswordIsCorrect() Then Exit Sub
         Dim Settingswindow As New Settings
-        Settingswindow.Show()
+        Settingswindow.ShowDialog()
+        UpdateLabels()
 
     End Sub
 

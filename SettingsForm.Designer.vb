@@ -30,6 +30,8 @@ Partial Class Settings
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtPricePerWkst = New System.Windows.Forms.TextBox()
         Me.txtPricePerBhvr = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtBaselinePrice = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'lblLastMon
@@ -102,11 +104,30 @@ Partial Class Settings
         Me.txtPricePerBhvr.Size = New System.Drawing.Size(100, 23)
         Me.txtPricePerBhvr.TabIndex = 8
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 113)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(53, 15)
+        Me.Label3.TabIndex = 9
+        Me.Label3.Text = "Baseline:"
+        '
+        'txtBaselinePrice
+        '
+        Me.txtBaselinePrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtBaselinePrice.Location = New System.Drawing.Point(93, 111)
+        Me.txtBaselinePrice.Name = "txtBaselinePrice"
+        Me.txtBaselinePrice.Size = New System.Drawing.Size(100, 23)
+        Me.txtBaselinePrice.TabIndex = 10
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(201, 125)
+        Me.ClientSize = New System.Drawing.Size(201, 145)
+        Me.Controls.Add(Me.txtBaselinePrice)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtPricePerBhvr)
         Me.Controls.Add(Me.txtPricePerWkst)
         Me.Controls.Add(Me.Label2)
@@ -130,4 +151,6 @@ Partial Class Settings
     Friend WithEvents Label2 As Label
     Friend WithEvents txtPricePerWkst As TextBox
     Friend WithEvents txtPricePerBhvr As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents txtBaselinePrice As TextBox
 End Class
