@@ -59,4 +59,12 @@ Module FileUtilities
 
     End Sub
 
+
+    Public Function GetRandom(Min As Integer, Max As Integer) As Integer
+
+        Static Generator As System.Random = New System.Random()
+        Return Generator.Next(Min, Max)
+
+    End Function
+
 End Module

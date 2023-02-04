@@ -47,49 +47,49 @@ Partial Class AllowanceTracker
         'Ruby_AddWorksheet
         '
         Me.Ruby_AddWorksheet.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Ruby_AddWorksheet.Location = New System.Drawing.Point(12, 108)
+        Me.Ruby_AddWorksheet.Image = Global.KidAllowanceTracker.My.Resources.Resources.WorksheetButton
+        Me.Ruby_AddWorksheet.Location = New System.Drawing.Point(12, 118)
         Me.Ruby_AddWorksheet.Name = "Ruby_AddWorksheet"
-        Me.Ruby_AddWorksheet.Size = New System.Drawing.Size(117, 23)
+        Me.Ruby_AddWorksheet.Size = New System.Drawing.Size(41, 41)
         Me.Ruby_AddWorksheet.TabIndex = 0
-        Me.Ruby_AddWorksheet.Text = "Got a Worksheet!"
         Me.Ruby_AddWorksheet.UseVisualStyleBackColor = True
         '
         'Button2
         '
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Location = New System.Drawing.Point(169, 108)
+        Me.Button2.Image = Global.KidAllowanceTracker.My.Resources.Resources.WorksheetButton
+        Me.Button2.Location = New System.Drawing.Point(225, 118)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(117, 23)
+        Me.Button2.Size = New System.Drawing.Size(41, 41)
         Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Got a Worksheet!"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Ruby_AddBehavior
         '
         Me.Ruby_AddBehavior.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Ruby_AddBehavior.Location = New System.Drawing.Point(12, 137)
+        Me.Ruby_AddBehavior.Image = Global.KidAllowanceTracker.My.Resources.Resources.BehaviorButton
+        Me.Ruby_AddBehavior.Location = New System.Drawing.Point(106, 118)
         Me.Ruby_AddBehavior.Name = "Ruby_AddBehavior"
-        Me.Ruby_AddBehavior.Size = New System.Drawing.Size(117, 23)
+        Me.Ruby_AddBehavior.Size = New System.Drawing.Size(41, 41)
         Me.Ruby_AddBehavior.TabIndex = 2
-        Me.Ruby_AddBehavior.Text = "Best Behavior!"
         Me.Ruby_AddBehavior.UseVisualStyleBackColor = True
         '
         'Pepper_AddBehavior
         '
         Me.Pepper_AddBehavior.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Pepper_AddBehavior.Location = New System.Drawing.Point(169, 137)
+        Me.Pepper_AddBehavior.Image = Global.KidAllowanceTracker.My.Resources.Resources.BehaviorButton
+        Me.Pepper_AddBehavior.Location = New System.Drawing.Point(319, 118)
         Me.Pepper_AddBehavior.Name = "Pepper_AddBehavior"
-        Me.Pepper_AddBehavior.Size = New System.Drawing.Size(117, 23)
+        Me.Pepper_AddBehavior.Size = New System.Drawing.Size(41, 41)
         Me.Pepper_AddBehavior.TabIndex = 3
-        Me.Pepper_AddBehavior.Text = "Best Behavior!"
         Me.Pepper_AddBehavior.UseVisualStyleBackColor = True
         '
         'Ruby_NameLabel
         '
         Me.Ruby_NameLabel.Font = New System.Drawing.Font("Alba Super", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Ruby_NameLabel.Location = New System.Drawing.Point(12, 54)
+        Me.Ruby_NameLabel.Location = New System.Drawing.Point(12, 61)
         Me.Ruby_NameLabel.Name = "Ruby_NameLabel"
-        Me.Ruby_NameLabel.Size = New System.Drawing.Size(117, 46)
+        Me.Ruby_NameLabel.Size = New System.Drawing.Size(135, 50)
         Me.Ruby_NameLabel.TabIndex = 4
         Me.Ruby_NameLabel.Text = "Ruby"
         Me.Ruby_NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -97,65 +97,69 @@ Partial Class AllowanceTracker
         'Pepper_NameLabel
         '
         Me.Pepper_NameLabel.Font = New System.Drawing.Font("Alba Super", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Pepper_NameLabel.Location = New System.Drawing.Point(169, 54)
+        Me.Pepper_NameLabel.Location = New System.Drawing.Point(225, 61)
         Me.Pepper_NameLabel.Name = "Pepper_NameLabel"
-        Me.Pepper_NameLabel.Size = New System.Drawing.Size(117, 46)
+        Me.Pepper_NameLabel.Size = New System.Drawing.Size(135, 50)
         Me.Pepper_NameLabel.TabIndex = 5
         Me.Pepper_NameLabel.Text = "Pepper"
         Me.Pepper_NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Pepper_Allowance
         '
-        Me.Pepper_Allowance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Pepper_Allowance.Location = New System.Drawing.Point(169, 209)
+        Me.Pepper_Allowance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Pepper_Allowance.Location = New System.Drawing.Point(225, 210)
         Me.Pepper_Allowance.Name = "Pepper_Allowance"
-        Me.Pepper_Allowance.Size = New System.Drawing.Size(117, 23)
+        Me.Pepper_Allowance.Size = New System.Drawing.Size(135, 23)
         Me.Pepper_Allowance.TabIndex = 6
         Me.Pepper_Allowance.Text = "Allowance: $1.00"
         Me.Pepper_Allowance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Ruby_Allowance
         '
-        Me.Ruby_Allowance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Ruby_Allowance.Location = New System.Drawing.Point(12, 209)
+        Me.Ruby_Allowance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Ruby_Allowance.Location = New System.Drawing.Point(12, 210)
         Me.Ruby_Allowance.Name = "Ruby_Allowance"
-        Me.Ruby_Allowance.Size = New System.Drawing.Size(117, 23)
+        Me.Ruby_Allowance.Size = New System.Drawing.Size(135, 23)
         Me.Ruby_Allowance.TabIndex = 7
         Me.Ruby_Allowance.Text = "Allowance: $1.00"
         Me.Ruby_Allowance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Ruby_WorksheetCount
         '
-        Me.Ruby_WorksheetCount.Location = New System.Drawing.Point(12, 163)
+        Me.Ruby_WorksheetCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Ruby_WorksheetCount.Location = New System.Drawing.Point(12, 164)
         Me.Ruby_WorksheetCount.Name = "Ruby_WorksheetCount"
-        Me.Ruby_WorksheetCount.Size = New System.Drawing.Size(117, 23)
+        Me.Ruby_WorksheetCount.Size = New System.Drawing.Size(135, 23)
         Me.Ruby_WorksheetCount.TabIndex = 8
         Me.Ruby_WorksheetCount.Text = "Worksheets: 0"
         Me.Ruby_WorksheetCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Ruby_BehaviorCount
         '
-        Me.Ruby_BehaviorCount.Location = New System.Drawing.Point(12, 186)
+        Me.Ruby_BehaviorCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Ruby_BehaviorCount.Location = New System.Drawing.Point(12, 187)
         Me.Ruby_BehaviorCount.Name = "Ruby_BehaviorCount"
-        Me.Ruby_BehaviorCount.Size = New System.Drawing.Size(117, 23)
+        Me.Ruby_BehaviorCount.Size = New System.Drawing.Size(135, 23)
         Me.Ruby_BehaviorCount.TabIndex = 9
         Me.Ruby_BehaviorCount.Text = "Behavior: 0"
         Me.Ruby_BehaviorCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Pepper_WorksheetCount
         '
-        Me.Pepper_WorksheetCount.Location = New System.Drawing.Point(169, 163)
+        Me.Pepper_WorksheetCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Pepper_WorksheetCount.Location = New System.Drawing.Point(225, 164)
         Me.Pepper_WorksheetCount.Name = "Pepper_WorksheetCount"
-        Me.Pepper_WorksheetCount.Size = New System.Drawing.Size(117, 23)
+        Me.Pepper_WorksheetCount.Size = New System.Drawing.Size(135, 23)
         Me.Pepper_WorksheetCount.TabIndex = 10
         Me.Pepper_WorksheetCount.Text = "Worksheets: 0"
         Me.Pepper_WorksheetCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Pepper_BehaviorCount
         '
-        Me.Pepper_BehaviorCount.Location = New System.Drawing.Point(169, 186)
+        Me.Pepper_BehaviorCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Pepper_BehaviorCount.Location = New System.Drawing.Point(225, 187)
         Me.Pepper_BehaviorCount.Name = "Pepper_BehaviorCount"
-        Me.Pepper_BehaviorCount.Size = New System.Drawing.Size(117, 23)
+        Me.Pepper_BehaviorCount.Size = New System.Drawing.Size(135, 23)
         Me.Pepper_BehaviorCount.TabIndex = 11
         Me.Pepper_BehaviorCount.Text = "Behavior: 0"
         Me.Pepper_BehaviorCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -164,9 +168,9 @@ Partial Class AllowanceTracker
         '
         Me.SaveButton.Cursor = System.Windows.Forms.Cursors.Hand
         Me.SaveButton.Image = Global.KidAllowanceTracker.My.Resources.Resources.SaveButton
-        Me.SaveButton.Location = New System.Drawing.Point(59, 12)
+        Me.SaveButton.Location = New System.Drawing.Point(12, 12)
         Me.SaveButton.Name = "SaveButton"
-        Me.SaveButton.Size = New System.Drawing.Size(41, 39)
+        Me.SaveButton.Size = New System.Drawing.Size(41, 41)
         Me.SaveButton.TabIndex = 14
         Me.SaveButton.UseVisualStyleBackColor = True
         '
@@ -174,19 +178,19 @@ Partial Class AllowanceTracker
         '
         Me.SettingsButton.Cursor = System.Windows.Forms.Cursors.Hand
         Me.SettingsButton.Image = Global.KidAllowanceTracker.My.Resources.Resources.SettingsButton
-        Me.SettingsButton.Location = New System.Drawing.Point(200, 12)
+        Me.SettingsButton.Location = New System.Drawing.Point(153, 12)
         Me.SettingsButton.Name = "SettingsButton"
-        Me.SettingsButton.Size = New System.Drawing.Size(41, 39)
+        Me.SettingsButton.Size = New System.Drawing.Size(41, 41)
         Me.SettingsButton.TabIndex = 15
         Me.SettingsButton.UseVisualStyleBackColor = True
         '
         'LoadButton
         '
         Me.LoadButton.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LoadButton.Image = Global.KidAllowanceTracker.My.Resources.Resources._299063_heart_icon
-        Me.LoadButton.Location = New System.Drawing.Point(106, 12)
+        Me.LoadButton.Image = Global.KidAllowanceTracker.My.Resources.Resources.LoadIcon
+        Me.LoadButton.Location = New System.Drawing.Point(59, 12)
         Me.LoadButton.Name = "LoadButton"
-        Me.LoadButton.Size = New System.Drawing.Size(41, 39)
+        Me.LoadButton.Size = New System.Drawing.Size(41, 41)
         Me.LoadButton.TabIndex = 16
         Me.LoadButton.UseVisualStyleBackColor = True
         '
@@ -194,9 +198,9 @@ Partial Class AllowanceTracker
         '
         Me.NewWeekButton.Cursor = System.Windows.Forms.Cursors.Hand
         Me.NewWeekButton.Image = Global.KidAllowanceTracker.My.Resources.Resources.NewWeekButton
-        Me.NewWeekButton.Location = New System.Drawing.Point(153, 12)
+        Me.NewWeekButton.Location = New System.Drawing.Point(106, 12)
         Me.NewWeekButton.Name = "NewWeekButton"
-        Me.NewWeekButton.Size = New System.Drawing.Size(41, 39)
+        Me.NewWeekButton.Size = New System.Drawing.Size(41, 41)
         Me.NewWeekButton.TabIndex = 17
         Me.NewWeekButton.UseVisualStyleBackColor = True
         '
@@ -214,7 +218,7 @@ Partial Class AllowanceTracker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(297, 308)
+        Me.ClientSize = New System.Drawing.Size(372, 255)
         Me.Controls.Add(Me.NewWeekButton)
         Me.Controls.Add(Me.LoadButton)
         Me.Controls.Add(Me.SettingsButton)

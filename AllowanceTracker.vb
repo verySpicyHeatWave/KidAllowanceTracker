@@ -1,4 +1,7 @@
-﻿Public Class AllowanceTracker
+﻿Imports System.Media
+Imports Microsoft.VisualBasic.Devices
+
+Public Class AllowanceTracker
 
     Public Structure DataStructure
 
@@ -12,7 +15,6 @@
 
         Dim Headers As String
         Dim SaveFile As String
-        Dim ConfigFile As String
 
         Dim NextMonday As Date
         Dim LastMonday As Date
@@ -23,6 +25,7 @@
     End Structure
 
     Public Shared stats As DataStructure
+    Dim Sound As New SoundPlayer
 
     Private Sub FormLoad() Handles Me.Load
 
@@ -43,11 +46,6 @@
         ToolTipThingy.SetToolTip(SettingsButton, "Settings")
         ToolTipThingy.SetToolTip(NewWeekButton, "Create a New Week")
 
-        Dim rubyname() As String = {"R", "u", "b", "y", "!"}
-        Dim peppername() As String = {"P", "e", "p", "p", "e", "r", "!"}
-        Dim xval As Integer = 25
-
-
     End Sub
 
 
@@ -56,6 +54,7 @@
 
         stats.RubyWorksheets += 1
         UpdateLabels()
+        PlayRandomSound()
         If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
@@ -66,6 +65,7 @@
 
         stats.RubyBehavior += 1
         UpdateLabels()
+        PlayRandomSound()
         If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
@@ -76,6 +76,7 @@
 
         stats.PepperWorksheets += 1
         UpdateLabels()
+        PlayRandomSound()
         If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
@@ -86,6 +87,7 @@
 
         stats.PepperBehavior += 1
         UpdateLabels()
+        PlayRandomSound()
         If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
@@ -120,6 +122,7 @@
         stats.LastMonday = Date.Today.AddDays(-DaysFromLastMonday)
 
     End Sub
+
 
 
     Private Sub FlashRainbowText(label As Label)
@@ -194,6 +197,29 @@
         UpdateLabels()
         SaveButton.Enabled = False
         LoadButton.Enabled = False
+
+    End Sub
+
+
+    Private Sub PlayRandomSound()
+
+        Dim value As Integer = GetRandom(1, 26)
+
+        If value < 5 Then
+            My.Computer.Audio.Play(My.Resources.Applause1, AudioPlayMode.Background)
+        ElseIf value < 9 Then
+            My.Computer.Audio.Play(My.Resources.Fireworks, AudioPlayMode.Background)
+        ElseIf value < 13 Then
+            My.Computer.Audio.Play(My.Resources.GameSound, AudioPlayMode.Background)
+        ElseIf value < 17 Then
+            My.Computer.Audio.Play(My.Resources.LightSpell, AudioPlayMode.Background)
+        ElseIf value < 21 Then
+            My.Computer.Audio.Play(My.Resources.MonkeyApplause, AudioPlayMode.Background)
+        ElseIf value < 25 Then
+            My.Computer.Audio.Play(My.Resources.PartyTrumpet, AudioPlayMode.Background)
+        Else
+            My.Computer.Audio.Play(My.Resources.Fart, AudioPlayMode.Background)
+        End If
 
     End Sub
 

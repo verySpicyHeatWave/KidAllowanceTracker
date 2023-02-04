@@ -61,52 +61,76 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         '''</summary>
-        Friend ReadOnly Property _285657_floppy_guardar_save_icon() As System.Drawing.Bitmap
+        Friend ReadOnly Property Applause1() As System.IO.UnmanagedMemoryStream
             Get
-                Dim obj As Object = ResourceManager.GetObject("285657_floppy_guardar_save_icon", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return ResourceManager.GetStream("Applause1", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property _285657_floppy_guardar_save_icon_1_() As System.Drawing.Bitmap
+        Friend ReadOnly Property BehaviorButton() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("285657_floppy_guardar_save_icon(1)", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("BehaviorButton", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        '''</summary>
+        Friend ReadOnly Property Fart() As System.IO.UnmanagedMemoryStream
+            Get
+                Return ResourceManager.GetStream("Fart", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        '''</summary>
+        Friend ReadOnly Property Fireworks() As System.IO.UnmanagedMemoryStream
+            Get
+                Return ResourceManager.GetStream("Fireworks", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        '''</summary>
+        Friend ReadOnly Property GameSound() As System.IO.UnmanagedMemoryStream
+            Get
+                Return ResourceManager.GetStream("GameSound", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        '''</summary>
+        Friend ReadOnly Property LightSpell() As System.IO.UnmanagedMemoryStream
+            Get
+                Return ResourceManager.GetStream("LightSpell", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property _285657_floppy_guardar_save_icon_2_() As System.Drawing.Bitmap
+        Friend ReadOnly Property LoadIcon() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("285657_floppy_guardar_save_icon(2)", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("LoadIcon", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
         '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         '''</summary>
-        Friend ReadOnly Property _299063_heart_icon() As System.Drawing.Bitmap
+        Friend ReadOnly Property MonkeyApplause() As System.IO.UnmanagedMemoryStream
             Get
-                Dim obj As Object = ResourceManager.GetObject("299063_heart_icon", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property LoadButton() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("LoadButton", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Return ResourceManager.GetStream("MonkeyApplause", resourceCulture)
             End Get
         End Property
         
@@ -117,6 +141,15 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("NewWeekButton", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        '''</summary>
+        Friend ReadOnly Property PartyTrumpet() As System.IO.UnmanagedMemoryStream
+            Get
+                Return ResourceManager.GetStream("PartyTrumpet", resourceCulture)
             End Get
         End Property
         
@@ -136,6 +169,16 @@ Namespace My.Resources
         Friend ReadOnly Property SettingsButton() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("SettingsButton", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property WorksheetButton() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("WorksheetButton", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\smash\\source\\repos\\KidAllowanceTracker\\KidAllowanceTracker.vbproj",
+      "projectUniqueName": "C:\\Users\\smash\\Desktop\\Dad's Stuff\\Coding\\Git Working Repos\\KidAllowanceTracker\\KidAllowanceTracker.vbproj",
       "projectName": "KidAllowanceTracker",
-      "projectPath": "C:\\Users\\smash\\source\\repos\\KidAllowanceTracker\\KidAllowanceTracker.vbproj",
+      "projectPath": "C:\\Users\\smash\\Desktop\\Dad's Stuff\\Coding\\Git Working Repos\\KidAllowanceTracker\\KidAllowanceTracker.vbproj",
       "packagesPath": "C:\\Users\\smash\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\smash\\source\\repos\\KidAllowanceTracker\\obj\\",
+      "outputPath": "C:\\Users\\smash\\Desktop\\Dad's Stuff\\Coding\\Git Working Repos\\KidAllowanceTracker\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\smash\\AppData\\Roaming\\NuGet\\NuGet.Config",
