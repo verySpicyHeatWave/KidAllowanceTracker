@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">coolcoolcool</Value>
+      <Value Profile="(Default)">stup1ckles</Value>
     </Setting>
     <Setting Name="SaveFile" Type="System.String" Scope="User">
       <Value Profile="(Default)">nothing</Value>

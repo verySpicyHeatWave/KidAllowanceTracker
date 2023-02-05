@@ -4,9 +4,8 @@ Imports System.IO.Packaging
 Public Class Settings
 
     Private Sub SettingsLoad() Handles Me.Load
-
-        lblLastMondayRead.Text = AllowanceTracker.stats.LastMonday.ToShortDateString
-        lblNextMondayRead.Text = AllowanceTracker.stats.NextMonday.ToShortDateString
+        lblLastFridayRead.Text = AllowanceTracker.stats.LastFriday.ToShortDateString
+        lblNextFridayRead.Text = AllowanceTracker.stats.NextFriday.ToShortDateString
         txtPricePerWkst.Text = AllowanceTracker.stats.PricePerWorksheet.ToString
         txtPricePerBhvr.Text = AllowanceTracker.stats.PricePerBehavior.ToString
         txtBaselinePrice.Text = AllowanceTracker.stats.PriceBaseline.ToString
@@ -16,59 +15,40 @@ Public Class Settings
 
         txt_SaveFilePath.Text = My.Settings.SaveFile
         Me.Icon = My.Resources.Settings
-
     End Sub
 
 
-    Private Sub UpdatePricePerWorksheet() Handles txtPricePerWkst.Leave
-
-        If Not IsNumeric(txtPricePerWkst.Text) Then
+    Private Function UpdatePrices(txt As TextBox) As Double
+        If Not IsNumeric(txt.Text) Then
             MessageBox.Show("You must enter a number here!", "Error!")
-            txtPricePerWkst.Text = "0.50"
-        ElseIf CDbl(txtPricePerWkst.Text) = 0 Then
+            txt.Text = "1"
+        ElseIf CDbl(txt.Text) = 0 Then
             MessageBox.Show("You can't enter zero!", "Error!")
-            txtPricePerWkst.Text = "0.50"
+            txt.Text = "1"
         Else
-            txtPricePerWkst.Text = FormatNumber(CDbl(txtPricePerWkst.Text), 2).ToString
-            AllowanceTracker.stats.PricePerWorksheet = txtPricePerWkst.Text.ToString
+            txt.Text = FormatNumber(CDbl(txt.Text), 2).ToString
         End If
 
+        Return CDbl(txt.Text.ToString)
+    End Function
+
+
+    Private Sub UpdatePricePerWorksheet() Handles txtPricePerWkst.Leave
+        AllowanceTracker.stats.PricePerWorksheet = UpdatePrices(txtPricePerWkst)
     End Sub
 
 
     Private Sub UpdatePricePerBehavior() Handles txtPricePerBhvr.Leave
-
-        If Not IsNumeric(txtPricePerBhvr.Text) Then
-            MessageBox.Show("You must enter a number here!", "Error!")
-            txtPricePerBhvr.Text = "1.00"
-        ElseIf CDbl(txtPricePerBhvr.Text) = 0 Then
-            MessageBox.Show("You can't enter zero!", "Error!")
-            txtPricePerBhvr.Text = "1.00"
-        Else
-            txtPricePerBhvr.Text = FormatNumber(CDbl(txtPricePerBhvr.Text), 2).ToString
-            AllowanceTracker.stats.PricePerBehavior = txtPricePerBhvr.Text.ToString
-        End If
-
+        AllowanceTracker.stats.PricePerBehavior = UpdatePrices(txtPricePerBhvr)
     End Sub
 
+
     Private Sub UpdateBaselinePrice() Handles txtBaselinePrice.TextChanged
-
-        If Not IsNumeric(txtBaselinePrice.Text) Then
-            MessageBox.Show("You must enter a number here!", "Error!")
-            txtBaselinePrice.Text = "1.00"
-        ElseIf CDbl(txtBaselinePrice.Text) = 0 Then
-            MessageBox.Show("You can't enter zero!", "Error!")
-            txtBaselinePrice.Text = "1.00"
-        Else
-            txtBaselinePrice.Text = FormatNumber(CDbl(txtBaselinePrice.Text), 2).ToString
-            AllowanceTracker.stats.PriceBaseline = txtBaselinePrice.Text.ToString
-        End If
-
+        AllowanceTracker.stats.PriceBaseline = UpdatePrices(txtBaselinePrice)
     End Sub
 
 
     Private Sub ChangePassword(sender As Object, e As KeyPressEventArgs) Handles txt_NewPassword.KeyPress
-
         If e.KeyChar <> Chr(13) Then Exit Sub
         Dim answer As DialogResult = MessageBox.Show("Are you sure you want to change your password?", "Password Change?", MessageBoxButtons.YesNo)
         If answer = DialogResult.Yes Then
@@ -77,7 +57,6 @@ Public Class Settings
             txt_NewPassword.Text = ""
             lbl_PasswordSet.Visible = True
         End If
-
     End Sub
 
     Private Sub TypingPassword(sender As Object, e As EventArgs) Handles txt_NewPassword.TextChanged
@@ -86,18 +65,15 @@ Public Class Settings
 
 
     Private Sub ClosingTheForm() Handles Me.Closed
-
         UpdatePricePerWorksheet()
         UpdatePricePerBehavior()
         UpdateBaselinePrice()
         WriteToCSVFile(AllowanceTracker.stats.SaveFile)
         AllowanceTracker.UpdateLabels()
-
     End Sub
 
 
     Private Sub btn_SelectSaveDirectory_Click(sender As Object, e As EventArgs) Handles btn_SelectSaveDirectory.Click
-
         Dim dirselect As New FolderBrowserDialog
 
         If dirselect.ShowDialog() = DialogResult.OK Then
@@ -116,8 +92,6 @@ Public Class Settings
 
             End If
         End If
-
-
     End Sub
 
 End Class

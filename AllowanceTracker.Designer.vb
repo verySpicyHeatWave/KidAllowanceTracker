@@ -38,7 +38,6 @@ Partial Class AllowanceTracker
         Me.SaveButton = New System.Windows.Forms.Button()
         Me.SettingsButton = New System.Windows.Forms.Button()
         Me.LoadButton = New System.Windows.Forms.Button()
-        Me.NewWeekButton = New System.Windows.Forms.Button()
         Me.PepperRainbowWorker = New System.ComponentModel.BackgroundWorker()
         Me.RubyRainbowWorker = New System.ComponentModel.BackgroundWorker()
         Me.ToolTipThingy = New System.Windows.Forms.ToolTip(Me.components)
@@ -179,7 +178,7 @@ Partial Class AllowanceTracker
         '
         Me.SettingsButton.Cursor = System.Windows.Forms.Cursors.Hand
         Me.SettingsButton.Image = Global.KidAllowanceTracker.My.Resources.Resources.SettingsButton
-        Me.SettingsButton.Location = New System.Drawing.Point(153, 12)
+        Me.SettingsButton.Location = New System.Drawing.Point(272, 12)
         Me.SettingsButton.Name = "SettingsButton"
         Me.SettingsButton.Size = New System.Drawing.Size(41, 41)
         Me.SettingsButton.TabIndex = 15
@@ -194,16 +193,6 @@ Partial Class AllowanceTracker
         Me.LoadButton.Size = New System.Drawing.Size(41, 41)
         Me.LoadButton.TabIndex = 16
         Me.LoadButton.UseVisualStyleBackColor = True
-        '
-        'NewWeekButton
-        '
-        Me.NewWeekButton.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.NewWeekButton.Image = Global.KidAllowanceTracker.My.Resources.Resources.NewWeekButton
-        Me.NewWeekButton.Location = New System.Drawing.Point(106, 12)
-        Me.NewWeekButton.Name = "NewWeekButton"
-        Me.NewWeekButton.Size = New System.Drawing.Size(41, 41)
-        Me.NewWeekButton.TabIndex = 17
-        Me.NewWeekButton.UseVisualStyleBackColor = True
         '
         'PepperRainbowWorker
         '
@@ -233,7 +222,6 @@ Partial Class AllowanceTracker
         Me.ClientSize = New System.Drawing.Size(372, 255)
         Me.ControlBox = False
         Me.Controls.Add(Me.CloseButton)
-        Me.Controls.Add(Me.NewWeekButton)
         Me.Controls.Add(Me.LoadButton)
         Me.Controls.Add(Me.SettingsButton)
         Me.Controls.Add(Me.SaveButton)
@@ -272,7 +260,6 @@ Partial Class AllowanceTracker
     Friend WithEvents SaveButton As Button
     Friend WithEvents SettingsButton As Button
     Friend WithEvents LoadButton As Button
-    Friend WithEvents NewWeekButton As Button
     Friend WithEvents PepperRainbowWorker As System.ComponentModel.BackgroundWorker
     Friend WithEvents RubyRainbowWorker As System.ComponentModel.BackgroundWorker
     Friend WithEvents ToolTipThingy As ToolTip

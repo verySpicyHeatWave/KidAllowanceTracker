@@ -22,10 +22,10 @@ Partial Class Settings
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lblLastMon = New System.Windows.Forms.Label()
-        Me.lblNextMonday = New System.Windows.Forms.Label()
-        Me.lblLastMondayRead = New System.Windows.Forms.Label()
-        Me.lblNextMondayRead = New System.Windows.Forms.Label()
+        Me.lblLastFri = New System.Windows.Forms.Label()
+        Me.lblNextFri = New System.Windows.Forms.Label()
+        Me.lblLastFridayRead = New System.Windows.Forms.Label()
+        Me.lblNextFridayRead = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtPricePerWkst = New System.Windows.Forms.TextBox()
@@ -40,41 +40,41 @@ Partial Class Settings
         Me.btn_SelectSaveDirectory = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'lblLastMon
+        'lblLastFri
         '
-        Me.lblLastMon.Location = New System.Drawing.Point(12, 9)
-        Me.lblLastMon.Name = "lblLastMon"
-        Me.lblLastMon.Size = New System.Drawing.Size(100, 15)
-        Me.lblLastMon.TabIndex = 0
-        Me.lblLastMon.Text = "Last Monday:"
-        Me.lblLastMon.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblLastFri.Location = New System.Drawing.Point(12, 9)
+        Me.lblLastFri.Name = "lblLastFri"
+        Me.lblLastFri.Size = New System.Drawing.Size(100, 15)
+        Me.lblLastFri.TabIndex = 0
+        Me.lblLastFri.Text = "Last Friday:"
+        Me.lblLastFri.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'lblNextMonday
+        'lblNextFri
         '
-        Me.lblNextMonday.Location = New System.Drawing.Point(12, 35)
-        Me.lblNextMonday.Name = "lblNextMonday"
-        Me.lblNextMonday.Size = New System.Drawing.Size(100, 15)
-        Me.lblNextMonday.TabIndex = 1
-        Me.lblNextMonday.Text = "Next Monday:"
-        Me.lblNextMonday.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblNextFri.Location = New System.Drawing.Point(12, 35)
+        Me.lblNextFri.Name = "lblNextFri"
+        Me.lblNextFri.Size = New System.Drawing.Size(100, 15)
+        Me.lblNextFri.TabIndex = 1
+        Me.lblNextFri.Text = "Next Friday:"
+        Me.lblNextFri.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'lblLastMondayRead
+        'lblLastFridayRead
         '
-        Me.lblLastMondayRead.Location = New System.Drawing.Point(135, 9)
-        Me.lblLastMondayRead.Name = "lblLastMondayRead"
-        Me.lblLastMondayRead.Size = New System.Drawing.Size(93, 15)
-        Me.lblLastMondayRead.TabIndex = 3
-        Me.lblLastMondayRead.Text = "Label2"
-        Me.lblLastMondayRead.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblLastFridayRead.Location = New System.Drawing.Point(135, 9)
+        Me.lblLastFridayRead.Name = "lblLastFridayRead"
+        Me.lblLastFridayRead.Size = New System.Drawing.Size(93, 15)
+        Me.lblLastFridayRead.TabIndex = 3
+        Me.lblLastFridayRead.Text = "Label2"
+        Me.lblLastFridayRead.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'lblNextMondayRead
+        'lblNextFridayRead
         '
-        Me.lblNextMondayRead.Location = New System.Drawing.Point(135, 35)
-        Me.lblNextMondayRead.Name = "lblNextMondayRead"
-        Me.lblNextMondayRead.Size = New System.Drawing.Size(93, 15)
-        Me.lblNextMondayRead.TabIndex = 4
-        Me.lblNextMondayRead.Text = "Label1"
-        Me.lblNextMondayRead.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblNextFridayRead.Location = New System.Drawing.Point(135, 35)
+        Me.lblNextFridayRead.Name = "lblNextFridayRead"
+        Me.lblNextFridayRead.Size = New System.Drawing.Size(93, 15)
+        Me.lblNextFridayRead.TabIndex = 4
+        Me.lblNextFridayRead.Text = "Label1"
+        Me.lblNextFridayRead.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label1
         '
@@ -204,10 +204,10 @@ Partial Class Settings
         Me.Controls.Add(Me.txtPricePerWkst)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.lblNextMondayRead)
-        Me.Controls.Add(Me.lblLastMondayRead)
-        Me.Controls.Add(Me.lblNextMonday)
-        Me.Controls.Add(Me.lblLastMon)
+        Me.Controls.Add(Me.lblNextFridayRead)
+        Me.Controls.Add(Me.lblLastFridayRead)
+        Me.Controls.Add(Me.lblNextFri)
+        Me.Controls.Add(Me.lblLastFri)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Settings"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -218,10 +218,10 @@ Partial Class Settings
 
     End Sub
 
-    Friend WithEvents lblLastMon As Label
-    Friend WithEvents lblNextMonday As Label
-    Friend WithEvents lblLastMondayRead As Label
-    Friend WithEvents lblNextMondayRead As Label
+    Friend WithEvents lblLastFri As Label
+    Friend WithEvents lblNextFri As Label
+    Friend WithEvents lblLastFridayRead As Label
+    Friend WithEvents lblNextFridayRead As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtPricePerWkst As TextBox
