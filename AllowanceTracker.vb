@@ -3,6 +3,9 @@ Imports Microsoft.VisualBasic.Devices
 
 Public Class AllowanceTracker
 
+
+#Region "Variables"
+
     Public Structure DataStructure
 
         Dim PepperWorksheets As Integer
@@ -10,11 +13,8 @@ Public Class AllowanceTracker
         Dim PepperBehavior As Integer
         Dim RubyBehavior As Integer
 
-
         Dim PepperAllowance As Double
         Dim RubyAllowance As Double
-
-        Dim SaveFile As String
 
         Dim NextMonday As Date
         Dim LastMonday As Date
@@ -23,6 +23,7 @@ Public Class AllowanceTracker
         Dim PricePerBehavior As Double
         Dim PriceBaseline As Double
 
+        Dim SaveFile As String
         Dim Password As String
 
     End Structure
@@ -30,13 +31,20 @@ Public Class AllowanceTracker
     Public Shared stats As DataStructure
     Dim Sound As New SoundPlayer
 
+#End Region
+
     Private Sub FormLoad() Handles Me.Load
 
         stats.PepperAllowance = 1
         stats.RubyAllowance = 1
-        stats.Password = "coolcoolcool"
+        stats.Password = My.Settings.Password
 
-        stats.SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
+        If My.Settings.SaveFile = "nothing" Then
+            stats.SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
+            My.Settings.SaveFile = stats.SaveFile
+        Else
+            stats.SaveFile = My.Settings.SaveFile
+        End If
 
         GetTheMondays()
         ReportTheCSVData()

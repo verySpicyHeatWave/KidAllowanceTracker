@@ -32,6 +32,12 @@ Partial Class Settings
         Me.txtPricePerBhvr = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtBaselinePrice = New System.Windows.Forms.TextBox()
+        Me.txt_NewPassword = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lbl_PasswordSet = New System.Windows.Forms.Label()
+        Me.txt_SaveFilePath = New System.Windows.Forms.TextBox()
+        Me.SaveFileLabel = New System.Windows.Forms.Label()
+        Me.btn_SelectSaveDirectory = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblLastMon
@@ -81,7 +87,7 @@ Partial Class Settings
         '
         'Label2
         '
-        Me.Label2.Location = New System.Drawing.Point(12, 86)
+        Me.Label2.Location = New System.Drawing.Point(12, 89)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(100, 15)
         Me.Label2.TabIndex = 6
@@ -94,21 +100,21 @@ Partial Class Settings
         Me.txtPricePerWkst.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtPricePerWkst.Location = New System.Drawing.Point(128, 58)
         Me.txtPricePerWkst.Name = "txtPricePerWkst"
-        Me.txtPricePerWkst.Size = New System.Drawing.Size(100, 23)
+        Me.txtPricePerWkst.Size = New System.Drawing.Size(141, 23)
         Me.txtPricePerWkst.TabIndex = 7
         '
         'txtPricePerBhvr
         '
         Me.txtPricePerBhvr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPricePerBhvr.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPricePerBhvr.Location = New System.Drawing.Point(128, 84)
+        Me.txtPricePerBhvr.Location = New System.Drawing.Point(128, 87)
         Me.txtPricePerBhvr.Name = "txtPricePerBhvr"
-        Me.txtPricePerBhvr.Size = New System.Drawing.Size(100, 23)
+        Me.txtPricePerBhvr.Size = New System.Drawing.Size(141, 23)
         Me.txtPricePerBhvr.TabIndex = 8
         '
         'Label3
         '
-        Me.Label3.Location = New System.Drawing.Point(12, 113)
+        Me.Label3.Location = New System.Drawing.Point(12, 118)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(100, 15)
         Me.Label3.TabIndex = 9
@@ -119,16 +125,79 @@ Partial Class Settings
         '
         Me.txtBaselinePrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtBaselinePrice.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtBaselinePrice.Location = New System.Drawing.Point(128, 111)
+        Me.txtBaselinePrice.Location = New System.Drawing.Point(128, 116)
         Me.txtBaselinePrice.Name = "txtBaselinePrice"
-        Me.txtBaselinePrice.Size = New System.Drawing.Size(100, 23)
+        Me.txtBaselinePrice.Size = New System.Drawing.Size(141, 23)
         Me.txtBaselinePrice.TabIndex = 10
+        '
+        'txt_NewPassword
+        '
+        Me.txt_NewPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txt_NewPassword.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txt_NewPassword.Location = New System.Drawing.Point(128, 145)
+        Me.txt_NewPassword.Name = "txt_NewPassword"
+        Me.txt_NewPassword.Size = New System.Drawing.Size(141, 23)
+        Me.txt_NewPassword.TabIndex = 11
+        '
+        'Label4
+        '
+        Me.Label4.Location = New System.Drawing.Point(12, 147)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(100, 15)
+        Me.Label4.TabIndex = 12
+        Me.Label4.Text = "New Password:"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lbl_PasswordSet
+        '
+        Me.lbl_PasswordSet.Location = New System.Drawing.Point(12, 171)
+        Me.lbl_PasswordSet.Name = "lbl_PasswordSet"
+        Me.lbl_PasswordSet.Size = New System.Drawing.Size(100, 15)
+        Me.lbl_PasswordSet.TabIndex = 13
+        Me.lbl_PasswordSet.Text = "Password Is Set!"
+        Me.lbl_PasswordSet.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lbl_PasswordSet.Visible = False
+        '
+        'txt_SaveFilePath
+        '
+        Me.txt_SaveFilePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txt_SaveFilePath.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txt_SaveFilePath.Location = New System.Drawing.Point(12, 219)
+        Me.txt_SaveFilePath.Name = "txt_SaveFilePath"
+        Me.txt_SaveFilePath.ReadOnly = True
+        Me.txt_SaveFilePath.Size = New System.Drawing.Size(257, 23)
+        Me.txt_SaveFilePath.TabIndex = 14
+        '
+        'SaveFileLabel
+        '
+        Me.SaveFileLabel.Location = New System.Drawing.Point(12, 201)
+        Me.SaveFileLabel.Name = "SaveFileLabel"
+        Me.SaveFileLabel.Size = New System.Drawing.Size(100, 15)
+        Me.SaveFileLabel.TabIndex = 15
+        Me.SaveFileLabel.Text = "Save File:"
+        Me.SaveFileLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'btn_SelectSaveDirectory
+        '
+        Me.btn_SelectSaveDirectory.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_SelectSaveDirectory.Image = Global.KidAllowanceTracker.My.Resources.Resources.SelectFolder
+        Me.btn_SelectSaveDirectory.Location = New System.Drawing.Point(239, 186)
+        Me.btn_SelectSaveDirectory.Name = "btn_SelectSaveDirectory"
+        Me.btn_SelectSaveDirectory.Size = New System.Drawing.Size(30, 30)
+        Me.btn_SelectSaveDirectory.TabIndex = 16
+        Me.btn_SelectSaveDirectory.UseVisualStyleBackColor = True
         '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(240, 145)
+        Me.ClientSize = New System.Drawing.Size(281, 254)
+        Me.Controls.Add(Me.btn_SelectSaveDirectory)
+        Me.Controls.Add(Me.SaveFileLabel)
+        Me.Controls.Add(Me.txt_SaveFilePath)
+        Me.Controls.Add(Me.lbl_PasswordSet)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.txt_NewPassword)
         Me.Controls.Add(Me.txtBaselinePrice)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtPricePerBhvr)
@@ -159,4 +228,10 @@ Partial Class Settings
     Friend WithEvents txtPricePerBhvr As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txtBaselinePrice As TextBox
+    Friend WithEvents txt_NewPassword As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents lbl_PasswordSet As Label
+    Friend WithEvents txt_SaveFilePath As TextBox
+    Friend WithEvents SaveFileLabel As Label
+    Friend WithEvents btn_SelectSaveDirectory As Button
 End Class

@@ -18,6 +18,7 @@ C:\Users\smash\source\repos\KidAllowanceTracker\obj\Debug\net6.0-windows\KidAllo
 C:\Users\smash\source\repos\KidAllowanceTracker\obj\Debug\net6.0-windows\ref\KidAllowanceTracker.dll
 C:\Users\smash\source\repos\KidAllowanceTracker\obj\Debug\net6.0-windows\KidAllowanceTracker.Resources.resources
 C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\bin\Debug\net6.0-windows\KidAllowanceTracker.exe
+C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\bin\Debug\net6.0-windows\KidAllowanceTracker.dll.config
 C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\bin\Debug\net6.0-windows\KidAllowanceTracker.deps.json
 C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\bin\Debug\net6.0-windows\KidAllowanceTracker.runtimeconfig.json
 C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\bin\Debug\net6.0-windows\KidAllowanceTracker.dll
