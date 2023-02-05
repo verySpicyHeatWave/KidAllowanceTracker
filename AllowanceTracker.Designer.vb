@@ -42,6 +42,7 @@ Partial Class AllowanceTracker
         Me.PepperRainbowWorker = New System.ComponentModel.BackgroundWorker()
         Me.RubyRainbowWorker = New System.ComponentModel.BackgroundWorker()
         Me.ToolTipThingy = New System.Windows.Forms.ToolTip(Me.components)
+        Me.CloseButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Ruby_AddWorksheet
@@ -214,11 +215,24 @@ Partial Class AllowanceTracker
         Me.RubyRainbowWorker.WorkerReportsProgress = True
         Me.RubyRainbowWorker.WorkerSupportsCancellation = True
         '
+        'CloseButton
+        '
+        Me.CloseButton.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CloseButton.Image = Global.KidAllowanceTracker.My.Resources.Resources.CloseButton
+        Me.CloseButton.Location = New System.Drawing.Point(319, 12)
+        Me.CloseButton.Name = "CloseButton"
+        Me.CloseButton.Size = New System.Drawing.Size(41, 41)
+        Me.CloseButton.TabIndex = 18
+        Me.CloseButton.UseVisualStyleBackColor = True
+        '
         'AllowanceTracker
         '
+        Me.AcceptButton = Me.SaveButton
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(372, 255)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.NewWeekButton)
         Me.Controls.Add(Me.LoadButton)
         Me.Controls.Add(Me.SettingsButton)
@@ -262,4 +276,5 @@ Partial Class AllowanceTracker
     Friend WithEvents PepperRainbowWorker As System.ComponentModel.BackgroundWorker
     Friend WithEvents RubyRainbowWorker As System.ComponentModel.BackgroundWorker
     Friend WithEvents ToolTipThingy As ToolTip
+    Friend WithEvents CloseButton As Button
 End Class

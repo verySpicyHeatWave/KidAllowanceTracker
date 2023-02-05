@@ -286,4 +286,8 @@ Public Class AllowanceTracker
         FlashRainbowText(Ruby_NameLabel)
     End Sub
 
+    Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
+        Dim answer As DialogResult = MessageBox.Show("Are you sure you want to close?", "Close Me?", MessageBoxButtons.YesNo)
+        If answer = DialogResult.Yes Then Me.Close()
+    End Sub
 End Class
