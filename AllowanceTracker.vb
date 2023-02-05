@@ -190,7 +190,7 @@ Public Class AllowanceTracker
     End Sub
 
 
-    Private Sub SaveData(sender As Object, e As EventArgs) Handles SaveButton.Click
+    Private Sub SaveData() Handles SaveButton.Click
 
         If Not PasswordIsCorrect() Then Exit Sub
         WriteToCSVFile(stats.SaveFile)
@@ -287,7 +287,16 @@ Public Class AllowanceTracker
     End Sub
 
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
-        Dim answer As DialogResult = MessageBox.Show("Are you sure you want to close?", "Close Me?", MessageBoxButtons.YesNo)
-        If answer = DialogResult.Yes Then Me.Close()
+
+        Dim answer As DialogResult
+        If SaveButton.Enabled = False Then
+            answer = MessageBox.Show("Are you sure you want to close?", "Close Me?", MessageBoxButtons.YesNo)
+            If answer = DialogResult.Yes Then Me.Close()
+        Else
+            answer = MessageBox.Show("Would you like to save first?", "Close Me?", MessageBoxButtons.YesNoCancel)
+            If answer = DialogResult.Yes Then SaveData()
+            If answer = DialogResult.No Then Me.Close()
+        End If
+
     End Sub
 End Class
