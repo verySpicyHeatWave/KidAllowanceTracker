@@ -6,7 +6,17 @@ Module FileUtilities
     Public Function ReadCSVFile(savefile As String) As List(Of String)
 
         If Not System.IO.File.Exists(savefile) Then
-            CreateNewCSVFile()
+            Dim answer As DialogResult = MessageBox.Show("The save file was not found in the set location. Would you like to try and find it?", "Find the file?", MessageBoxButtons.YesNo)
+            If answer = DialogResult.Yes Then
+                Dim filesearch As New OpenFileDialog
+                If filesearch.ShowDialog() = DialogResult.OK Then
+                    My.Settings.SaveFile = filesearch.FileName
+                    AllowanceTracker.stats.SaveFile = My.Settings.SaveFile
+                End If
+            Else
+                MessageBox.Show("A save file was not found. A new one will be generated.")
+                CreateNewCSVFile(AllowanceTracker.stats.SaveFile)
+            End If
         End If
 
         Dim reader As New StreamReader(savefile)
@@ -63,7 +73,7 @@ Module FileUtilities
 
     End Sub
 
-    Public Sub CreateNewCSVFile()
+    Public Sub CreateNewCSVFile(savefile As String)
 
         Dim headerstring As String = "Date (Monday),RubyWorksheets,PepperWorksheets,RubyBehavior,PepperBehavior,RubyAllowance,PepperAllowance"
         Dim lastmon As String = AllowanceTracker.stats.LastMonday

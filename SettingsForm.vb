@@ -104,13 +104,19 @@ Public Class Settings
             My.Settings.SaveFile = dirselect.SelectedPath + "\KidBehaviorLog.csv"
 
             If MessageBox.Show("Would you like to move the existing file to the new location?", "Move existing file?", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                My.Computer.FileSystem.MoveFile(AllowanceTracker.stats.SaveFile, My.Settings.SaveFile)
+                If My.Computer.FileSystem.FileExists(AllowanceTracker.stats.SaveFile) Then
+                    My.Computer.FileSystem.MoveFile(AllowanceTracker.stats.SaveFile, My.Settings.SaveFile)
+                Else
+                    MessageBox.Show("There's no existing file to move! A new one will be generated in the new location.", "File does not exist!")
+                    CreateNewCSVFile(My.Settings.SaveFile)
+                End If
+
+                AllowanceTracker.stats.SaveFile = My.Settings.SaveFile
+                txt_SaveFilePath.Text = My.Settings.SaveFile
+
             End If
-
-            AllowanceTracker.stats.SaveFile = My.Settings.SaveFile
-            txt_SaveFilePath.Text = My.Settings.SaveFile
-
         End If
+
 
     End Sub
 
