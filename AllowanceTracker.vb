@@ -27,6 +27,7 @@ Public Class AllowanceTracker
         Dim Password As String
 
         Dim NoExceptions As Boolean
+        Dim PasswordLocked As Boolean
 
     End Structure
 
@@ -160,17 +161,20 @@ Public Class AllowanceTracker
 #Region "Event Handlers"
 
     Private Sub FormLoad() Handles Me.Load
-        stats.PepperAllowance = 1
-        stats.RubyAllowance = 1
-        stats.Password = My.Settings.Password
-        stats.NoExceptions = True
+        With stats
+            .PepperAllowance = 1
+            .RubyAllowance = 1
+            .Password = My.Settings.Password
+            .NoExceptions = True
+            .PasswordLocked = True
 
-        If My.Settings.SaveFile = "nothing" Then
-            stats.SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
-            My.Settings.SaveFile = stats.SaveFile
-        Else
-            stats.SaveFile = My.Settings.SaveFile
-        End If
+            If My.Settings.SaveFile = "nothing" Then
+                .SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
+                My.Settings.SaveFile = .SaveFile
+            Else
+                .SaveFile = My.Settings.SaveFile
+            End If
+        End With
 
         GetTheFridays()
         ReportTheCSVData()
@@ -185,6 +189,11 @@ Public Class AllowanceTracker
         ToolTipThingy.SetToolTip(LoadButton, "Load")
         ToolTipThingy.SetToolTip(SettingsButton, "Settings")
         ToolTipThingy.SetToolTip(CloseButton, "Close")
+        ToolTipThingy.SetToolTip(ckbtn_PasswordLock, "Unlock Password Protection")
+        ToolTipThingy.SetToolTip(Ruby_AddBehavior, "Add a Behavior Point for Ruby")
+        ToolTipThingy.SetToolTip(Ruby_AddWorksheet, "Add a Worksheet Point for Ruby")
+        ToolTipThingy.SetToolTip(Pepper_AddBehavior, "Add a Behavior Point for Pepper")
+        ToolTipThingy.SetToolTip(Pepper_AddWorksheet, "Add a Worksheet Point for Pepper")
     End Sub
 
 
@@ -208,7 +217,7 @@ Public Class AllowanceTracker
     End Sub
 
 
-    Private Sub AddPepperWkstCount() Handles Button2.Click
+    Private Sub AddPepperWkstCount() Handles Pepper_AddWorksheet.Click
         stats.PepperWorksheets += 1
         UpdateLabels()
         PlayRandomSound()
@@ -229,7 +238,9 @@ Public Class AllowanceTracker
 
 
     Private Sub SaveData() Handles SaveButton.Click
-        If Not PasswordIsCorrect() Then Exit Sub
+        If stats.PasswordLocked = True Then
+            If Not PasswordIsCorrect() Then Exit Sub
+        End If
         WriteToCSVFile(stats.SaveFile)
         If stats.NoExceptions = False Then Me.Close()
         SaveButton.Enabled = False
@@ -238,7 +249,9 @@ Public Class AllowanceTracker
 
 
     Private Sub LoadData(sender As Object, e As EventArgs) Handles LoadButton.Click
-        If Not PasswordIsCorrect() Then Exit Sub
+        If stats.PasswordLocked = True Then
+            If Not PasswordIsCorrect() Then Exit Sub
+        End If
         GetTheFridays()
         ReportTheCSVData()
         UpdateLabels()
@@ -248,7 +261,9 @@ Public Class AllowanceTracker
 
 
     Private Sub OpenSettingsWindow(sender As Object, e As EventArgs) Handles SettingsButton.Click
-        If Not PasswordIsCorrect() Then Exit Sub
+        If stats.PasswordLocked = True Then
+            If Not PasswordIsCorrect() Then Exit Sub
+        End If
         Dim Settingswindow As New Settings
         Settingswindow.ShowDialog()
         UpdateLabels()
@@ -275,6 +290,23 @@ Public Class AllowanceTracker
 
     Private Sub RubyRainbowWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles RubyRainbowWorker.DoWork
         FlashRainbowText(Ruby_NameLabel)
+    End Sub
+
+
+    Private Sub ckbtn_PasswordLock_CheckedChanged(sender As Object, e As EventArgs) Handles ckbtn_PasswordLock.CheckedChanged
+        If ckbtn_PasswordLock.Checked = False Then
+            If Not PasswordIsCorrect() Then
+                ckbtn_PasswordLock.Checked = True
+                Exit Sub
+            End If
+            ckbtn_PasswordLock.Image = My.Resources.UnlockButton
+            ToolTipThingy.SetToolTip(ckbtn_PasswordLock, "Lock Password Protection")
+        End If
+        If ckbtn_PasswordLock.Checked = True Then
+            ckbtn_PasswordLock.Image = My.Resources.LockButton
+            ToolTipThingy.SetToolTip(ckbtn_PasswordLock, "Unlock Password Protection")
+        End If
+        stats.PasswordLocked = ckbtn_PasswordLock.Checked
     End Sub
 
 #End Region

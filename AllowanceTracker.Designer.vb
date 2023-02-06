@@ -24,7 +24,7 @@ Partial Class AllowanceTracker
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Ruby_AddWorksheet = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Pepper_AddWorksheet = New System.Windows.Forms.Button()
         Me.Ruby_AddBehavior = New System.Windows.Forms.Button()
         Me.Pepper_AddBehavior = New System.Windows.Forms.Button()
         Me.Ruby_NameLabel = New System.Windows.Forms.Label()
@@ -42,6 +42,7 @@ Partial Class AllowanceTracker
         Me.RubyRainbowWorker = New System.ComponentModel.BackgroundWorker()
         Me.ToolTipThingy = New System.Windows.Forms.ToolTip(Me.components)
         Me.CloseButton = New System.Windows.Forms.Button()
+        Me.ckbtn_PasswordLock = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'Ruby_AddWorksheet
@@ -54,15 +55,15 @@ Partial Class AllowanceTracker
         Me.Ruby_AddWorksheet.TabIndex = 0
         Me.Ruby_AddWorksheet.UseVisualStyleBackColor = True
         '
-        'Button2
+        'Pepper_AddWorksheet
         '
-        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Image = Global.KidAllowanceTracker.My.Resources.Resources.WorksheetButton
-        Me.Button2.Location = New System.Drawing.Point(225, 118)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(41, 41)
-        Me.Button2.TabIndex = 1
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Pepper_AddWorksheet.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Pepper_AddWorksheet.Image = Global.KidAllowanceTracker.My.Resources.Resources.WorksheetButton
+        Me.Pepper_AddWorksheet.Location = New System.Drawing.Point(225, 118)
+        Me.Pepper_AddWorksheet.Name = "Pepper_AddWorksheet"
+        Me.Pepper_AddWorksheet.Size = New System.Drawing.Size(41, 41)
+        Me.Pepper_AddWorksheet.TabIndex = 1
+        Me.Pepper_AddWorksheet.UseVisualStyleBackColor = True
         '
         'Ruby_AddBehavior
         '
@@ -214,13 +215,30 @@ Partial Class AllowanceTracker
         Me.CloseButton.TabIndex = 18
         Me.CloseButton.UseVisualStyleBackColor = True
         '
+        'ckbtn_PasswordLock
+        '
+        Me.ckbtn_PasswordLock.Appearance = System.Windows.Forms.Appearance.Button
+        Me.ckbtn_PasswordLock.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ckbtn_PasswordLock.Checked = True
+        Me.ckbtn_PasswordLock.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ckbtn_PasswordLock.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ckbtn_PasswordLock.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
+        Me.ckbtn_PasswordLock.Image = Global.KidAllowanceTracker.My.Resources.Resources.LockButton
+        Me.ckbtn_PasswordLock.Location = New System.Drawing.Point(225, 12)
+        Me.ckbtn_PasswordLock.Name = "ckbtn_PasswordLock"
+        Me.ckbtn_PasswordLock.Size = New System.Drawing.Size(41, 41)
+        Me.ckbtn_PasswordLock.TabIndex = 19
+        Me.ckbtn_PasswordLock.UseVisualStyleBackColor = True
+        '
         'AllowanceTracker
         '
         Me.AcceptButton = Me.SaveButton
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.CloseButton
         Me.ClientSize = New System.Drawing.Size(372, 255)
         Me.ControlBox = False
+        Me.Controls.Add(Me.ckbtn_PasswordLock)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.LoadButton)
         Me.Controls.Add(Me.SettingsButton)
@@ -235,7 +253,7 @@ Partial Class AllowanceTracker
         Me.Controls.Add(Me.Ruby_NameLabel)
         Me.Controls.Add(Me.Pepper_AddBehavior)
         Me.Controls.Add(Me.Ruby_AddBehavior)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Pepper_AddWorksheet)
         Me.Controls.Add(Me.Ruby_AddWorksheet)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "AllowanceTracker"
@@ -246,7 +264,7 @@ Partial Class AllowanceTracker
     End Sub
 
     Friend WithEvents Ruby_AddWorksheet As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents Pepper_AddWorksheet As Button
     Friend WithEvents Ruby_AddBehavior As Button
     Friend WithEvents Pepper_AddBehavior As Button
     Friend WithEvents Ruby_NameLabel As Label
@@ -264,4 +282,5 @@ Partial Class AllowanceTracker
     Friend WithEvents RubyRainbowWorker As System.ComponentModel.BackgroundWorker
     Friend WithEvents ToolTipThingy As ToolTip
     Friend WithEvents CloseButton As Button
+    Friend WithEvents ckbtn_PasswordLock As CheckBox
 End Class
