@@ -86,6 +86,9 @@ Public Class AllowanceTracker
             Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
             Pepper_Allowance.Text = "$" + FormatNumber(.PepperAllowance, 2).ToString
 
+            ToolTipThingy.SetToolTip(Ruby_BehaviorCount, Replace(Stats.RubyBehavNote, ";", vbCrLf))
+            ToolTipThingy.SetToolTip(Pepper_BehaviorCount, Replace(Stats.PepperBehavNote, ";", vbCrLf))
+
         End With
     End Sub
 
@@ -197,6 +200,11 @@ Public Class AllowanceTracker
         End If
     End Sub
 
+
+    Private Sub AddBehaviorNote(NoteString As String)
+
+    End Sub
+
 #End Region
 
 
@@ -300,8 +308,6 @@ Public Class AllowanceTracker
         ToolTipThingy.SetToolTip(Pepper_AddGrades, "Add a report card for Pepper")
         ToolTipThingy.SetToolTip(Ruby_AddBehaviorNote, "Add a behavior note for Ruby")
         ToolTipThingy.SetToolTip(Pepper_AddBehaviorNote, "Add a behavior note for Pepper")
-        ToolTipThingy.SetToolTip(Ruby_BehaviorCount, Replace(Stats.RubyBehavNote, ";", vbCrLf))
-        ToolTipThingy.SetToolTip(Pepper_BehaviorCount, Replace(Stats.PepperBehavNote, ";", vbCrLf))
 
     End Sub
 
@@ -323,6 +329,8 @@ Public Class AllowanceTracker
         If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
+        Ruby_AddBehaviorNote.Enabled = True
+        Ruby_AddBehaviorNote.Visible = True
     End Sub
 
 
@@ -343,6 +351,8 @@ Public Class AllowanceTracker
         If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
+        Pepper_AddBehaviorNote.Enabled = True
+        Pepper_AddBehaviorNote.Visible = True
     End Sub
 
 
@@ -427,14 +437,71 @@ Public Class AllowanceTracker
     End Sub
 
     Private Sub Ruby_AddBehaviorNote_Click(sender As Object, e As EventArgs) Handles Ruby_AddBehaviorNote.Click
-        '<ADD> Need to add some code to create the input box, put the results into the proper storage string along with the date, and then add it to the list of notes delimited by a semicolon
+        Stats.RubyBehavNote += ";"
+        Dim tempstring() As String = Stats.RubyBehavNote.Split(";")
+        ReDim Preserve tempstring(Stats.Ruby.Behavior - 1)
+
+        For i = 1 To Stats.Ruby.Behavior
+            If Not tempstring(i - 1) = "" Then Continue For
+            Dim newnote As String = InputBox("Please add a note about what Ruby's good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
+            If newnote = "" Then
+                Stats.RubyBehavNote += ";"
+                Continue For
+            End If
+            Stats.RubyBehavNote += Date.Today.ToShortDateString + ": "
+            Stats.RubyBehavNote += newnote
+            Stats.RubyBehavNote += ";"
+        Next
+        Stats.RubyBehavNote = Stats.RubyBehavNote.TrimEnd(";")
+        UpdateLabels()
+
+        tempstring = Stats.RubyBehavNote.Split(";")
+        Dim commentcount As Integer = 0
+        For i = 0 To tempstring.Count - 1
+            If Not tempstring(i) = "" Then commentcount += 1
+        Next
+        If commentcount = Stats.Ruby.Behavior Then
+            Ruby_AddBehaviorNote.Enabled = False
+            Ruby_AddBehaviorNote.Visible = False
+        End If
+
+        SaveButton.Enabled = True
+        LoadButton.Enabled = True
     End Sub
 
     Private Sub Pepper_AddBehaviorNote_Click(sender As Object, e As EventArgs) Handles Pepper_AddBehaviorNote.Click
-        '<ADD> Need to add some code to create the input box, put the results into the proper storage string along with the date, and then add it to the list of notes delimited by a semicolon
+        Stats.PepperBehavNote += ";"
+        Dim tempstring() As String = Stats.PepperBehavNote.Split(";")
+        ReDim Preserve tempstring(Stats.Pepper.Behavior - 1)
+
+        For i = 1 To Stats.Pepper.Behavior
+            If Not tempstring(i - 1) = "" Then Continue For
+            Dim newnote As String = InputBox("Please add a note about what Pepper's good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
+            If newnote = "" Then
+                Stats.PepperBehavNote += ";"
+                Continue For
+            End If
+            Stats.PepperBehavNote += Date.Today.ToShortDateString + ": "
+            Stats.PepperBehavNote += newnote
+            Stats.PepperBehavNote += ";"
+        Next
+        Stats.PepperBehavNote = Stats.PepperBehavNote.TrimEnd(";")
+        UpdateLabels()
+
+        tempstring = Stats.PepperBehavNote.Split(";")
+        Dim commentcount As Integer = 0
+        For i = 0 To tempstring.Count - 1
+            If Not tempstring(i) = "" Then commentcount += 1
+        Next
+        If commentcount = Stats.Pepper.Behavior Then
+            Pepper_AddBehaviorNote.Enabled = False
+            Pepper_AddBehaviorNote.Visible = False
+        End If
+
+        SaveButton.Enabled = True
+        LoadButton.Enabled = True
     End Sub
 
 #End Region
-
 
 End Class
