@@ -42,14 +42,26 @@ Module FileUtilities
         Dim str() As String
         Dim NewData As String = ""
 
-        With AllowanceTracker.stats
+        With AllowanceTracker.Stats
             NewData += .LastFriday.ToShortDateString + ","
-            NewData += .RubyWorksheets.ToString + ","
-            NewData += .PepperWorksheets.ToString + ","
-            NewData += .RubyBehavior.ToString + ","
-            NewData += .PepperBehavior.ToString + ","
+            NewData += .Ruby.Worksheet.ToString + ","
+            NewData += .Ruby.Behavior.ToString + ","
+            NewData += .Ruby.AGrades.ToString + ","
+            NewData += .Ruby.BGrades.ToString + ","
+            NewData += .Ruby.CGrades.ToString + ","
+            NewData += .Ruby.DGrades.ToString + ","
+            NewData += .Ruby.FGrades.ToString + ","
             NewData += .RubyAllowance.ToString + ","
-            NewData += .PepperAllowance.ToString
+            NewData += .RubyBehavNote + ","
+            NewData += .Pepper.Worksheet.ToString + ","
+            NewData += .Pepper.Behavior.ToString + ","
+            NewData += .Pepper.AGrades.ToString + ","
+            NewData += .Pepper.BGrades.ToString + ","
+            NewData += .Pepper.CGrades.ToString + ","
+            NewData += .Pepper.DGrades.ToString + ","
+            NewData += .Pepper.FGrades.ToString + ","
+            NewData += .PepperAllowance.ToString + ","
+            NewData += .PepperBehavNote + ","
         End With
 
         Try
@@ -59,9 +71,19 @@ Module FileUtilities
                 If str(0).Contains(AllowanceTracker.stats.LastFriday.ToShortDateString) Then
                     writer.WriteLine(NewData)
                 ElseIf str(0).Contains("Behavior") Then
-                    writer.WriteLine("Behavior," + AllowanceTracker.stats.PricePerBehavior.ToString)
+                    writer.WriteLine("Behavior," + AllowanceTracker.Stats.PricePer.Behavior.ToString)
                 ElseIf str(0).Contains("Worksheet") Then
-                    writer.WriteLine("Worksheet," + AllowanceTracker.stats.PricePerWorksheet.ToString)
+                    writer.WriteLine("Worksheet," + AllowanceTracker.Stats.PricePer.Worksheet.ToString)
+                ElseIf str(0).Contains("A's") Then
+                    writer.WriteLine("A's," + AllowanceTracker.Stats.PricePer.AGrades.ToString)
+                ElseIf str(0).Contains("B's") Then
+                    writer.WriteLine("B's," + AllowanceTracker.Stats.PricePer.BGrades.ToString)
+                ElseIf str(0).Contains("C's") Then
+                    writer.WriteLine("C's," + AllowanceTracker.Stats.PricePer.CGrades.ToString)
+                ElseIf str(0).Contains("D's") Then
+                    writer.WriteLine("D's," + AllowanceTracker.Stats.PricePer.DGrades.ToString)
+                ElseIf str(0).Contains("F's") Then
+                    writer.WriteLine("F's," + AllowanceTracker.Stats.PricePer.FGrades.ToString)
                 Else
                     writer.WriteLine(alldata(i))
                 End If
@@ -88,9 +110,32 @@ Module FileUtilities
             writer.WriteLine("Worksheets,0.5")
             writer.WriteLine("Behavior,1")
             writer.WriteLine("Baseline,1")
+            writer.WriteLine("A's,4")
+            writer.WriteLine("B's,2")
+            writer.WriteLine("C's,1")
+            writer.WriteLine("D's,0")
+            writer.WriteLine("F's,0")
             writer.WriteLine("")
-            writer.WriteLine(headerstring)
-            writer.WriteLine(lastmon + ",0,0,0,0,1,1")
+            writer.Write("Date (Friday),")
+            writer.Write("Ruby Worksheets,")
+            writer.Write("Ruby Behavior,")
+            writer.Write("Ruby A Grades,")
+            writer.Write("Ruby B Grades,")
+            writer.Write("Ruby C Grades,")
+            writer.Write("Ruby D Grades,")
+            writer.Write("Ruby F Grades,")
+            writer.Write("Ruby Allowance,")
+            writer.Write("Ruby Behavior Notes,")
+            writer.Write("Pepper Worksheets,")
+            writer.Write("Pepper Behavior,")
+            writer.Write("Pepper A Grades,")
+            writer.Write("Pepper B Grades,")
+            writer.Write("Pepper C Grades,")
+            writer.Write("Pepper D Grades,")
+            writer.Write("Pepper F Grades,")
+            writer.Write("Pepper Allowance,")
+            writer.Write("Pepper Behavior Notes,")
+            writer.WriteLine(lastmon + ",0,0,0,0,0,0,0,1,,0,0,0,0,0,0,0,1,")
             writer.Close()
         Catch ex As Exception
             MessageBox.Show("There was a problem:" + vbCrLf + vbCrLf + ex.Message, "Error!")

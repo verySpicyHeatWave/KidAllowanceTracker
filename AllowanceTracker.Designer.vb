@@ -23,6 +23,7 @@ Partial Class AllowanceTracker
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AllowanceTracker))
         Me.Ruby_AddWorksheet = New System.Windows.Forms.Button()
         Me.Pepper_AddWorksheet = New System.Windows.Forms.Button()
         Me.Ruby_AddBehavior = New System.Windows.Forms.Button()
@@ -43,6 +44,10 @@ Partial Class AllowanceTracker
         Me.ToolTipThingy = New System.Windows.Forms.ToolTip(Me.components)
         Me.CloseButton = New System.Windows.Forms.Button()
         Me.ckbtn_PasswordLock = New System.Windows.Forms.CheckBox()
+        Me.PepperGradesCount = New System.Windows.Forms.Label()
+        Me.RubyGradesCount = New System.Windows.Forms.Label()
+        Me.Ruby_AddGrades = New System.Windows.Forms.Button()
+        Me.Pepper_AddGrades = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Ruby_AddWorksheet
@@ -108,7 +113,7 @@ Partial Class AllowanceTracker
         'Pepper_Allowance
         '
         Me.Pepper_Allowance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Pepper_Allowance.Location = New System.Drawing.Point(225, 210)
+        Me.Pepper_Allowance.Location = New System.Drawing.Point(225, 233)
         Me.Pepper_Allowance.Name = "Pepper_Allowance"
         Me.Pepper_Allowance.Size = New System.Drawing.Size(135, 23)
         Me.Pepper_Allowance.TabIndex = 6
@@ -118,7 +123,7 @@ Partial Class AllowanceTracker
         'Ruby_Allowance
         '
         Me.Ruby_Allowance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Ruby_Allowance.Location = New System.Drawing.Point(12, 210)
+        Me.Ruby_Allowance.Location = New System.Drawing.Point(12, 233)
         Me.Ruby_Allowance.Name = "Ruby_Allowance"
         Me.Ruby_Allowance.Size = New System.Drawing.Size(135, 23)
         Me.Ruby_Allowance.TabIndex = 7
@@ -230,14 +235,60 @@ Partial Class AllowanceTracker
         Me.ckbtn_PasswordLock.TabIndex = 19
         Me.ckbtn_PasswordLock.UseVisualStyleBackColor = True
         '
+        'PepperGradesCount
+        '
+        Me.PepperGradesCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.PepperGradesCount.ForeColor = System.Drawing.SystemColors.ButtonShadow
+        Me.PepperGradesCount.Location = New System.Drawing.Point(225, 210)
+        Me.PepperGradesCount.Name = "PepperGradesCount"
+        Me.PepperGradesCount.Size = New System.Drawing.Size(135, 23)
+        Me.PepperGradesCount.TabIndex = 21
+        Me.PepperGradesCount.Text = "No Report Card"
+        Me.PepperGradesCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'RubyGradesCount
+        '
+        Me.RubyGradesCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.RubyGradesCount.ForeColor = System.Drawing.SystemColors.ButtonShadow
+        Me.RubyGradesCount.Location = New System.Drawing.Point(12, 210)
+        Me.RubyGradesCount.Name = "RubyGradesCount"
+        Me.RubyGradesCount.Size = New System.Drawing.Size(135, 23)
+        Me.RubyGradesCount.TabIndex = 20
+        Me.RubyGradesCount.Text = "No Report Card"
+        Me.RubyGradesCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Ruby_AddGrades
+        '
+        Me.Ruby_AddGrades.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Ruby_AddGrades.Image = CType(resources.GetObject("Ruby_AddGrades.Image"), System.Drawing.Image)
+        Me.Ruby_AddGrades.Location = New System.Drawing.Point(59, 118)
+        Me.Ruby_AddGrades.Name = "Ruby_AddGrades"
+        Me.Ruby_AddGrades.Size = New System.Drawing.Size(41, 41)
+        Me.Ruby_AddGrades.TabIndex = 22
+        Me.Ruby_AddGrades.UseVisualStyleBackColor = True
+        '
+        'Pepper_AddGrades
+        '
+        Me.Pepper_AddGrades.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Pepper_AddGrades.Image = Global.KidAllowanceTracker.My.Resources.Resources.GradesButton1
+        Me.Pepper_AddGrades.Location = New System.Drawing.Point(272, 118)
+        Me.Pepper_AddGrades.Name = "Pepper_AddGrades"
+        Me.Pepper_AddGrades.Size = New System.Drawing.Size(41, 41)
+        Me.Pepper_AddGrades.TabIndex = 23
+        Me.Pepper_AddGrades.UseVisualStyleBackColor = True
+        '
         'AllowanceTracker
         '
         Me.AcceptButton = Me.SaveButton
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.CloseButton
-        Me.ClientSize = New System.Drawing.Size(372, 255)
+        Me.ClientSize = New System.Drawing.Size(372, 274)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Pepper_AddGrades)
+        Me.Controls.Add(Me.Ruby_AddGrades)
+        Me.Controls.Add(Me.PepperGradesCount)
+        Me.Controls.Add(Me.RubyGradesCount)
         Me.Controls.Add(Me.ckbtn_PasswordLock)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.LoadButton)
@@ -283,4 +334,8 @@ Partial Class AllowanceTracker
     Friend WithEvents ToolTipThingy As ToolTip
     Friend WithEvents CloseButton As Button
     Friend WithEvents ckbtn_PasswordLock As CheckBox
+    Friend WithEvents PepperGradesCount As Label
+    Friend WithEvents RubyGradesCount As Label
+    Friend WithEvents Ruby_AddGrades As Button
+    Friend WithEvents Pepper_AddGrades As Button
 End Class

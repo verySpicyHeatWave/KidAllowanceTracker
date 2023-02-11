@@ -6,22 +6,35 @@ Public Class AllowanceTracker
 
 #Region "Variables"
 
-    Public Structure DataStructure
+    Structure PricesStructure
 
-        Dim PepperWorksheets As Integer
-        Dim RubyWorksheets As Integer
-        Dim PepperBehavior As Integer
-        Dim RubyBehavior As Integer
+        Dim Worksheet As Double
+        Dim Behavior As Double
+        Dim AGrades As Double
+        Dim BGrades As Double
+        Dim CGrades As Double
+        Dim DGrades As Double
+        Dim FGrades As Double
+
+    End Structure
+
+
+    Public Structure DataFileStructure
+
+        Dim PricePer As PricesStructure
+        Dim Ruby As PricesStructure
+        Dim Pepper As PricesStructure
+
+        Dim BaselinePay As Double
+
+        Dim RubyBehavNote As String
+        Dim PepperBehavNote As String
 
         Dim PepperAllowance As Double
         Dim RubyAllowance As Double
 
         Dim NextFriday As Date
         Dim LastFriday As Date
-
-        Dim PricePerWorksheet As Double
-        Dim PricePerBehavior As Double
-        Dim PriceBaseline As Double
 
         Dim SaveFile As String
         Dim Password As String
@@ -31,7 +44,7 @@ Public Class AllowanceTracker
 
     End Structure
 
-    Public Shared stats As DataStructure
+    Public Shared Stats As DataFileStructure
     Dim Sound As New SoundPlayer
 
 #End Region
@@ -48,15 +61,25 @@ Public Class AllowanceTracker
 
 
     Public Sub UpdateLabels()
-        With stats
+        With Stats
 
-            Ruby_WorksheetCount.Text = "Worksheets: " + .RubyWorksheets.ToString
-            Ruby_BehaviorCount.Text = "Behavior: " + .RubyBehavior.ToString
-            Pepper_WorksheetCount.Text = "Worksheets: " + .PepperWorksheets.ToString
-            Pepper_BehaviorCount.Text = "Behavior: " + .PepperBehavior.ToString
+            Ruby_WorksheetCount.Text = "Worksheets: " + .Ruby.Worksheet.ToString
+            Ruby_BehaviorCount.Text = "Behavior: " + .Ruby.Behavior.ToString
+            Pepper_WorksheetCount.Text = "Worksheets: " + .Pepper.Worksheet.ToString
+            Pepper_BehaviorCount.Text = "Behavior: " + .Pepper.Behavior.ToString
 
-            stats.RubyAllowance = .PriceBaseline + (.PricePerBehavior * .RubyBehavior) + (.PricePerWorksheet * .RubyWorksheets)
-            stats.PepperAllowance = .PriceBaseline + (.PricePerBehavior * .PepperBehavior) + (.PricePerWorksheet * .PepperWorksheets)
+            .RubyAllowance = CalculateAllowance(.Ruby, .PricePer, .BaselinePay)
+            .PepperAllowance = CalculateAllowance(.Pepper, .PricePer, .BaselinePay)
+
+            If .Ruby.AGrades + .Ruby.BGrades + .Ruby.CGrades + .Ruby.DGrades + .Ruby.FGrades > 0 Then
+                RubyGradesCount.Text = UpdateGradesLabel(.Ruby)
+                RubyGradesCount.ForeColor = Color.Black
+            End If
+
+            If .Pepper.AGrades + .Pepper.BGrades + .Pepper.CGrades + .Pepper.DGrades + .Pepper.FGrades > 0 Then
+                PepperGradesCount.Text = UpdateGradesLabel(.Pepper)
+                PepperGradesCount.ForeColor = Color.Black
+            End If
 
             Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
             Pepper_Allowance.Text = "$" + FormatNumber(.PepperAllowance, 2).ToString
@@ -98,23 +121,51 @@ Public Class AllowanceTracker
 
         For i = 0 To AllData.Count - 1
             str = AllData(i).Split(","c)
-            If str(0).Contains(AllowanceTracker.stats.LastFriday.ToShortDateString) Or str(0).Contains(Date.Today.ToShortDateString) Then
+            If str(0).Contains(Stats.LastFriday.ToShortDateString) Or str(0).Contains(Date.Today.ToShortDateString) Then
                 FoundData = True
-                AllowanceTracker.stats.RubyWorksheets = CInt(str(1))
-                AllowanceTracker.stats.PepperWorksheets = CInt(str(2))
-                AllowanceTracker.stats.RubyBehavior = CInt(str(3))
-                AllowanceTracker.stats.PepperBehavior = CInt(str(4))
-                AllowanceTracker.stats.RubyAllowance = CDbl(str(5))
-                AllowanceTracker.stats.PepperAllowance = CDbl(str(6))
+                Stats.Ruby.Worksheet = CInt(str(1))
+                Stats.Ruby.Behavior = CInt(str(2))
+                Stats.Ruby.AGrades = CInt(str(3))
+                Stats.Ruby.BGrades = CInt(str(4))
+                Stats.Ruby.CGrades = CInt(str(5))
+                Stats.Ruby.DGrades = CInt(str(6))
+                Stats.Ruby.FGrades = CInt(str(7))
+                Stats.RubyAllowance = CDbl(str(8))
+                Stats.RubyBehavNote = str(9)
+
+                Stats.Pepper.Worksheet = CInt(str(10))
+                Stats.Pepper.Behavior = CInt(str(11))
+                Stats.Pepper.AGrades = CInt(str(12))
+                Stats.Pepper.BGrades = CInt(str(13))
+                Stats.Pepper.CGrades = CInt(str(14))
+                Stats.Pepper.DGrades = CInt(str(15))
+                Stats.Pepper.FGrades = CInt(str(16))
+                Stats.PepperAllowance = CDbl(str(17))
+                Stats.PepperBehavNote = str(18)
 
             ElseIf str(0).Contains("Behavior") Then
-                AllowanceTracker.stats.PricePerBehavior = str(1)
+                AllowanceTracker.Stats.PricePer.Behavior = str(1)
 
             ElseIf str(0).Contains("Worksheet") Then
-                AllowanceTracker.stats.PricePerWorksheet = str(1)
+                AllowanceTracker.Stats.PricePer.Worksheet = str(1)
+
+            ElseIf str(0).Contains("A's") Then
+                AllowanceTracker.Stats.PricePer.AGrades = str(1)
+
+            ElseIf str(0).Contains("B's") Then
+                AllowanceTracker.Stats.PricePer.BGrades = str(1)
+
+            ElseIf str(0).Contains("C's") Then
+                AllowanceTracker.Stats.PricePer.CGrades = str(1)
+
+            ElseIf str(0).Contains("D's") Then
+                AllowanceTracker.Stats.PricePer.DGrades = str(1)
+
+            ElseIf str(0).Contains("F's") Then
+                AllowanceTracker.Stats.PricePer.FGrades = str(1)
 
             ElseIf str(0).Contains("Baseline") Then
-                AllowanceTracker.stats.PriceBaseline = str(1)
+                AllowanceTracker.Stats.BaselinePay = str(1)
 
             End If
         Next
@@ -153,6 +204,55 @@ Public Class AllowanceTracker
         PasswordCheck.ShowDialog()
         If PasswordCheck.AccessGranted = False Then Return False
         Return True
+    End Function
+
+
+    Private Function CalculateAllowance(Child As PricesStructure, Prices As PricesStructure, Baseline As Integer) As Double
+        Dim Response As Double = 0
+
+        Response += Baseline
+        Response += Child.Worksheet * Prices.Worksheet
+        Response += Child.Behavior * Prices.Behavior
+        Response += Child.AGrades * Prices.AGrades
+        Response += Child.BGrades * Prices.BGrades
+        Response += Child.CGrades * Prices.CGrades
+        Response += Child.DGrades * Prices.DGrades
+        Response += Child.FGrades * Prices.FGrades
+
+        Return Response
+    End Function
+
+
+    Private Function UpdateGradesLabel(Child As PricesStructure) As String
+
+        Dim Response As String = "Grades: "
+
+        For i = 0 To Child.AGrades
+            Response += "A,"
+        Next
+
+        For i = 0 To Child.BGrades
+            Response += "B,"
+        Next
+
+        For i = 0 To Child.CGrades
+            Response += "C,"
+        Next
+
+        For i = 0 To Child.DGrades
+            Response += "D,"
+        Next
+
+        For i = 0 To Child.FGrades
+            Response += "F,"
+        Next
+
+        Response = Response.TrimEnd(",")
+
+        Return Response
+
+
+
     End Function
 
 #End Region
@@ -198,7 +298,7 @@ Public Class AllowanceTracker
 
 
     Private Sub AddRubyWkstCount() Handles Ruby_AddWorksheet.Click
-        stats.RubyWorksheets += 1
+        Stats.Ruby.Worksheet += 1
         UpdateLabels()
         PlayRandomSound()
         If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
@@ -208,7 +308,7 @@ Public Class AllowanceTracker
 
 
     Private Sub AddRubyBhvrCount() Handles Ruby_AddBehavior.Click
-        stats.RubyBehavior += 1
+        Stats.Ruby.Behavior += 1
         UpdateLabels()
         PlayRandomSound()
         If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
@@ -218,7 +318,7 @@ Public Class AllowanceTracker
 
 
     Private Sub AddPepperWkstCount() Handles Pepper_AddWorksheet.Click
-        stats.PepperWorksheets += 1
+        Stats.Pepper.Worksheet += 1
         UpdateLabels()
         PlayRandomSound()
         If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
@@ -228,7 +328,7 @@ Public Class AllowanceTracker
 
 
     Private Sub AddPepperBhvrCount() Handles Pepper_AddBehavior.Click
-        stats.PepperBehavior += 1
+        Stats.Pepper.Behavior += 1
         UpdateLabels()
         PlayRandomSound()
         If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()

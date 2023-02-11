@@ -6,11 +6,22 @@ Public Class Settings
     Private Sub SettingsLoad() Handles Me.Load
         lblLastFridayRead.Text = AllowanceTracker.stats.LastFriday.ToShortDateString
         lblNextFridayRead.Text = AllowanceTracker.stats.NextFriday.ToShortDateString
-        txtPricePerWkst.Text = AllowanceTracker.stats.PricePerWorksheet.ToString
-        txtPricePerBhvr.Text = AllowanceTracker.stats.PricePerBehavior.ToString
-        txtBaselinePrice.Text = AllowanceTracker.stats.PriceBaseline.ToString
+        txtPricePerWkst.Text = AllowanceTracker.Stats.PricePer.Worksheet.ToString
+        txtPricePerBhvr.Text = AllowanceTracker.Stats.PricePer.Behavior.ToString
+        txtPricePerA.Text = AllowanceTracker.Stats.PricePer.AGrades.ToString
+        txtPricePerB.Text = AllowanceTracker.Stats.PricePer.BGrades.ToString
+        txtPricePerC.Text = AllowanceTracker.Stats.PricePer.CGrades.ToString
+        txtPricePerD.Text = AllowanceTracker.Stats.PricePer.DGrades.ToString
+        txtPricePerF.Text = AllowanceTracker.Stats.PricePer.FGrades.ToString
+        txtBaselinePrice.Text = AllowanceTracker.Stats.BaselinePay.ToString
+
         txtPricePerWkst.Text = FormatNumber(CDbl(txtPricePerWkst.Text), 2).ToString
         txtPricePerBhvr.Text = FormatNumber(CDbl(txtPricePerBhvr.Text), 2).ToString
+        txtPricePerA.Text = FormatNumber(CDbl(txtPricePerA.Text), 2).ToString
+        txtPricePerB.Text = FormatNumber(CDbl(txtPricePerB.Text), 2).ToString
+        txtPricePerC.Text = FormatNumber(CDbl(txtPricePerC.Text), 2).ToString
+        txtPricePerD.Text = FormatNumber(CDbl(txtPricePerD.Text), 2).ToString
+        txtPricePerF.Text = FormatNumber(CDbl(txtPricePerF.Text), 2).ToString
         txtBaselinePrice.Text = FormatNumber(CDbl(txtBaselinePrice.Text), 2).ToString
 
         txt_SaveFilePath.Text = My.Settings.SaveFile
@@ -34,17 +45,42 @@ Public Class Settings
 
 
     Private Sub UpdatePricePerWorksheet() Handles txtPricePerWkst.Leave
-        AllowanceTracker.stats.PricePerWorksheet = UpdatePrices(txtPricePerWkst)
+        AllowanceTracker.Stats.PricePer.Worksheet = UpdatePrices(txtPricePerWkst)
     End Sub
 
 
     Private Sub UpdatePricePerBehavior() Handles txtPricePerBhvr.Leave
-        AllowanceTracker.stats.PricePerBehavior = UpdatePrices(txtPricePerBhvr)
+        AllowanceTracker.Stats.PricePer.Behavior = UpdatePrices(txtPricePerBhvr)
+    End Sub
+
+
+    Private Sub UpdateAGradePrice() Handles txtPricePerA.TextChanged
+        AllowanceTracker.Stats.PricePer.AGrades = UpdatePrices(txtPricePerA)
+    End Sub
+
+
+    Private Sub UpdateBGradePrice() Handles txtPricePerB.TextChanged
+        AllowanceTracker.Stats.PricePer.BGrades = UpdatePrices(txtPricePerB)
+    End Sub
+
+
+    Private Sub UpdateCGradePrice() Handles txtPricePerC.TextChanged
+        AllowanceTracker.Stats.PricePer.CGrades = UpdatePrices(txtPricePerC)
+    End Sub
+
+
+    Private Sub UpdateDGradePrice() Handles txtPricePerD.TextChanged
+        AllowanceTracker.Stats.PricePer.DGrades = UpdatePrices(txtPricePerD)
+    End Sub
+
+
+    Private Sub UpdatefGradePrice() Handles txtPricePerF.TextChanged
+        AllowanceTracker.Stats.PricePer.FGrades = UpdatePrices(txtPricePerF)
     End Sub
 
 
     Private Sub UpdateBaselinePrice() Handles txtBaselinePrice.TextChanged
-        AllowanceTracker.stats.PriceBaseline = UpdatePrices(txtBaselinePrice)
+        AllowanceTracker.Stats.BaselinePay = UpdatePrices(txtBaselinePrice)
     End Sub
 
 
@@ -68,6 +104,11 @@ Public Class Settings
         UpdatePricePerWorksheet()
         UpdatePricePerBehavior()
         UpdateBaselinePrice()
+        UpdateAGradePrice()
+        UpdateBGradePrice()
+        UpdateCGradePrice()
+        UpdateDGradePrice()
+        UpdatefGradePrice()
         WriteToCSVFile(AllowanceTracker.stats.SaveFile)
         AllowanceTracker.UpdateLabels()
     End Sub

@@ -66,4 +66,23 @@
   <metadata name="ToolTipThingy.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>360, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Ruby_AddGrades.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAK2SURBVFhH7ZbPSxRhGMenQwWSzjibhWI7O7NiUNEPJBCS
+        6OepQ6f+hU51DA85O2YGRoTQIUiIqC5dJNRSwYycXenioUPXLuH80Nr5sYqkiG/PI49p7mvsjO5S0Ae+
+        zMz7Pt/v874w+84K/zTss7CHTQm76bHyhNmad2FOHKPHyuKb4kVozlD+pHiBhiuHPyF+XFtAAPc0XBkK
+        5r4za83XVJiUztJ0+Qk+iNnNCwhN0aTp8hJmq1uLmpMK2do2KisfwYT0ntd8VaY0TmU7D2PCro1v/lbC
+        GqwlW3SCrFgLagFdA7UHOfEFBE+FuZq5zc22EvgW4foFvENw7YHn66BL8xNV9dSmGD8nngSDszGoHMIe
+        2IvarhM+b2gOxmt9nmknBT282b6GZmq7jtORPurcU5b8EZlr3An5ozJzulNLttF0hNr+jqNrV+yu1A//
+        bYIbsB35Iwlm31UWLT19ldrxcYz0OasrNe+92c8NiiPckN2lLli6epna/BnL0NqsTrXgDW5/Ed5Qgll3
+        UvOOnj5P8aVh6+kWuzOVz7+OvwhvoI7ZnVrgGkorxUYDX0z3gTLLCy9F4PWmDaX4JxeF7/37dV54KUIv
+        xcQnPyS/5IWXIvRSTHyCYfkTL7wUoZdi4hOMxT8d0Usx8cB/vYEprfDCw6zE8q8OrgrveTXwAVphw8Je
+        iouONy6d4AXj+QBvOLN1zUK59xXm9dfBQopr50zpOMVFxxuWb24Mw9NxpjfJ4ESbs3W159utw9WWUV9l
+        ZbR2WIjvPkwyf9Ph5Y3KNyguOt5g4imG4Edk5lEj7FhdtDPqE8fQDlDJL74ajTIuys5oC1iLntUFDNT1
+        UUl03J6k7vYeYnA0L1sZ9RlckzS1JVhDtcvodbuV2zQVHdjRaUvXHsOOj9FQyaAHvdMdTado6D9/I4Lw
+        E8O5PYABFAfaAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>
