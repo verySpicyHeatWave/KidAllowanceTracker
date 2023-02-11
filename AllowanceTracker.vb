@@ -201,10 +201,6 @@ Public Class AllowanceTracker
     End Sub
 
 
-    Private Sub AddBehaviorNote(NoteString As String)
-
-    End Sub
-
 #End Region
 
 
@@ -234,7 +230,6 @@ Public Class AllowanceTracker
 
 
     Private Function UpdateGradesLabel(Child As PricesStructure) As String
-
         Dim Response As String = "Grades: "
 
         For i = 0 To Child.AGrades
@@ -260,9 +255,6 @@ Public Class AllowanceTracker
         Response = Response.TrimEnd(",")
 
         Return Response
-
-
-
     End Function
 
 #End Region
@@ -437,70 +429,48 @@ Public Class AllowanceTracker
     End Sub
 
     Private Sub Ruby_AddBehaviorNote_Click(sender As Object, e As EventArgs) Handles Ruby_AddBehaviorNote.Click
-        Stats.RubyBehavNote += ";"
-        Dim tempstring() As String = Stats.RubyBehavNote.Split(";")
-        ReDim Preserve tempstring(Stats.Ruby.Behavior - 1)
-
-        For i = 1 To Stats.Ruby.Behavior
-            If Not tempstring(i - 1) = "" Then Continue For
-            Dim newnote As String = InputBox("Please add a note about what Ruby's good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
-            If newnote = "" Then
-                Stats.RubyBehavNote += ";"
-                Continue For
-            End If
-            Stats.RubyBehavNote += Date.Today.ToShortDateString + ": "
-            Stats.RubyBehavNote += newnote
-            Stats.RubyBehavNote += ";"
-        Next
-        Stats.RubyBehavNote = Stats.RubyBehavNote.TrimEnd(";")
-        UpdateLabels()
-
-        tempstring = Stats.RubyBehavNote.Split(";")
-        Dim commentcount As Integer = 0
-        For i = 0 To tempstring.Count - 1
-            If Not tempstring(i) = "" Then commentcount += 1
-        Next
-        If commentcount = Stats.Ruby.Behavior Then
-            Ruby_AddBehaviorNote.Enabled = False
-            Ruby_AddBehaviorNote.Visible = False
-        End If
-
+        Stats.RubyBehavNote = AddBehaviorNote(sender, Stats.RubyBehavNote, Stats.Ruby.Behavior, "Ruby")
         SaveButton.Enabled = True
         LoadButton.Enabled = True
     End Sub
 
     Private Sub Pepper_AddBehaviorNote_Click(sender As Object, e As EventArgs) Handles Pepper_AddBehaviorNote.Click
-        Stats.PepperBehavNote += ";"
-        Dim tempstring() As String = Stats.PepperBehavNote.Split(";")
-        ReDim Preserve tempstring(Stats.Pepper.Behavior - 1)
+        Stats.PepperBehavNote = AddBehaviorNote(sender, Stats.PepperBehavNote, Stats.Pepper.Behavior, "Pepper")
+        UpdateLabels()
+        SaveButton.Enabled = True
+        LoadButton.Enabled = True
+    End Sub
 
-        For i = 1 To Stats.Pepper.Behavior
+
+    Private Function AddBehaviorNote(sender As Object, notestring As String, behaviorcount As Integer, childname As String) As String
+        notestring += ";"
+        Dim tempstring() As String = notestring.Split(";")
+        ReDim Preserve tempstring(behaviorcount - 1)
+
+        For i = 1 To behaviorcount
             If Not tempstring(i - 1) = "" Then Continue For
-            Dim newnote As String = InputBox("Please add a note about what Pepper's good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
+            Dim newnote As String = InputBox("Please add a note about what " + childname + "'s good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
             If newnote = "" Then
-                Stats.PepperBehavNote += ";"
+                notestring += ";"
                 Continue For
             End If
-            Stats.PepperBehavNote += Date.Today.ToShortDateString + ": "
-            Stats.PepperBehavNote += newnote
-            Stats.PepperBehavNote += ";"
+            notestring += Date.Today.ToShortDateString + ": "
+            notestring += newnote
+            notestring += ";"
         Next
-        Stats.PepperBehavNote = Stats.PepperBehavNote.TrimEnd(";")
-        UpdateLabels()
+        notestring = notestring.TrimEnd(";")
 
-        tempstring = Stats.PepperBehavNote.Split(";")
+        tempstring = notestring.Split(";")
         Dim commentcount As Integer = 0
         For i = 0 To tempstring.Count - 1
             If Not tempstring(i) = "" Then commentcount += 1
         Next
-        If commentcount = Stats.Pepper.Behavior Then
-            Pepper_AddBehaviorNote.Enabled = False
-            Pepper_AddBehaviorNote.Visible = False
+        If commentcount = behaviorcount Then
+            sender.Enabled = False
+            sender.Visible = False
         End If
-
-        SaveButton.Enabled = True
-        LoadButton.Enabled = True
-    End Sub
+        Return notestring
+    End Function
 
 #End Region
 
