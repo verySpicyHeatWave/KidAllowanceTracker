@@ -7,7 +7,6 @@ Public Class AllowanceTracker
 #Region "Variables"
 
     Structure PricesStructure
-
         Dim Worksheet As Double
         Dim Behavior As Double
         Dim AGrades As Double
@@ -15,12 +14,10 @@ Public Class AllowanceTracker
         Dim CGrades As Double
         Dim DGrades As Double
         Dim FGrades As Double
-
     End Structure
 
 
     Public Structure DataFileStructure
-
         Dim PricePer As PricesStructure
         Dim Ruby As PricesStructure
         Dim Pepper As PricesStructure
@@ -42,6 +39,11 @@ Public Class AllowanceTracker
         Dim NoExceptions As Boolean
         Dim PasswordLocked As Boolean
 
+        Sub New(BlankString As String)
+            BlankString = ""
+            RubyBehavNote = BlankString
+            PepperBehavNote = BlankString
+        End Sub
     End Structure
 
     Public Shared Stats As DataFileStructure
@@ -294,6 +296,13 @@ Public Class AllowanceTracker
         ToolTipThingy.SetToolTip(Ruby_AddWorksheet, "Add a Worksheet Point for Ruby")
         ToolTipThingy.SetToolTip(Pepper_AddBehavior, "Add a Behavior Point for Pepper")
         ToolTipThingy.SetToolTip(Pepper_AddWorksheet, "Add a Worksheet Point for Pepper")
+        ToolTipThingy.SetToolTip(Ruby_AddGrades, "Add a report card for Ruby")
+        ToolTipThingy.SetToolTip(Pepper_AddGrades, "Add a report card for Pepper")
+        ToolTipThingy.SetToolTip(Ruby_AddBehaviorNote, "Add a behavior note for Ruby")
+        ToolTipThingy.SetToolTip(Pepper_AddBehaviorNote, "Add a behavior note for Pepper")
+        ToolTipThingy.SetToolTip(Ruby_BehaviorCount, Replace(Stats.RubyBehavNote, ";", vbCrLf))
+        ToolTipThingy.SetToolTip(Pepper_BehaviorCount, Replace(Stats.PepperBehavNote, ";", vbCrLf))
+
     End Sub
 
 
@@ -407,6 +416,22 @@ Public Class AllowanceTracker
             ToolTipThingy.SetToolTip(ckbtn_PasswordLock, "Unlock Password Protection")
         End If
         stats.PasswordLocked = ckbtn_PasswordLock.Checked
+    End Sub
+
+    Private Sub Ruby_AddGrades_Click(sender As Object, e As EventArgs) Handles Ruby_AddGrades.Click
+        '<ADD> Need to create a new form to add number of each grade
+    End Sub
+
+    Private Sub Pepper_AddGrades_Click(sender As Object, e As EventArgs) Handles Pepper_AddGrades.Click
+        '<ADD> Need to create a new form to add number of each grade
+    End Sub
+
+    Private Sub Ruby_AddBehaviorNote_Click(sender As Object, e As EventArgs) Handles Ruby_AddBehaviorNote.Click
+        '<ADD> Need to add some code to create the input box, put the results into the proper storage string along with the date, and then add it to the list of notes delimited by a semicolon
+    End Sub
+
+    Private Sub Pepper_AddBehaviorNote_Click(sender As Object, e As EventArgs) Handles Pepper_AddBehaviorNote.Click
+        '<ADD> Need to add some code to create the input box, put the results into the proper storage string along with the date, and then add it to the list of notes delimited by a semicolon
     End Sub
 
 #End Region

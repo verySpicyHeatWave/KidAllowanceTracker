@@ -48,6 +48,8 @@ Partial Class AllowanceTracker
         Me.RubyGradesCount = New System.Windows.Forms.Label()
         Me.Ruby_AddGrades = New System.Windows.Forms.Button()
         Me.Pepper_AddGrades = New System.Windows.Forms.Button()
+        Me.Ruby_AddBehaviorNote = New System.Windows.Forms.Button()
+        Me.Pepper_AddBehaviorNote = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Ruby_AddWorksheet
@@ -277,6 +279,30 @@ Partial Class AllowanceTracker
         Me.Pepper_AddGrades.TabIndex = 23
         Me.Pepper_AddGrades.UseVisualStyleBackColor = True
         '
+        'Ruby_AddBehaviorNote
+        '
+        Me.Ruby_AddBehaviorNote.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Ruby_AddBehaviorNote.Enabled = False
+        Me.Ruby_AddBehaviorNote.Image = Global.KidAllowanceTracker.My.Resources.Resources.BehaviorNoteIcon
+        Me.Ruby_AddBehaviorNote.Location = New System.Drawing.Point(117, 184)
+        Me.Ruby_AddBehaviorNote.Name = "Ruby_AddBehaviorNote"
+        Me.Ruby_AddBehaviorNote.Size = New System.Drawing.Size(30, 30)
+        Me.Ruby_AddBehaviorNote.TabIndex = 24
+        Me.Ruby_AddBehaviorNote.UseVisualStyleBackColor = True
+        Me.Ruby_AddBehaviorNote.Visible = False
+        '
+        'Pepper_AddBehaviorNote
+        '
+        Me.Pepper_AddBehaviorNote.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Pepper_AddBehaviorNote.Enabled = False
+        Me.Pepper_AddBehaviorNote.Image = Global.KidAllowanceTracker.My.Resources.Resources.BehaviorNoteIcon
+        Me.Pepper_AddBehaviorNote.Location = New System.Drawing.Point(330, 184)
+        Me.Pepper_AddBehaviorNote.Name = "Pepper_AddBehaviorNote"
+        Me.Pepper_AddBehaviorNote.Size = New System.Drawing.Size(30, 30)
+        Me.Pepper_AddBehaviorNote.TabIndex = 25
+        Me.Pepper_AddBehaviorNote.UseVisualStyleBackColor = True
+        Me.Pepper_AddBehaviorNote.Visible = False
+        '
         'AllowanceTracker
         '
         Me.AcceptButton = Me.SaveButton
@@ -285,6 +311,8 @@ Partial Class AllowanceTracker
         Me.CancelButton = Me.CloseButton
         Me.ClientSize = New System.Drawing.Size(372, 274)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Pepper_AddBehaviorNote)
+        Me.Controls.Add(Me.Ruby_AddBehaviorNote)
         Me.Controls.Add(Me.Pepper_AddGrades)
         Me.Controls.Add(Me.Ruby_AddGrades)
         Me.Controls.Add(Me.PepperGradesCount)
@@ -338,4 +366,6 @@ Partial Class AllowanceTracker
     Friend WithEvents RubyGradesCount As Label
     Friend WithEvents Ruby_AddGrades As Button
     Friend WithEvents Pepper_AddGrades As Button
+    Friend WithEvents Ruby_AddBehaviorNote As Button
+    Friend WithEvents Pepper_AddBehaviorNote As Button
 End Class

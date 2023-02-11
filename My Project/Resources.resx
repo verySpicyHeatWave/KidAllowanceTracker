@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SelectFolder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SelectFolder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Fart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fart.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="CloseButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CloseButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,11 +142,11 @@
   <data name="Applause1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Applause1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="UnlockButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnlockButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="GameSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GameSound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Fart" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fart.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="BehaviorButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BehaviorButton1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,8 +163,11 @@
   <data name="LoadIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\299063_heart_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LightSpell" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LightSpell.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="SelectFolder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SelectFolder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GradesButton1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GradesButton1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WorksheetButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WorksheetButton1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,13 +178,13 @@
   <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Settings.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="UnlockButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UnlockButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LightSpell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LightSpell.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PartyTrumpet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PartyTrumpet.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="GradesButton1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GradesButton1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BehaviorNoteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BehaviorNoteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
