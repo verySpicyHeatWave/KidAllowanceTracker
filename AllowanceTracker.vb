@@ -41,9 +41,9 @@ Public Class AllowanceTracker
 
     Private Sub GetTheFridays()
         Dim DaysUntilNextFriday As Int32 = Math.Abs((DayOfWeek.Friday - Today.DayOfWeek + 7) Mod 7)
-        Dim DaysFromLastFriday As Int32 = Math.Abs(Today.DayOfWeek - DayOfWeek.Friday + 7)
+        Dim DaysFromLastFriday As Int32 = DaysUntilNextFriday - 7
         stats.NextFriday = Date.Today.AddDays(DaysUntilNextFriday)
-        stats.LastFriday = Date.Today.AddDays(-DaysFromLastFriday)
+        stats.LastFriday = Date.Today.AddDays(DaysFromLastFriday)
     End Sub
 
 
