@@ -10,8 +10,6 @@
     Dim ChildStats As AllowanceTracker.PricesStructure
 
     Public Sub New(NameString As String)
-
-        ' This call is required by the designer.
         InitializeComponent()
 
         If NameString.ToLower = "ruby" Then Child = ChildEnum.Ruby
@@ -29,14 +27,9 @@
         numbx_C.Value = ChildStats.CGrades
         numbx_D.Value = ChildStats.DGrades
         numbx_F.Value = ChildStats.FGrades
-
-
-        ' Add any initialization after the InitializeComponent() call.
-
     End Sub
 
     Private Sub OkButtonClickEvent() Handles btn_OK.Click
-
         ChildStats.AGrades = numbx_A.Value
         ChildStats.BGrades = numbx_B.Value
         ChildStats.CGrades = numbx_C.Value
@@ -45,7 +38,6 @@
         If Child = ChildEnum.Ruby Then AllowanceTracker.Stats.Ruby = ChildStats
         If Child = ChildEnum.Pepper Then AllowanceTracker.Stats.Pepper = ChildStats
         Me.Close()
-
     End Sub
 
     Private Sub CancelButtonClickEvent() Handles btn_Cancel.Click

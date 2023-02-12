@@ -83,7 +83,6 @@ Public Class AllowanceTracker
                 RubyGradesCount.ForeColor = Color.Silver
                 RubyGradesCount.Font = New Font("Segoe UI", 11)
                 RubyGradesCount.Size = New Size(135, 32)
-
             End If
 
             If .Pepper.AGrades + .Pepper.BGrades + .Pepper.CGrades + .Pepper.DGrades + .Pepper.FGrades > 0 Then
@@ -100,6 +99,22 @@ Public Class AllowanceTracker
 
             Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
             Pepper_Allowance.Text = "$" + FormatNumber(.PepperAllowance, 2).ToString
+
+            If Stats.RubyBehavNote.Split(";").Count < Stats.Ruby.Behavior Then
+                Ruby_AddBehaviorNote.Visible = True
+                Ruby_AddBehaviorNote.Enabled = True
+            Else
+                Ruby_AddBehaviorNote.Visible = False
+                Ruby_AddBehaviorNote.Enabled = False
+            End If
+
+            If Stats.PepperBehavNote.Split(";").Count < Stats.Pepper.Behavior Then
+                Pepper_AddBehaviorNote.Visible = True
+                Pepper_AddBehaviorNote.Enabled = True
+            Else
+                Pepper_AddBehaviorNote.Visible = False
+                Pepper_AddBehaviorNote.Enabled = False
+            End If
 
             ToolTipThingy.SetToolTip(Ruby_BehaviorCount, Replace(Stats.RubyBehavNote, ";", vbCrLf))
             ToolTipThingy.SetToolTip(Pepper_BehaviorCount, Replace(Stats.PepperBehavNote, ";", vbCrLf))
