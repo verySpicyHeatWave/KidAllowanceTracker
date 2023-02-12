@@ -19,6 +19,10 @@
 
         If Child = ChildEnum.Ruby Then ChildStats = AllowanceTracker.Stats.Ruby
         If Child = ChildEnum.Pepper Then ChildStats = AllowanceTracker.Stats.Pepper
+        If Child = ChildEnum.Unspecified Then
+            MessageBox.Show("Child undefined. No data was loaded.", "No Child?")
+            Me.Dispose()
+        End If
 
         numbx_A.Value = ChildStats.AGrades
         numbx_B.Value = ChildStats.BGrades

@@ -441,6 +441,8 @@ Public Class AllowanceTracker
         RubyGradesForm.Dispose()
 
         UpdateLabels()
+        PlayRandomSound()
+        If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
     End Sub
@@ -451,6 +453,8 @@ Public Class AllowanceTracker
         PepperGradesForm.Dispose()
 
         UpdateLabels()
+        PlayRandomSound()
+        If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
     End Sub
