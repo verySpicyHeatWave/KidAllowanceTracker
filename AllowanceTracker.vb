@@ -76,11 +76,26 @@ Public Class AllowanceTracker
             If .Ruby.AGrades + .Ruby.BGrades + .Ruby.CGrades + .Ruby.DGrades + .Ruby.FGrades > 0 Then
                 RubyGradesCount.Text = UpdateGradesLabel(.Ruby)
                 RubyGradesCount.ForeColor = Color.Black
+                RubyGradesCount.Font = New Font("Segoe UI", 9)
+                RubyGradesCount.Size = New Size(135, 32)
+            Else
+                RubyGradesCount.Text = "No Report Card"
+                RubyGradesCount.ForeColor = Color.Silver
+                RubyGradesCount.Font = New Font("Segoe UI", 11)
+                RubyGradesCount.Size = New Size(135, 32)
+
             End If
 
             If .Pepper.AGrades + .Pepper.BGrades + .Pepper.CGrades + .Pepper.DGrades + .Pepper.FGrades > 0 Then
                 PepperGradesCount.Text = UpdateGradesLabel(.Pepper)
                 PepperGradesCount.ForeColor = Color.Black
+                PepperGradesCount.Font = New Font("Segoe UI", 9)
+                PepperGradesCount.Size = New Size(135, 32)
+            Else
+                PepperGradesCount.Text = "No Report Card"
+                PepperGradesCount.ForeColor = Color.Silver
+                PepperGradesCount.Font = New Font("Segoe UI", 11)
+                PepperGradesCount.Size = New Size(135, 32)
             End If
 
             Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
@@ -232,23 +247,23 @@ Public Class AllowanceTracker
     Private Function UpdateGradesLabel(Child As PricesStructure) As String
         Dim Response As String = "Grades: "
 
-        For i = 0 To Child.AGrades
+        For a = 1 To Child.AGrades
             Response += "A,"
         Next
 
-        For i = 0 To Child.BGrades
+        For b = 1 To Child.BGrades
             Response += "B,"
         Next
 
-        For i = 0 To Child.CGrades
+        For c = 1 To Child.CGrades
             Response += "C,"
         Next
 
-        For i = 0 To Child.DGrades
+        For d = 1 To Child.DGrades
             Response += "D,"
         Next
 
-        For i = 0 To Child.FGrades
+        For f = 1 To Child.FGrades
             Response += "F,"
         Next
 
@@ -421,15 +436,28 @@ Public Class AllowanceTracker
     End Sub
 
     Private Sub Ruby_AddGrades_Click(sender As Object, e As EventArgs) Handles Ruby_AddGrades.Click
-        '<ADD> Need to create a new form to add number of each grade
+        Dim RubyGradesForm As New GradesForm("Ruby")
+        RubyGradesForm.ShowDialog()
+        RubyGradesForm.Dispose()
+
+        UpdateLabels()
+        SaveButton.Enabled = True
+        LoadButton.Enabled = True
     End Sub
 
     Private Sub Pepper_AddGrades_Click(sender As Object, e As EventArgs) Handles Pepper_AddGrades.Click
-        '<ADD> Need to create a new form to add number of each grade
+        Dim PepperGradesForm As New GradesForm("Pepper")
+        PepperGradesForm.ShowDialog()
+        PepperGradesForm.Dispose()
+
+        UpdateLabels()
+        SaveButton.Enabled = True
+        LoadButton.Enabled = True
     End Sub
 
     Private Sub Ruby_AddBehaviorNote_Click(sender As Object, e As EventArgs) Handles Ruby_AddBehaviorNote.Click
         Stats.RubyBehavNote = AddBehaviorNote(sender, Stats.RubyBehavNote, Stats.Ruby.Behavior, "Ruby")
+        UpdateLabels()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
     End Sub

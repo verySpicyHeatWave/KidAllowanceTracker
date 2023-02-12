@@ -115,7 +115,7 @@ Partial Class AllowanceTracker
         'Pepper_Allowance
         '
         Me.Pepper_Allowance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Pepper_Allowance.Location = New System.Drawing.Point(225, 233)
+        Me.Pepper_Allowance.Location = New System.Drawing.Point(225, 242)
         Me.Pepper_Allowance.Name = "Pepper_Allowance"
         Me.Pepper_Allowance.Size = New System.Drawing.Size(135, 23)
         Me.Pepper_Allowance.TabIndex = 6
@@ -125,7 +125,7 @@ Partial Class AllowanceTracker
         'Ruby_Allowance
         '
         Me.Ruby_Allowance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Ruby_Allowance.Location = New System.Drawing.Point(12, 233)
+        Me.Ruby_Allowance.Location = New System.Drawing.Point(12, 242)
         Me.Ruby_Allowance.Name = "Ruby_Allowance"
         Me.Ruby_Allowance.Size = New System.Drawing.Size(135, 23)
         Me.Ruby_Allowance.TabIndex = 7
@@ -134,7 +134,7 @@ Partial Class AllowanceTracker
         '
         'Ruby_WorksheetCount
         '
-        Me.Ruby_WorksheetCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Ruby_WorksheetCount.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Ruby_WorksheetCount.Location = New System.Drawing.Point(12, 164)
         Me.Ruby_WorksheetCount.Name = "Ruby_WorksheetCount"
         Me.Ruby_WorksheetCount.Size = New System.Drawing.Size(135, 23)
@@ -144,7 +144,7 @@ Partial Class AllowanceTracker
         '
         'Ruby_BehaviorCount
         '
-        Me.Ruby_BehaviorCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Ruby_BehaviorCount.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Ruby_BehaviorCount.Location = New System.Drawing.Point(12, 187)
         Me.Ruby_BehaviorCount.Name = "Ruby_BehaviorCount"
         Me.Ruby_BehaviorCount.Size = New System.Drawing.Size(135, 23)
@@ -154,7 +154,7 @@ Partial Class AllowanceTracker
         '
         'Pepper_WorksheetCount
         '
-        Me.Pepper_WorksheetCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Pepper_WorksheetCount.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Pepper_WorksheetCount.Location = New System.Drawing.Point(225, 164)
         Me.Pepper_WorksheetCount.Name = "Pepper_WorksheetCount"
         Me.Pepper_WorksheetCount.Size = New System.Drawing.Size(135, 23)
@@ -164,7 +164,7 @@ Partial Class AllowanceTracker
         '
         'Pepper_BehaviorCount
         '
-        Me.Pepper_BehaviorCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Pepper_BehaviorCount.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Pepper_BehaviorCount.Location = New System.Drawing.Point(225, 187)
         Me.Pepper_BehaviorCount.Name = "Pepper_BehaviorCount"
         Me.Pepper_BehaviorCount.Size = New System.Drawing.Size(135, 23)
@@ -239,8 +239,8 @@ Partial Class AllowanceTracker
         '
         'PepperGradesCount
         '
-        Me.PepperGradesCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.PepperGradesCount.ForeColor = System.Drawing.SystemColors.ButtonShadow
+        Me.PepperGradesCount.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.PepperGradesCount.ForeColor = System.Drawing.Color.Silver
         Me.PepperGradesCount.Location = New System.Drawing.Point(225, 210)
         Me.PepperGradesCount.Name = "PepperGradesCount"
         Me.PepperGradesCount.Size = New System.Drawing.Size(135, 23)
@@ -250,8 +250,8 @@ Partial Class AllowanceTracker
         '
         'RubyGradesCount
         '
-        Me.RubyGradesCount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.RubyGradesCount.ForeColor = System.Drawing.SystemColors.ButtonShadow
+        Me.RubyGradesCount.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.RubyGradesCount.ForeColor = System.Drawing.Color.Silver
         Me.RubyGradesCount.Location = New System.Drawing.Point(12, 210)
         Me.RubyGradesCount.Name = "RubyGradesCount"
         Me.RubyGradesCount.Size = New System.Drawing.Size(135, 23)

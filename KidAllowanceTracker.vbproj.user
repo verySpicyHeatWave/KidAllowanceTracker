@@ -7,6 +7,9 @@
     <Compile Update="AllowanceTracker.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GradesForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="PasswordForm.vb">
       <SubType>Form</SubType>
     </Compile>

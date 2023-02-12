@@ -19,3 +19,4 @@ C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\
 C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\obj\Release\net6.0-windows\KidAllowanceTracker.genruntimeconfig.cache
 C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\obj\Release\net6.0-windows\ref\KidAllowanceTracker.dll
 C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\bin\Release\net6.0-windows\KidAllowanceTracker.dll.config
+C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\obj\Release\net6.0-windows\KidAllowanceTracker.GradesForm.resources
