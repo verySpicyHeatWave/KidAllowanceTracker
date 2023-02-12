@@ -33,9 +33,6 @@ Public Class Settings
         If Not IsNumeric(txt.Text) Then
             MessageBox.Show("You must enter a number here!", "Error!")
             txt.Text = "1"
-        ElseIf CDbl(txt.Text) = 0 Then
-            MessageBox.Show("You can't enter zero!", "Error!")
-            txt.Text = "1"
         Else
             txt.Text = FormatNumber(CDbl(txt.Text), 2).ToString
         End If
