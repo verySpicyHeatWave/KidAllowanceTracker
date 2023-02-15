@@ -88,7 +88,12 @@ Module FileUtilities
                     writer.WriteLine(alldata(i))
                 End If
             Next
-            If AddNewWeek = True Then writer.WriteLine(AllowanceTracker.stats.LastFriday.ToShortDateString + ",0,0,0,0,1,1")
+            If AddNewWeek = True Then
+                writer.Write(AllowanceTracker.Stats.LastFriday.ToShortDateString + ",0,0,0,0,0,0,0,")
+                writer.Write(AllowanceTracker.Stats.BaselinePay.ToString)
+                writer.Write(",,0,0,0,0,0,0,0,")
+                writer.Write(AllowanceTracker.Stats.BaselinePay.ToString + ",")
+            End If
             writer.Close()
         Catch ex As Exception
             MessageBox.Show("There was a problem:" + vbCrLf + vbCrLf + ex.Message, "Error!")
