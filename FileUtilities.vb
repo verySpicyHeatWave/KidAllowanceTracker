@@ -134,7 +134,7 @@ Module FileUtilities
             writer.Write("Pepper D Grades,")
             writer.Write("Pepper F Grades,")
             writer.Write("Pepper Allowance,")
-            writer.Write("Pepper Behavior Notes,")
+            writer.WriteLine("Pepper Behavior Notes,")
             writer.WriteLine(lastmon + ",0,0,0,0,0,0,0,1,,0,0,0,0,0,0,0,1,")
             writer.Close()
         Catch ex As Exception
