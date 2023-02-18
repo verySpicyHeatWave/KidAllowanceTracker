@@ -60,6 +60,7 @@ Partial Class AllowanceTracker
         Me.Ruby_AddWorksheet.Name = "Ruby_AddWorksheet"
         Me.Ruby_AddWorksheet.Size = New System.Drawing.Size(41, 41)
         Me.Ruby_AddWorksheet.TabIndex = 0
+        Me.Ruby_AddWorksheet.TabStop = False
         Me.Ruby_AddWorksheet.UseVisualStyleBackColor = True
         '
         'Pepper_AddWorksheet
@@ -69,7 +70,8 @@ Partial Class AllowanceTracker
         Me.Pepper_AddWorksheet.Location = New System.Drawing.Point(225, 118)
         Me.Pepper_AddWorksheet.Name = "Pepper_AddWorksheet"
         Me.Pepper_AddWorksheet.Size = New System.Drawing.Size(41, 41)
-        Me.Pepper_AddWorksheet.TabIndex = 1
+        Me.Pepper_AddWorksheet.TabIndex = 0
+        Me.Pepper_AddWorksheet.TabStop = False
         Me.Pepper_AddWorksheet.UseVisualStyleBackColor = True
         '
         'Ruby_AddBehavior
@@ -79,7 +81,8 @@ Partial Class AllowanceTracker
         Me.Ruby_AddBehavior.Location = New System.Drawing.Point(106, 118)
         Me.Ruby_AddBehavior.Name = "Ruby_AddBehavior"
         Me.Ruby_AddBehavior.Size = New System.Drawing.Size(41, 41)
-        Me.Ruby_AddBehavior.TabIndex = 2
+        Me.Ruby_AddBehavior.TabIndex = 0
+        Me.Ruby_AddBehavior.TabStop = False
         Me.Ruby_AddBehavior.UseVisualStyleBackColor = True
         '
         'Pepper_AddBehavior
@@ -89,7 +92,8 @@ Partial Class AllowanceTracker
         Me.Pepper_AddBehavior.Location = New System.Drawing.Point(319, 118)
         Me.Pepper_AddBehavior.Name = "Pepper_AddBehavior"
         Me.Pepper_AddBehavior.Size = New System.Drawing.Size(41, 41)
-        Me.Pepper_AddBehavior.TabIndex = 3
+        Me.Pepper_AddBehavior.TabIndex = 0
+        Me.Pepper_AddBehavior.TabStop = False
         Me.Pepper_AddBehavior.UseVisualStyleBackColor = True
         '
         'Ruby_NameLabel
@@ -179,7 +183,8 @@ Partial Class AllowanceTracker
         Me.SaveButton.Location = New System.Drawing.Point(12, 12)
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(41, 41)
-        Me.SaveButton.TabIndex = 14
+        Me.SaveButton.TabIndex = 0
+        Me.SaveButton.TabStop = False
         Me.SaveButton.UseVisualStyleBackColor = True
         '
         'SettingsButton
@@ -189,7 +194,8 @@ Partial Class AllowanceTracker
         Me.SettingsButton.Location = New System.Drawing.Point(272, 12)
         Me.SettingsButton.Name = "SettingsButton"
         Me.SettingsButton.Size = New System.Drawing.Size(41, 41)
-        Me.SettingsButton.TabIndex = 15
+        Me.SettingsButton.TabIndex = 0
+        Me.SettingsButton.TabStop = False
         Me.SettingsButton.UseVisualStyleBackColor = True
         '
         'LoadButton
@@ -199,7 +205,8 @@ Partial Class AllowanceTracker
         Me.LoadButton.Location = New System.Drawing.Point(59, 12)
         Me.LoadButton.Name = "LoadButton"
         Me.LoadButton.Size = New System.Drawing.Size(41, 41)
-        Me.LoadButton.TabIndex = 16
+        Me.LoadButton.TabIndex = 0
+        Me.LoadButton.TabStop = False
         Me.LoadButton.UseVisualStyleBackColor = True
         '
         'PepperRainbowWorker
@@ -219,7 +226,8 @@ Partial Class AllowanceTracker
         Me.CloseButton.Location = New System.Drawing.Point(319, 12)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(41, 41)
-        Me.CloseButton.TabIndex = 18
+        Me.CloseButton.TabIndex = 0
+        Me.CloseButton.TabStop = False
         Me.CloseButton.UseVisualStyleBackColor = True
         '
         'ckbtn_PasswordLock
@@ -234,7 +242,8 @@ Partial Class AllowanceTracker
         Me.ckbtn_PasswordLock.Location = New System.Drawing.Point(225, 12)
         Me.ckbtn_PasswordLock.Name = "ckbtn_PasswordLock"
         Me.ckbtn_PasswordLock.Size = New System.Drawing.Size(41, 41)
-        Me.ckbtn_PasswordLock.TabIndex = 19
+        Me.ckbtn_PasswordLock.TabIndex = 0
+        Me.ckbtn_PasswordLock.TabStop = False
         Me.ckbtn_PasswordLock.UseVisualStyleBackColor = True
         '
         'PepperGradesCount
@@ -266,7 +275,8 @@ Partial Class AllowanceTracker
         Me.Ruby_AddGrades.Location = New System.Drawing.Point(59, 118)
         Me.Ruby_AddGrades.Name = "Ruby_AddGrades"
         Me.Ruby_AddGrades.Size = New System.Drawing.Size(41, 41)
-        Me.Ruby_AddGrades.TabIndex = 22
+        Me.Ruby_AddGrades.TabIndex = 0
+        Me.Ruby_AddGrades.TabStop = False
         Me.Ruby_AddGrades.UseVisualStyleBackColor = True
         '
         'Pepper_AddGrades
@@ -276,7 +286,8 @@ Partial Class AllowanceTracker
         Me.Pepper_AddGrades.Location = New System.Drawing.Point(272, 118)
         Me.Pepper_AddGrades.Name = "Pepper_AddGrades"
         Me.Pepper_AddGrades.Size = New System.Drawing.Size(41, 41)
-        Me.Pepper_AddGrades.TabIndex = 23
+        Me.Pepper_AddGrades.TabIndex = 0
+        Me.Pepper_AddGrades.TabStop = False
         Me.Pepper_AddGrades.UseVisualStyleBackColor = True
         '
         'Ruby_AddBehaviorNote
@@ -287,7 +298,8 @@ Partial Class AllowanceTracker
         Me.Ruby_AddBehaviorNote.Location = New System.Drawing.Point(117, 184)
         Me.Ruby_AddBehaviorNote.Name = "Ruby_AddBehaviorNote"
         Me.Ruby_AddBehaviorNote.Size = New System.Drawing.Size(30, 30)
-        Me.Ruby_AddBehaviorNote.TabIndex = 24
+        Me.Ruby_AddBehaviorNote.TabIndex = 0
+        Me.Ruby_AddBehaviorNote.TabStop = False
         Me.Ruby_AddBehaviorNote.UseVisualStyleBackColor = True
         Me.Ruby_AddBehaviorNote.Visible = False
         '
@@ -299,7 +311,8 @@ Partial Class AllowanceTracker
         Me.Pepper_AddBehaviorNote.Location = New System.Drawing.Point(330, 184)
         Me.Pepper_AddBehaviorNote.Name = "Pepper_AddBehaviorNote"
         Me.Pepper_AddBehaviorNote.Size = New System.Drawing.Size(30, 30)
-        Me.Pepper_AddBehaviorNote.TabIndex = 25
+        Me.Pepper_AddBehaviorNote.TabIndex = 0
+        Me.Pepper_AddBehaviorNote.TabStop = False
         Me.Pepper_AddBehaviorNote.UseVisualStyleBackColor = True
         Me.Pepper_AddBehaviorNote.Visible = False
         '

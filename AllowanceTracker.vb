@@ -341,6 +341,7 @@ Public Class AllowanceTracker
         If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
+        Ruby_WorksheetCount.Focus()
     End Sub
 
 
@@ -353,6 +354,7 @@ Public Class AllowanceTracker
         LoadButton.Enabled = True
         Ruby_AddBehaviorNote.Enabled = True
         Ruby_AddBehaviorNote.Visible = True
+        Ruby_WorksheetCount.Focus()
     End Sub
 
 
@@ -363,6 +365,7 @@ Public Class AllowanceTracker
         If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
+        Ruby_WorksheetCount.Focus()
     End Sub
 
 
@@ -375,6 +378,7 @@ Public Class AllowanceTracker
         LoadButton.Enabled = True
         Pepper_AddBehaviorNote.Enabled = True
         Pepper_AddBehaviorNote.Visible = True
+        Ruby_WorksheetCount.Focus()
     End Sub
 
 
@@ -386,6 +390,7 @@ Public Class AllowanceTracker
         If stats.NoExceptions = False Then Me.Close()
         SaveButton.Enabled = False
         LoadButton.Enabled = False
+        Ruby_WorksheetCount.Focus()
     End Sub
 
 
@@ -398,6 +403,7 @@ Public Class AllowanceTracker
         UpdateLabels()
         SaveButton.Enabled = False
         LoadButton.Enabled = False
+        Ruby_WorksheetCount.Focus()
     End Sub
 
 
@@ -408,6 +414,7 @@ Public Class AllowanceTracker
         Dim Settingswindow As New Settings
         Settingswindow.ShowDialog()
         UpdateLabels()
+        Ruby_WorksheetCount.Focus()
     End Sub
 
 
@@ -421,6 +428,7 @@ Public Class AllowanceTracker
             If answer = DialogResult.Yes Then SaveData()
             If answer = DialogResult.No Then Me.Close()
         End If
+        Ruby_WorksheetCount.Focus()
     End Sub
 
 
@@ -447,7 +455,8 @@ Public Class AllowanceTracker
             ckbtn_PasswordLock.Image = My.Resources.LockButton
             ToolTipThingy.SetToolTip(ckbtn_PasswordLock, "Unlock Password Protection")
         End If
-        stats.PasswordLocked = ckbtn_PasswordLock.Checked
+        Stats.PasswordLocked = ckbtn_PasswordLock.Checked
+        Ruby_WorksheetCount.Focus()
     End Sub
 
     Private Sub Ruby_AddGrades_Click(sender As Object, e As EventArgs) Handles Ruby_AddGrades.Click
@@ -460,6 +469,7 @@ Public Class AllowanceTracker
         If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
+        Ruby_WorksheetCount.Focus()
     End Sub
 
     Private Sub Pepper_AddGrades_Click(sender As Object, e As EventArgs) Handles Pepper_AddGrades.Click
@@ -472,6 +482,7 @@ Public Class AllowanceTracker
         If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
+        Ruby_WorksheetCount.Focus()
     End Sub
 
     Private Sub Ruby_AddBehaviorNote_Click(sender As Object, e As EventArgs) Handles Ruby_AddBehaviorNote.Click
@@ -479,6 +490,7 @@ Public Class AllowanceTracker
         UpdateLabels()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
+        Ruby_WorksheetCount.Focus()
     End Sub
 
     Private Sub Pepper_AddBehaviorNote_Click(sender As Object, e As EventArgs) Handles Pepper_AddBehaviorNote.Click
@@ -486,6 +498,7 @@ Public Class AllowanceTracker
         UpdateLabels()
         SaveButton.Enabled = True
         LoadButton.Enabled = True
+        Ruby_WorksheetCount.Focus()
     End Sub
 
 
