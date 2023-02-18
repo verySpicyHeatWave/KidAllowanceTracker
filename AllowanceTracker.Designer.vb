@@ -50,6 +50,8 @@ Partial Class AllowanceTracker
         Me.Pepper_AddGrades = New System.Windows.Forms.Button()
         Me.Ruby_AddBehaviorNote = New System.Windows.Forms.Button()
         Me.Pepper_AddBehaviorNote = New System.Windows.Forms.Button()
+        Me.NewWeekButton = New System.Windows.Forms.Button()
+        Me.DateChecker = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'Ruby_AddWorksheet
@@ -316,6 +318,19 @@ Partial Class AllowanceTracker
         Me.Pepper_AddBehaviorNote.UseVisualStyleBackColor = True
         Me.Pepper_AddBehaviorNote.Visible = False
         '
+        'NewWeekButton
+        '
+        Me.NewWeekButton.Image = Global.KidAllowanceTracker.My.Resources.Resources.NewWeekButton
+        Me.NewWeekButton.Location = New System.Drawing.Point(106, 12)
+        Me.NewWeekButton.Name = "NewWeekButton"
+        Me.NewWeekButton.Size = New System.Drawing.Size(41, 41)
+        Me.NewWeekButton.TabIndex = 22
+        Me.NewWeekButton.UseVisualStyleBackColor = True
+        '
+        'DateChecker
+        '
+        Me.DateChecker.Interval = 43200000
+        '
         'AllowanceTracker
         '
         Me.AcceptButton = Me.SaveButton
@@ -324,6 +339,7 @@ Partial Class AllowanceTracker
         Me.CancelButton = Me.CloseButton
         Me.ClientSize = New System.Drawing.Size(372, 274)
         Me.ControlBox = False
+        Me.Controls.Add(Me.NewWeekButton)
         Me.Controls.Add(Me.Pepper_AddBehaviorNote)
         Me.Controls.Add(Me.Ruby_AddBehaviorNote)
         Me.Controls.Add(Me.Pepper_AddGrades)
@@ -381,4 +397,6 @@ Partial Class AllowanceTracker
     Friend WithEvents Pepper_AddGrades As Button
     Friend WithEvents Ruby_AddBehaviorNote As Button
     Friend WithEvents Pepper_AddBehaviorNote As Button
+    Friend WithEvents NewWeekButton As Button
+    Friend WithEvents DateChecker As Timer
 End Class

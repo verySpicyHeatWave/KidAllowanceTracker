@@ -10,7 +10,8 @@ Module FileUtilities
                 Dim filesearch As New OpenFileDialog
                 If filesearch.ShowDialog() = DialogResult.OK Then
                     My.Settings.SaveFile = filesearch.FileName
-                    AllowanceTracker.stats.SaveFile = My.Settings.SaveFile
+                    AllowanceTracker.Stats.SaveFile = My.Settings.SaveFile
+                    savefile = My.Settings.SaveFile
                 End If
             Else
                 MessageBox.Show("A save file was not found. A new one will be generated.")

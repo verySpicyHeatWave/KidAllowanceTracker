@@ -100,20 +100,19 @@ Public Class AllowanceTracker
             Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
             Pepper_Allowance.Text = "$" + FormatNumber(.PepperAllowance, 2).ToString
 
+            Ruby_AddBehaviorNote.Visible = False
+            Ruby_AddBehaviorNote.Enabled = False
+            Pepper_AddBehaviorNote.Visible = False
+            Pepper_AddBehaviorNote.Enabled = False
+
             If Stats.RubyBehavNote.Split(";").Count < Stats.Ruby.Behavior Then
                 Ruby_AddBehaviorNote.Visible = True
                 Ruby_AddBehaviorNote.Enabled = True
-            Else
-                Ruby_AddBehaviorNote.Visible = False
-                Ruby_AddBehaviorNote.Enabled = False
             End If
 
             If Stats.PepperBehavNote.Split(";").Count < Stats.Pepper.Behavior Then
                 Pepper_AddBehaviorNote.Visible = True
                 Pepper_AddBehaviorNote.Enabled = True
-            Else
-                Pepper_AddBehaviorNote.Visible = False
-                Pepper_AddBehaviorNote.Enabled = False
             End If
 
             ToolTipThingy.SetToolTip(Ruby_BehaviorCount, Replace(Stats.RubyBehavNote, ";", vbCrLf))
@@ -299,6 +298,8 @@ Public Class AllowanceTracker
             .Password = My.Settings.Password
             .NoExceptions = True
             .PasswordLocked = True
+            .RubyBehavNote = ""
+            .PepperBehavNote = ""
 
             If My.Settings.SaveFile = "nothing" Then
                 .SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
@@ -316,6 +317,7 @@ Public Class AllowanceTracker
 
         SaveButton.Enabled = False
         LoadButton.Enabled = False
+        If Date.Today < Stats.NextFriday Or Date.Today = Stats.NextFriday Then NewWeekButton.Enabled = False
 
         ToolTipThingy.SetToolTip(SaveButton, "Save")
         ToolTipThingy.SetToolTip(LoadButton, "Load")
@@ -330,6 +332,8 @@ Public Class AllowanceTracker
         ToolTipThingy.SetToolTip(Pepper_AddGrades, "Add a report card for Pepper")
         ToolTipThingy.SetToolTip(Ruby_AddBehaviorNote, "Add a behavior note for Ruby")
         ToolTipThingy.SetToolTip(Pepper_AddBehaviorNote, "Add a behavior note for Pepper")
+
+        DateChecker.Start()
 
     End Sub
 
@@ -531,6 +535,25 @@ Public Class AllowanceTracker
         End If
         Return notestring
     End Function
+
+    Private Sub NewWeekButtonClick(sender As Object, e As EventArgs) Handles NewWeekButton.Click
+        If Date.Today > Stats.NextFriday Then
+            GetTheFridays()
+            WriteToCSVFile(Stats.SaveFile, True)
+            NewWeekButton.Enabled = False
+            MessageBox.Show("A new week has been generated.")
+        Else
+            MessageBox.Show("It's not time to create a new week yet!", "No new week!")
+        End If
+    End Sub
+
+    Private Sub DateChecker_Tick(sender As Object, e As EventArgs) Handles DateChecker.Tick
+        If Date.Today > Stats.NextFriday Then
+            GetTheFridays()
+            NewWeekButton.Enabled = True
+        End If
+
+    End Sub
 
 #End Region
 
