@@ -549,7 +549,7 @@ Public Class AllowanceTracker
 
     Private Sub DateChecker_Tick(sender As Object, e As EventArgs) Handles DateChecker.Tick
         If Date.Today > Stats.NextFriday Then
-            GetTheFridays()
+            'GetTheFridays() 'this is actually breaking the function by updating the Fridays before creating a new week in the CSV. ONLY update on button click or startup!
             NewWeekButton.Enabled = True
         End If
 
