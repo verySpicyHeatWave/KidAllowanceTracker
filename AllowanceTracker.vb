@@ -291,8 +291,8 @@ Public Class AllowanceTracker
 
 #Region "Event Handlers"
 
-    Private Sub FormLoad() Handles Me.Load
-        With stats
+    Private Sub FormLoad() Handles MyBase.Load
+        With Stats
             .PepperAllowance = 1
             .RubyAllowance = 1
             .Password = My.Settings.Password
@@ -387,11 +387,11 @@ Public Class AllowanceTracker
 
 
     Private Sub SaveData() Handles SaveButton.Click
-        If stats.PasswordLocked = True Then
+        If Stats.PasswordLocked = True Then
             If Not PasswordIsCorrect() Then Exit Sub
         End If
-        WriteToCSVFile(stats.SaveFile)
-        If stats.NoExceptions = False Then Me.Close()
+        WriteToCSVFile(Stats.SaveFile)
+        If Stats.NoExceptions = False Then Me.Close()
         SaveButton.Enabled = False
         LoadButton.Enabled = False
         Ruby_WorksheetCount.Focus()
@@ -399,7 +399,7 @@ Public Class AllowanceTracker
 
 
     Private Sub LoadData(sender As Object, e As EventArgs) Handles LoadButton.Click
-        If stats.PasswordLocked = True Then
+        If Stats.PasswordLocked = True Then
             If Not PasswordIsCorrect() Then Exit Sub
         End If
         GetTheFridays()
@@ -412,7 +412,7 @@ Public Class AllowanceTracker
 
 
     Private Sub OpenSettingsWindow(sender As Object, e As EventArgs) Handles SettingsButton.Click
-        If stats.PasswordLocked = True Then
+        If Stats.PasswordLocked = True Then
             If Not PasswordIsCorrect() Then Exit Sub
         End If
         Dim Settingswindow As New Settings
@@ -538,9 +538,14 @@ Public Class AllowanceTracker
 
     Private Sub NewWeekButtonClick(sender As Object, e As EventArgs) Handles NewWeekButton.Click
         If Date.Today > Stats.NextFriday Then
+            WriteToCSVFile(Stats.SaveFile)
             GetTheFridays()
             WriteToCSVFile(Stats.SaveFile, True)
             NewWeekButton.Enabled = False
+            SaveButton.Enabled = False
+            LoadButton.Enabled = False
+            ReportTheCSVData()
+            UpdateLabels()
             MessageBox.Show("A new week has been generated.")
         Else
             MessageBox.Show("It's not time to create a new week yet!", "No new week!")
