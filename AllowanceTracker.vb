@@ -538,9 +538,8 @@ Public Class AllowanceTracker
 
     Private Sub NewWeekButtonClick(sender As Object, e As EventArgs) Handles NewWeekButton.Click
         If Date.Today > Stats.NextFriday Then
-            WriteToCSVFile(Stats.SaveFile)
-            GetTheFridays()
             WriteToCSVFile(Stats.SaveFile, True)
+            GetTheFridays()
             NewWeekButton.Enabled = False
             SaveButton.Enabled = False
             LoadButton.Enabled = False
