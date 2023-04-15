@@ -1,5 +1,4 @@
 ﻿Imports System.Media
-Imports Microsoft.VisualBasic.Devices
 
 Public Class AllowanceTracker
 
@@ -148,6 +147,7 @@ Public Class AllowanceTracker
             Dim Friday As Date = AllowanceTracker.stats.NextFriday
         End If
 
+GetAndReportData:
         Dim AllData As List(Of String) = ReadCSVFile(stats.SaveFile)
         If stats.NoExceptions = False Then Me.Close()
         Dim FoundData As Boolean = False
@@ -207,6 +207,7 @@ Public Class AllowanceTracker
         If FoundData = True Then Exit Sub
         WriteToCSVFile(stats.SaveFile, True)
         MessageBox.Show("A new week has been generated.", "New Week")
+        GoTo GetAndReportData
     End Sub
 
 
@@ -512,8 +513,19 @@ Public Class AllowanceTracker
         ReDim Preserve tempstring(behaviorcount - 1)
 
         For i = 1 To behaviorcount
+            Dim CommentContainsCommas = True
             If Not tempstring(i - 1) = "" Then Continue For
-            Dim newnote As String = InputBox("Please add a note about what " + childname + "'s good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
+            Dim newnote As String = ""
+
+            Do While CommentContainsCommas
+                newnote = InputBox("Please add a note about what " + childname + "'s good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
+                If newnote.Contains(",") Or newnote.Contains(";") Then
+                    CommentContainsCommas = True
+                    MessageBox.Show("Comment cannot contain a comma or semicolon. Please fix this.")
+                Else
+                    CommentContainsCommas = False
+                End If
+            Loop
             If newnote = "" Then
                 notestring += ";"
                 Continue For
@@ -523,6 +535,7 @@ Public Class AllowanceTracker
             notestring += ";"
         Next
         notestring = notestring.TrimEnd(";")
+        notestring = notestring.TrimStart(";")
 
         tempstring = notestring.Split(";")
         Dim commentcount As Integer = 0
@@ -538,14 +551,12 @@ Public Class AllowanceTracker
 
     Private Sub NewWeekButtonClick(sender As Object, e As EventArgs) Handles NewWeekButton.Click
         If Date.Today > Stats.NextFriday Then
-            WriteToCSVFile(Stats.SaveFile, True)
             GetTheFridays()
             NewWeekButton.Enabled = False
             SaveButton.Enabled = False
             LoadButton.Enabled = False
             ReportTheCSVData()
             UpdateLabels()
-            MessageBox.Show("A new week has been generated.")
         Else
             MessageBox.Show("It's not time to create a new week yet!", "No new week!")
         End If
