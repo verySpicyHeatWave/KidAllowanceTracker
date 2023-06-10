@@ -3,7 +3,7 @@ Imports System.IO.Packaging
 
 Public Class Settings
 
-    Private Sub SettingsLoad() Handles Me.Load
+    Private Sub SettingsLoad() Handles MyBase.Load
         lblLastFridayRead.Text = AllowanceTracker.stats.LastFriday.ToShortDateString
         lblNextFridayRead.Text = AllowanceTracker.stats.NextFriday.ToShortDateString
         txtPricePerWkst.Text = AllowanceTracker.Stats.PricePer.Worksheet.ToString
@@ -97,7 +97,7 @@ Public Class Settings
     End Sub
 
 
-    Private Sub ClosingTheForm() Handles Me.Closed
+    Private Sub ClosingTheForm() Handles MyBase.Closed
         UpdatePricePerWorksheet()
         UpdatePricePerBehavior()
         UpdateBaselinePrice()
