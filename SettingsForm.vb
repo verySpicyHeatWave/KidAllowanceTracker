@@ -8,6 +8,7 @@ Public Class Settings
         'Populate the text boxes
         txtPricePerWkst.Text = AllowanceTracker.Stats.PricePer.Worksheet.ToString
         txtPricePerBhvr.Text = AllowanceTracker.Stats.PricePer.Behavior.ToString
+        txtPricePerChore.Text = AllowanceTracker.Stats.PricePer.Chores.ToString
         txtPricePerA.Text = AllowanceTracker.Stats.PricePer.AGrades.ToString
         txtPricePerB.Text = AllowanceTracker.Stats.PricePer.BGrades.ToString
         txtPricePerC.Text = AllowanceTracker.Stats.PricePer.CGrades.ToString
@@ -18,6 +19,7 @@ Public Class Settings
         'Format the text boxes
         txtPricePerWkst.Text = FormatNumber(CDbl(txtPricePerWkst.Text), 2).ToString
         txtPricePerBhvr.Text = FormatNumber(CDbl(txtPricePerBhvr.Text), 2).ToString
+        txtPricePerChore.Text = FormatNumber(CDbl(txtPricePerChore.Text), 2).ToString
         txtPricePerA.Text = FormatNumber(CDbl(txtPricePerA.Text), 2).ToString
         txtPricePerB.Text = FormatNumber(CDbl(txtPricePerB.Text), 2).ToString
         txtPricePerC.Text = FormatNumber(CDbl(txtPricePerC.Text), 2).ToString
@@ -74,6 +76,11 @@ Public Class Settings
     End Sub
 
 
+    Private Sub UpdatePricePerChore() Handles txtPricePerChore.Leave
+        AllowanceTracker.Stats.PricePer.Chores = UpdatePrices(txtPricePerChore)
+    End Sub
+
+
     Private Sub UpdateAGradePrice() Handles txtPricePerA.TextChanged
         AllowanceTracker.Stats.PricePer.AGrades = UpdatePrices(txtPricePerA)
     End Sub
@@ -118,7 +125,7 @@ Public Class Settings
         Dim answer As DialogResult = MessageBox.Show("Are you sure you want to change your password?", "Password Change?", MessageBoxButtons.YesNo)
         If answer = DialogResult.Yes Then
             My.Settings.Password = txt_NewPassword.Text
-            AllowanceTracker.stats.Password = My.Settings.Password
+            AllowanceTracker.Stats.Password = My.Settings.Password
             txt_NewPassword.Text = ""
             lbl_PasswordSet.Visible = True
         End If
@@ -132,13 +139,14 @@ Public Class Settings
     Private Sub ClosingTheForm() Handles MyBase.Closed
         UpdatePricePerWorksheet()
         UpdatePricePerBehavior()
+        UpdatePricePerChore()
         UpdateBaselinePrice()
         UpdateAGradePrice()
         UpdateBGradePrice()
         UpdateCGradePrice()
         UpdateDGradePrice()
         UpdatefGradePrice()
-        WriteToCSVFile(AllowanceTracker.stats.SaveFile)
+        WriteToCSVFile(AllowanceTracker.Stats.SaveFile)
         AllowanceTracker.UpdateLabels()
     End Sub
 
