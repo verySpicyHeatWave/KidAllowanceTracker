@@ -4,8 +4,8 @@ Imports System.IO.Packaging
 Public Class Settings
 
     Private Sub SettingsLoad() Handles MyBase.Load
-        lblLastFridayRead.Text = AllowanceTracker.stats.LastFriday.ToShortDateString
-        lblNextFridayRead.Text = AllowanceTracker.stats.NextFriday.ToShortDateString
+
+        'Populate the text boxes
         txtPricePerWkst.Text = AllowanceTracker.Stats.PricePer.Worksheet.ToString
         txtPricePerBhvr.Text = AllowanceTracker.Stats.PricePer.Behavior.ToString
         txtPricePerA.Text = AllowanceTracker.Stats.PricePer.AGrades.ToString
@@ -15,6 +15,7 @@ Public Class Settings
         txtPricePerF.Text = AllowanceTracker.Stats.PricePer.FGrades.ToString
         txtBaselinePrice.Text = AllowanceTracker.Stats.BaselinePay.ToString
 
+        'Format the text boxes
         txtPricePerWkst.Text = FormatNumber(CDbl(txtPricePerWkst.Text), 2).ToString
         txtPricePerBhvr.Text = FormatNumber(CDbl(txtPricePerBhvr.Text), 2).ToString
         txtPricePerA.Text = FormatNumber(CDbl(txtPricePerA.Text), 2).ToString
@@ -24,20 +25,42 @@ Public Class Settings
         txtPricePerF.Text = FormatNumber(CDbl(txtPricePerF.Text), 2).ToString
         txtBaselinePrice.Text = FormatNumber(CDbl(txtBaselinePrice.Text), 2).ToString
 
+        GetDaysOfWeek()
+
         txt_SaveFilePath.Text = My.Settings.SaveFile
         Me.Icon = My.Resources.Settings
     End Sub
 
 
+    Private Sub GetDaysOfWeek()
+
+        cmb_Weekdays.Items.Clear()
+        For Each day As DayOfWeek In System.Enum.GetValues(GetType(DayOfWeek))
+            cmb_Weekdays.Items.Add(day)
+        Next
+
+        cmb_Weekdays.SelectedIndex = AllowanceTracker.Stats.ResetDay
+
+        lblLastResetDay.Text = "Last " + AllowanceTracker.Stats.ResetDay.ToString
+        lblNextResetDay.Text = "Next " + AllowanceTracker.Stats.ResetDay.ToString
+        lblLastResetRead.Text = AllowanceTracker.Stats.LastResetDay.ToShortDateString
+        lblNextResetRead.Text = AllowanceTracker.Stats.NextResetDay.ToShortDateString
+
+        'writing the dayofweek.day writes the NUMBER which will correspond with the index of the cmb
+
+
+    End Sub
+
     Private Function UpdatePrices(txt As TextBox) As Double
         If Not IsNumeric(txt.Text) Then
             MessageBox.Show("You must enter a number here!", "Error!")
             txt.Text = "1"
-        Else
-            txt.Text = FormatNumber(CDbl(txt.Text), 2).ToString
+            Return 1
         End If
 
+        txt.Text = FormatNumber(CDbl(txt.Text), 2).ToString
         Return CDbl(txt.Text.ToString)
+
     End Function
 
 
@@ -78,6 +101,15 @@ Public Class Settings
 
     Private Sub UpdateBaselinePrice() Handles txtBaselinePrice.TextChanged
         AllowanceTracker.Stats.BaselinePay = UpdatePrices(txtBaselinePrice)
+    End Sub
+
+    Private Sub UpdateResetDay() Handles cmb_Weekdays.SelectedIndexChanged
+        AllowanceTracker.Stats.ResetDay = cmb_Weekdays.SelectedIndex
+        AllowanceTracker.GetTheResetDays()
+        lblLastResetDay.Text = "Last " + AllowanceTracker.Stats.ResetDay.ToString
+        lblNextResetDay.Text = "Next " + AllowanceTracker.Stats.ResetDay.ToString
+        lblLastResetRead.Text = AllowanceTracker.Stats.LastResetDay.ToShortDateString
+        lblNextResetRead.Text = AllowanceTracker.Stats.NextResetDay.ToShortDateString
     End Sub
 
 

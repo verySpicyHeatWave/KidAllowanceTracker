@@ -22,10 +22,10 @@ Partial Class Settings
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        lblLastFri = New Label()
-        lblNextFri = New Label()
-        lblLastFridayRead = New Label()
-        lblNextFridayRead = New Label()
+        lblLastResetDay = New Label()
+        lblNextResetDay = New Label()
+        lblLastResetRead = New Label()
+        lblNextResetRead = New Label()
         Label1 = New Label()
         Label2 = New Label()
         txtPricePerWkst = New TextBox()
@@ -48,7 +48,7 @@ Partial Class Settings
         Label8 = New Label()
         txtPricePerF = New TextBox()
         Label9 = New Label()
-        ComboBox1 = New ComboBox()
+        cmb_Weekdays = New ComboBox()
         lblSelectDay = New Label()
         grpbxResetDay = New GroupBox()
         grpbx_Prices = New GroupBox()
@@ -62,45 +62,45 @@ Partial Class Settings
         grpbxFileSave.SuspendLayout()
         SuspendLayout()
         ' 
-        ' lblLastFri
+        ' lblLastResetDay
         ' 
-        lblLastFri.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
-        lblLastFri.Location = New Point(6, 53)
-        lblLastFri.Name = "lblLastFri"
-        lblLastFri.Size = New Size(100, 15)
-        lblLastFri.TabIndex = 0
-        lblLastFri.Text = "Last Friday:"
-        lblLastFri.TextAlign = ContentAlignment.MiddleRight
+        lblLastResetDay.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lblLastResetDay.Location = New Point(6, 53)
+        lblLastResetDay.Name = "lblLastResetDay"
+        lblLastResetDay.Size = New Size(100, 15)
+        lblLastResetDay.TabIndex = 0
+        lblLastResetDay.Text = "Last Friday:"
+        lblLastResetDay.TextAlign = ContentAlignment.MiddleRight
         ' 
-        ' lblNextFri
+        ' lblNextResetDay
         ' 
-        lblNextFri.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
-        lblNextFri.Location = New Point(6, 78)
-        lblNextFri.Name = "lblNextFri"
-        lblNextFri.Size = New Size(100, 15)
-        lblNextFri.TabIndex = 1
-        lblNextFri.Text = "Next Friday:"
-        lblNextFri.TextAlign = ContentAlignment.MiddleRight
+        lblNextResetDay.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lblNextResetDay.Location = New Point(6, 78)
+        lblNextResetDay.Name = "lblNextResetDay"
+        lblNextResetDay.Size = New Size(100, 15)
+        lblNextResetDay.TabIndex = 1
+        lblNextResetDay.Text = "Next Friday:"
+        lblNextResetDay.TextAlign = ContentAlignment.MiddleRight
         ' 
-        ' lblLastFridayRead
+        ' lblLastResetRead
         ' 
-        lblLastFridayRead.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
-        lblLastFridayRead.Location = New Point(129, 53)
-        lblLastFridayRead.Name = "lblLastFridayRead"
-        lblLastFridayRead.Size = New Size(93, 15)
-        lblLastFridayRead.TabIndex = 3
-        lblLastFridayRead.Text = "Label2"
-        lblLastFridayRead.TextAlign = ContentAlignment.MiddleRight
+        lblLastResetRead.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lblLastResetRead.Location = New Point(129, 53)
+        lblLastResetRead.Name = "lblLastResetRead"
+        lblLastResetRead.Size = New Size(93, 15)
+        lblLastResetRead.TabIndex = 3
+        lblLastResetRead.Text = "Label2"
+        lblLastResetRead.TextAlign = ContentAlignment.MiddleRight
         ' 
-        ' lblNextFridayRead
+        ' lblNextResetRead
         ' 
-        lblNextFridayRead.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
-        lblNextFridayRead.Location = New Point(129, 78)
-        lblNextFridayRead.Name = "lblNextFridayRead"
-        lblNextFridayRead.Size = New Size(93, 15)
-        lblNextFridayRead.TabIndex = 4
-        lblNextFridayRead.Text = "Label1"
-        lblNextFridayRead.TextAlign = ContentAlignment.MiddleRight
+        lblNextResetRead.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lblNextResetRead.Location = New Point(129, 78)
+        lblNextResetRead.Name = "lblNextResetRead"
+        lblNextResetRead.Size = New Size(93, 15)
+        lblNextResetRead.TabIndex = 4
+        lblNextResetRead.Text = "Label1"
+        lblNextResetRead.TextAlign = ContentAlignment.MiddleRight
         ' 
         ' Label1
         ' 
@@ -325,14 +325,14 @@ Partial Class Settings
         Label9.Text = "F Grade Price:"
         Label9.TextAlign = ContentAlignment.MiddleRight
         ' 
-        ' ComboBox1
+        ' cmb_Weekdays
         ' 
-        ComboBox1.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(122, 25)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(141, 23)
-        ComboBox1.TabIndex = 27
+        cmb_Weekdays.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        cmb_Weekdays.FormattingEnabled = True
+        cmb_Weekdays.Location = New Point(122, 25)
+        cmb_Weekdays.Name = "cmb_Weekdays"
+        cmb_Weekdays.Size = New Size(141, 23)
+        cmb_Weekdays.TabIndex = 27
         ' 
         ' lblSelectDay
         ' 
@@ -347,11 +347,11 @@ Partial Class Settings
         ' grpbxResetDay
         ' 
         grpbxResetDay.Controls.Add(lblSelectDay)
-        grpbxResetDay.Controls.Add(lblLastFri)
-        grpbxResetDay.Controls.Add(ComboBox1)
-        grpbxResetDay.Controls.Add(lblNextFri)
-        grpbxResetDay.Controls.Add(lblLastFridayRead)
-        grpbxResetDay.Controls.Add(lblNextFridayRead)
+        grpbxResetDay.Controls.Add(lblLastResetDay)
+        grpbxResetDay.Controls.Add(cmb_Weekdays)
+        grpbxResetDay.Controls.Add(lblNextResetDay)
+        grpbxResetDay.Controls.Add(lblLastResetRead)
+        grpbxResetDay.Controls.Add(lblNextResetRead)
         grpbxResetDay.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         grpbxResetDay.Location = New Point(12, 12)
         grpbxResetDay.Name = "grpbxResetDay"
@@ -454,10 +454,10 @@ Partial Class Settings
         ResumeLayout(False)
     End Sub
 
-    Friend WithEvents lblLastFri As Label
-    Friend WithEvents lblNextFri As Label
-    Friend WithEvents lblLastFridayRead As Label
-    Friend WithEvents lblNextFridayRead As Label
+    Friend WithEvents lblLastResetDay As Label
+    Friend WithEvents lblNextResetDay As Label
+    Friend WithEvents lblLastResetRead As Label
+    Friend WithEvents lblNextResetRead As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtPricePerWkst As TextBox
@@ -480,7 +480,7 @@ Partial Class Settings
     Friend WithEvents Label8 As Label
     Friend WithEvents txtPricePerF As TextBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmb_Weekdays As ComboBox
     Friend WithEvents lblSelectDay As Label
     Friend WithEvents grpbxResetDay As GroupBox
     Friend WithEvents grpbx_Prices As GroupBox
