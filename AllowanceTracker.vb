@@ -20,6 +20,7 @@ Public Class AllowanceTracker
     Structure PricesStructure
         Dim Worksheet As Single
         Dim Behavior As Single
+        Dim Chores As Single
         Dim AGrades As Single
         Dim BGrades As Single
         Dim CGrades As Single
@@ -353,6 +354,49 @@ GetAndReportData:
         Return Response
     End Function
 
+
+    Private Function AddBehaviorNote(sender As Object, notestring As String, behaviorcount As Integer, childname As String) As String
+        notestring += ";"
+        Dim tempstring() As String = notestring.Split(";")
+        ReDim Preserve tempstring(behaviorcount - 1)
+
+        For i = 1 To behaviorcount
+            Dim CommentContainsCommas = True
+            If Not tempstring(i - 1) = "" Then Continue For
+            Dim newnote As String = ""
+
+            Do While CommentContainsCommas
+                newnote = InputBox("Please add a note about what " + childname + "'s good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
+                If newnote.Contains(",") Or newnote.Contains(";") Then
+                    CommentContainsCommas = True
+                    MessageBox.Show("Comment cannot contain a comma or semicolon. Please fix this.")
+                Else
+                    CommentContainsCommas = False
+                End If
+            Loop
+            If newnote = "" Then
+                notestring += ";"
+                Continue For
+            End If
+            notestring += Date.Today.ToShortDateString + ": "
+            notestring += newnote
+            notestring += ";"
+        Next
+        notestring = notestring.TrimEnd(";")
+        notestring = notestring.TrimStart(";")
+
+        tempstring = notestring.Split(";")
+        Dim commentcount As Integer = 0
+        For i = 0 To tempstring.Count - 1
+            If Not tempstring(i) = "" Then commentcount += 1
+        Next
+        If commentcount = behaviorcount Then
+            sender.Enabled = False
+            sender.Visible = False
+        End If
+        Return notestring
+    End Function
+
 #End Region
 
 
@@ -367,7 +411,6 @@ GetAndReportData:
             .PasswordLocked = True
             .RubyBehavNote = ""
             .PepperBehavNote = ""
-
             If My.Settings.SaveFile = "nothing" Then
                 .SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
                 My.Settings.SaveFile = .SaveFile
@@ -375,23 +418,17 @@ GetAndReportData:
                 .SaveFile = My.Settings.SaveFile
             End If
         End With
-
-        GetTheFridays()
-        ReportTheCSVData()
-        UpdateLabels()
-
         Me.Icon = My.Resources.Balloon_Heart
-
         SaveButton.Enabled = False
         LoadButton.Enabled = False
         If Date.Today < Stats.NextFriday Or Date.Today = Stats.NextFriday Then NewWeekButton.Enabled = False
 
+        GetTheFridays()
+        ReportTheCSVData()
+        UpdateLabels()
         SetToolTips()
-
         DateChecker.Start()
-
     End Sub
-
 
 
     Private Sub AddRubyWkstCount() Handles Ruby_AddWorksheet.Click
@@ -499,7 +536,6 @@ GetAndReportData:
         Dim RubyGradesForm As New GradesForm("Ruby")
         RubyGradesForm.ShowDialog()
         RubyGradesForm.Dispose()
-
         UpdateLabels()
         PlayRandomSound()
         If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
@@ -538,48 +574,6 @@ GetAndReportData:
     End Sub
 
 
-    Private Function AddBehaviorNote(sender As Object, notestring As String, behaviorcount As Integer, childname As String) As String
-        notestring += ";"
-        Dim tempstring() As String = notestring.Split(";")
-        ReDim Preserve tempstring(behaviorcount - 1)
-
-        For i = 1 To behaviorcount
-            Dim CommentContainsCommas = True
-            If Not tempstring(i - 1) = "" Then Continue For
-            Dim newnote As String = ""
-
-            Do While CommentContainsCommas
-                newnote = InputBox("Please add a note about what " + childname + "'s good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
-                If newnote.Contains(",") Or newnote.Contains(";") Then
-                    CommentContainsCommas = True
-                    MessageBox.Show("Comment cannot contain a comma or semicolon. Please fix this.")
-                Else
-                    CommentContainsCommas = False
-                End If
-            Loop
-            If newnote = "" Then
-                notestring += ";"
-                Continue For
-            End If
-            notestring += Date.Today.ToShortDateString + ": "
-            notestring += newnote
-            notestring += ";"
-        Next
-        notestring = notestring.TrimEnd(";")
-        notestring = notestring.TrimStart(";")
-
-        tempstring = notestring.Split(";")
-        Dim commentcount As Integer = 0
-        For i = 0 To tempstring.Count - 1
-            If Not tempstring(i) = "" Then commentcount += 1
-        Next
-        If commentcount = behaviorcount Then
-            sender.Enabled = False
-            sender.Visible = False
-        End If
-        Return notestring
-    End Function
-
     Private Sub NewWeekButtonClick(sender As Object, e As EventArgs) Handles NewWeekButton.Click
         If Date.Today > Stats.NextFriday Then
             GetTheFridays()
@@ -595,10 +589,8 @@ GetAndReportData:
 
     Private Sub DateChecker_Tick(sender As Object, e As EventArgs) Handles DateChecker.Tick
         If Date.Today > Stats.NextFriday Then
-            'GetTheFridays() 'this is actually breaking the function by updating the Fridays before creating a new week in the CSV. ONLY update on button click or startup!
             NewWeekButton.Enabled = True
         End If
-
     End Sub
 
 #End Region
