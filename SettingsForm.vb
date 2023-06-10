@@ -8,6 +8,7 @@ Public Class Settings
         'Populate the text boxes
         txtPricePerWkst.Text = AllowanceTracker.Stats.PricePer.Worksheet.ToString
         txtPricePerBhvr.Text = AllowanceTracker.Stats.PricePer.Behavior.ToString
+        txtPricePerChore.Text = AllowanceTracker.Stats.PricePer.Chores.ToString
         txtPricePerA.Text = AllowanceTracker.Stats.PricePer.AGrades.ToString
         txtPricePerB.Text = AllowanceTracker.Stats.PricePer.BGrades.ToString
         txtPricePerC.Text = AllowanceTracker.Stats.PricePer.CGrades.ToString
@@ -18,6 +19,7 @@ Public Class Settings
         'Format the text boxes
         txtPricePerWkst.Text = FormatNumber(CDbl(txtPricePerWkst.Text), 2).ToString
         txtPricePerBhvr.Text = FormatNumber(CDbl(txtPricePerBhvr.Text), 2).ToString
+        txtPricePerChore.Text = FormatNumber(CDbl(txtPricePerChore.Text), 2).ToString
         txtPricePerA.Text = FormatNumber(CDbl(txtPricePerA.Text), 2).ToString
         txtPricePerB.Text = FormatNumber(CDbl(txtPricePerB.Text), 2).ToString
         txtPricePerC.Text = FormatNumber(CDbl(txtPricePerC.Text), 2).ToString
@@ -71,6 +73,11 @@ Public Class Settings
 
     Private Sub UpdatePricePerBehavior() Handles txtPricePerBhvr.Leave
         AllowanceTracker.Stats.PricePer.Behavior = UpdatePrices(txtPricePerBhvr)
+    End Sub
+
+
+    Private Sub UpdatePricePerChore() Handles txtPricePerChore.Leave
+        AllowanceTracker.Stats.PricePer.Chores = UpdatePrices(txtPricePerChore)
     End Sub
 
 
@@ -132,6 +139,7 @@ Public Class Settings
     Private Sub ClosingTheForm() Handles MyBase.Closed
         UpdatePricePerWorksheet()
         UpdatePricePerBehavior()
+        UpdatePricePerChore()
         UpdateBaselinePrice()
         UpdateAGradePrice()
         UpdateBGradePrice()
