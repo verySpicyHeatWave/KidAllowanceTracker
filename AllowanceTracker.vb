@@ -124,24 +124,20 @@ Public Class AllowanceTracker
                 RubyGradesCount.Text = UpdateGradesLabel(.Ruby)
                 RubyGradesCount.ForeColor = Color.Black
                 RubyGradesCount.Font = New Font("Segoe UI", 8)
-                RubyGradesCount.Size = New Size(135, 32)
             Else
                 RubyGradesCount.Text = "No Report Card"
                 RubyGradesCount.ForeColor = Color.Silver
                 RubyGradesCount.Font = New Font("Segoe UI", 11)
-                RubyGradesCount.Size = New Size(135, 32)
             End If
 
             If .Pepper.AGrades + .Pepper.BGrades + .Pepper.CGrades + .Pepper.DGrades + .Pepper.FGrades > 0 Then
                 PepperGradesCount.Text = UpdateGradesLabel(.Pepper)
                 PepperGradesCount.ForeColor = Color.Black
                 PepperGradesCount.Font = New Font("Segoe UI", 8)
-                PepperGradesCount.Size = New Size(135, 32)
             Else
                 PepperGradesCount.Text = "No Report Card"
                 PepperGradesCount.ForeColor = Color.Silver
                 PepperGradesCount.Font = New Font("Segoe UI", 11)
-                PepperGradesCount.Size = New Size(135, 32)
             End If
 
             'Set tool tip for the behavior notes

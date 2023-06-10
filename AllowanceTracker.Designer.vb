@@ -190,7 +190,7 @@ Partial Class AllowanceTracker
         ' 
         SaveButton.Cursor = Cursors.Hand
         SaveButton.Image = My.Resources.Resources.SaveButton
-        SaveButton.Location = New Point(12, 12)
+        SaveButton.Location = New Point(71, 12)
         SaveButton.Name = "SaveButton"
         SaveButton.Size = New Size(41, 41)
         SaveButton.TabIndex = 0
@@ -201,7 +201,7 @@ Partial Class AllowanceTracker
         ' 
         SettingsButton.Cursor = Cursors.Hand
         SettingsButton.Image = My.Resources.Resources.SettingsButton
-        SettingsButton.Location = New Point(200, 12)
+        SettingsButton.Location = New Point(259, 12)
         SettingsButton.Name = "SettingsButton"
         SettingsButton.Size = New Size(41, 41)
         SettingsButton.TabIndex = 0
@@ -212,7 +212,7 @@ Partial Class AllowanceTracker
         ' 
         LoadButton.Cursor = Cursors.Hand
         LoadButton.Image = My.Resources.Resources.LoadIcon
-        LoadButton.Location = New Point(59, 12)
+        LoadButton.Location = New Point(118, 12)
         LoadButton.Name = "LoadButton"
         LoadButton.Size = New Size(41, 41)
         LoadButton.TabIndex = 0
@@ -233,7 +233,7 @@ Partial Class AllowanceTracker
         ' 
         CloseButton.Cursor = Cursors.Hand
         CloseButton.Image = My.Resources.Resources.CloseButton
-        CloseButton.Location = New Point(247, 12)
+        CloseButton.Location = New Point(306, 12)
         CloseButton.Name = "CloseButton"
         CloseButton.Size = New Size(41, 41)
         CloseButton.TabIndex = 0
@@ -249,7 +249,7 @@ Partial Class AllowanceTracker
         ckbtn_PasswordLock.Cursor = Cursors.Hand
         ckbtn_PasswordLock.FlatAppearance.CheckedBackColor = Color.White
         ckbtn_PasswordLock.Image = My.Resources.Resources.LockButton
-        ckbtn_PasswordLock.Location = New Point(153, 12)
+        ckbtn_PasswordLock.Location = New Point(212, 12)
         ckbtn_PasswordLock.Name = "ckbtn_PasswordLock"
         ckbtn_PasswordLock.Size = New Size(41, 41)
         ckbtn_PasswordLock.TabIndex = 0
@@ -329,7 +329,7 @@ Partial Class AllowanceTracker
         ' NewWeekButton
         ' 
         NewWeekButton.Image = My.Resources.Resources.NewWeekButton
-        NewWeekButton.Location = New Point(106, 12)
+        NewWeekButton.Location = New Point(165, 12)
         NewWeekButton.Name = "NewWeekButton"
         NewWeekButton.Size = New Size(41, 41)
         NewWeekButton.TabIndex = 22
