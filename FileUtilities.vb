@@ -54,7 +54,7 @@ Module FileUtilities
             NewData += .LastResetDay.ToShortDateString + ","
             NewData += .Ruby.Worksheet.ToString + ","
             NewData += .Ruby.Behavior.ToString + ","
-            'ToAdd: NewData += .Ruby.Chores.ToString + ","
+            NewData += .Ruby.Chores.ToString + ","
             NewData += .Ruby.AGrades.ToString + ","
             NewData += .Ruby.BGrades.ToString + ","
             NewData += .Ruby.CGrades.ToString + ","
@@ -64,7 +64,7 @@ Module FileUtilities
             NewData += .RubyBehavNote + ","
             NewData += .Pepper.Worksheet.ToString + ","
             NewData += .Pepper.Behavior.ToString + ","
-            'ToAdd: NewData += .Pepper.Chores.ToString + ","
+            NewData += .Pepper.Chores.ToString + ","
             NewData += .Pepper.AGrades.ToString + ","
             NewData += .Pepper.BGrades.ToString + ","
             NewData += .Pepper.CGrades.ToString + ","
@@ -104,9 +104,9 @@ Module FileUtilities
                 End If
             Next
             If AddNewWeek = True Then
-                writer.Write(AllowanceTracker.Stats.LastResetDay.ToShortDateString + ",0,0,0,0,0,0,0,") 'Add a zero for chores
+                writer.Write(AllowanceTracker.Stats.LastResetDay.ToShortDateString + ",0,0,0,0,0,0,0,0,")
                 writer.Write(AllowanceTracker.Stats.BaselinePay.ToString)
-                writer.Write(",,0,0,0,0,0,0,0,") 'Add a zero for chores
+                writer.Write(",,0,0,0,0,0,0,0,0,")
                 writer.Write(AllowanceTracker.Stats.BaselinePay.ToString + ",")
             End If
             writer.Close()
@@ -163,7 +163,7 @@ Module FileUtilities
         resp += "Date,"
         resp += "Ruby Worksheets,"
         resp += "Ruby Behavior,"
-        'Add resp += "Ruby Chores,
+        resp += "Ruby Chores,"
         resp += "Ruby A Grades,"
         resp += "Ruby B Grades,"
         resp += "Ruby C Grades,"
@@ -173,7 +173,7 @@ Module FileUtilities
         resp += "Ruby Behavior Note,"
         resp += "Pepper Worksheets,"
         resp += "Pepper Behavior,"
-        'Add resp += "Pepper Chores,
+        resp += "Pepper Chores,"
         resp += "Pepper A Grades,"
         resp += "Pepper B Grades,"
         resp += "Pepper C Grades,"
