@@ -287,7 +287,7 @@ GetAndReportData:
             Case PointsEnum.Worksheet
                 Child.Worksheet += 1
             Case PointsEnum.Chores
-                'to be determined
+                Child.Chores += 1
 
         End Select
         PlayRandomSound()
@@ -431,7 +431,7 @@ GetAndReportData:
 
 #Region "Event Handlers"
 
-    Private Sub FormLoad() Handles MyBase.Load
+    Private Sub FormLoad() Handles Me.Load
         With Stats
             .PepperAllowance = 1
             .RubyAllowance = 1
@@ -440,6 +440,8 @@ GetAndReportData:
             .PasswordLocked = True
             .RubyBehavNote = ""
             .PepperBehavNote = ""
+            .Pepper.Name = NameEnum.Pepper
+            .Ruby.Name = NameEnum.Ruby
             If My.Settings.SaveFile = "nothing" Then
                 .SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
                 My.Settings.SaveFile = .SaveFile
@@ -616,7 +618,7 @@ GetAndReportData:
         End If
     End Sub
 
-    Private Sub DateChecker_Tick(sender As Object, e As EventArgs) Handles DateChecker.Tick
+    Private Sub DateChecker_Tick(sender As Object, e As EventArgs)
         If Date.Today >= Stats.NextResetDay Then
             NewWeekButton.Enabled = True
         End If

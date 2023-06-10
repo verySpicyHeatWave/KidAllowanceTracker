@@ -118,7 +118,7 @@ Public Class Settings
         Dim answer As DialogResult = MessageBox.Show("Are you sure you want to change your password?", "Password Change?", MessageBoxButtons.YesNo)
         If answer = DialogResult.Yes Then
             My.Settings.Password = txt_NewPassword.Text
-            AllowanceTracker.stats.Password = My.Settings.Password
+            AllowanceTracker.Stats.Password = My.Settings.Password
             txt_NewPassword.Text = ""
             lbl_PasswordSet.Visible = True
         End If
@@ -138,7 +138,7 @@ Public Class Settings
         UpdateCGradePrice()
         UpdateDGradePrice()
         UpdatefGradePrice()
-        WriteToCSVFile(AllowanceTracker.stats.SaveFile)
+        WriteToCSVFile(AllowanceTracker.Stats.SaveFile)
         AllowanceTracker.UpdateLabels()
     End Sub
 
