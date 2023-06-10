@@ -1,4 +1,5 @@
-﻿Imports System.Media
+﻿Imports System.IO
+Imports System.Media
 
 Public Class AllowanceTracker
 
@@ -43,8 +44,9 @@ Public Class AllowanceTracker
         Dim PepperAllowance As Single
         Dim RubyAllowance As Single
 
-        Dim NextFriday As Date
-        Dim LastFriday As Date
+        Dim NextResetDay As Date
+        Dim LastResetDay As Date
+        Dim ResetDay As DayOfWeek
 
         Dim SaveFile As String
         Dim Password As String
@@ -72,11 +74,32 @@ Public Class AllowanceTracker
 
 #Region "Subroutines"
 
-    Private Sub GetTheFridays()
-        Dim DaysUntilNextFriday As Int32 = Math.Abs((DayOfWeek.Friday - Today.DayOfWeek + 7) Mod 7)
-        Dim DaysFromLastFriday As Int32 = DaysUntilNextFriday - 7
-        stats.NextFriday = Date.Today.AddDays(DaysUntilNextFriday)
-        stats.LastFriday = Date.Today.AddDays(DaysFromLastFriday)
+    Public Shared Sub GetTheResetDays()
+        CheckIfFileExists(Stats.SaveFile)
+
+        Dim reader As New StreamReader(Stats.SaveFile)
+        Try
+            Dim buffer() As String
+            Do While Not reader.EndOfStream
+                buffer = Split(reader.ReadLine(), ",")
+                If buffer(0).Contains("Reset") Then
+                    Stats.ResetDay = buffer(1)
+                    reader.Close()
+                    Exit Do
+                End If
+            Loop
+            reader.Close()
+        Catch ex As Exception
+            reader.Close()
+            MessageBox.Show("Could not find reset day!", "Error!")
+            Stats.NoExceptions = False
+        End Try
+
+        Dim DaysUntilNextReset As Int32 = Math.Abs((Stats.ResetDay - Today.DayOfWeek + 7) Mod 7)
+        If DaysUntilNextReset = 0 Then DaysUntilNextReset = 7 'If no days until next reset, then the next reset should be next week
+        Dim DaysFromLastReset As Int32 = DaysUntilNextReset - 7
+        Stats.NextResetDay = Date.Today.AddDays(DaysUntilNextReset)
+        Stats.LastResetDay = Date.Today.AddDays(DaysFromLastReset)
     End Sub
 
 
@@ -163,20 +186,20 @@ Public Class AllowanceTracker
 
     Private Sub ReportTheCSVData(Optional lastFriday As Boolean = True)
         If lastFriday = True Then
-            Dim Friday As Date = AllowanceTracker.stats.LastFriday
+            Dim Friday As Date = AllowanceTracker.Stats.LastResetDay
         Else
-            Dim Friday As Date = AllowanceTracker.stats.NextFriday
+            Dim Friday As Date = AllowanceTracker.Stats.NextResetDay
         End If
 
 GetAndReportData:
-        Dim AllData As List(Of String) = ReadCSVFile(stats.SaveFile)
-        If stats.NoExceptions = False Then Me.Close()
+        Dim AllData As List(Of String) = ReadCSVFile(Stats.SaveFile)
+        If Stats.NoExceptions = False Then Me.Close()
         Dim FoundData As Boolean = False
         Dim str() As String
 
         For i = 0 To AllData.Count - 1
             str = AllData(i).Split(","c)
-            If str(0).Contains(Stats.LastFriday.ToShortDateString) Or str(0).Contains(Date.Today.ToShortDateString) Then
+            If str(0).Contains(Stats.LastResetDay.ToShortDateString) Or str(0).Contains(Date.Today.ToShortDateString) Then
                 FoundData = True
                 Stats.Ruby.Worksheet = CInt(str(1))
                 Stats.Ruby.Behavior = CInt(str(2))
@@ -204,6 +227,12 @@ GetAndReportData:
             ElseIf str(0).Contains("Worksheet") Then
                 AllowanceTracker.Stats.PricePer.Worksheet = str(1)
 
+            ElseIf str(0).Contains("Reset") Then
+                If CInt(str(1)) > 6 Or CInt(str(1)) < 0 Then
+                    str(1) = "6"
+                End If
+                AllowanceTracker.Stats.ResetDay = CInt(str(1))
+
             ElseIf str(0).Contains("A's") Then
                 AllowanceTracker.Stats.PricePer.AGrades = str(1)
 
@@ -228,7 +257,7 @@ GetAndReportData:
         If FoundData = True Then Exit Sub
 
         'If the current week wasn't found in the csv data then create a new week and write it to the csv file
-        WriteToCSVFile(stats.SaveFile, True)
+        WriteToCSVFile(Stats.SaveFile, True)
         MessageBox.Show("A new week has been generated.", "New Week")
         GoTo GetAndReportData
     End Sub
@@ -421,9 +450,9 @@ GetAndReportData:
         Me.Icon = My.Resources.Balloon_Heart
         SaveButton.Enabled = False
         LoadButton.Enabled = False
-        If Date.Today < Stats.NextFriday Or Date.Today = Stats.NextFriday Then NewWeekButton.Enabled = False
+        If Date.Today < Stats.NextResetDay Or Date.Today = Stats.NextResetDay Then NewWeekButton.Enabled = False
 
-        GetTheFridays()
+        GetTheResetDays()
         ReportTheCSVData()
         UpdateLabels()
         SetToolTips()
@@ -471,7 +500,7 @@ GetAndReportData:
         If Stats.PasswordLocked = True Then
             If Not PasswordIsCorrect() Then Exit Sub
         End If
-        GetTheFridays()
+        GetTheResetDays()
         ReportTheCSVData()
         UpdateLabels()
         SaveButton.Enabled = False
@@ -575,8 +604,8 @@ GetAndReportData:
 
 
     Private Sub NewWeekButtonClick(sender As Object, e As EventArgs) Handles NewWeekButton.Click
-        If Date.Today > Stats.NextFriday Then
-            GetTheFridays()
+        If Date.Today > Stats.NextResetDay Then
+            GetTheResetDays()
             NewWeekButton.Enabled = False
             SaveButton.Enabled = False
             LoadButton.Enabled = False
@@ -588,7 +617,7 @@ GetAndReportData:
     End Sub
 
     Private Sub DateChecker_Tick(sender As Object, e As EventArgs) Handles DateChecker.Tick
-        If Date.Today > Stats.NextFriday Then
+        If Date.Today >= Stats.NextResetDay Then
             NewWeekButton.Enabled = True
         End If
     End Sub
