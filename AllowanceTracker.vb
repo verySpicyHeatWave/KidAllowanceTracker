@@ -112,8 +112,10 @@ Public Class AllowanceTracker
             'Update text boxes
             Ruby_WorksheetCount.Text = "Worksheets: " + .Ruby.Worksheet.ToString
             Ruby_BehaviorCount.Text = "Behavior: " + .Ruby.Behavior.ToString
+            Ruby_ChoresCount.Text = "Chores: " + .Ruby.Chores.ToString
             Pepper_WorksheetCount.Text = "Worksheets: " + .Pepper.Worksheet.ToString
             Pepper_BehaviorCount.Text = "Behavior: " + .Pepper.Behavior.ToString
+            Pepper_ChoresCount.Text = "Chores: " + .Pepper.Chores.ToString
             Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
             Pepper_Allowance.Text = "$" + FormatNumber(.PepperAllowance, 2).ToString
 
@@ -345,6 +347,7 @@ GetAndReportData:
         Response += Baseline
         Response += Child.Worksheet * Prices.Worksheet
         Response += Child.Behavior * Prices.Behavior
+        Response += Child.Chores * Prices.Chores
         Response += Child.AGrades * Prices.AGrades
         Response += Child.BGrades * Prices.BGrades
         Response += Child.CGrades * Prices.CGrades
@@ -474,6 +477,12 @@ GetAndReportData:
     End Sub
 
 
+    Private Sub AddRubyChoreCount() Handles Ruby_ChoresButton.Click
+        Stats.Ruby = IncrementPoints(Stats.Ruby, PointsEnum.Chores)
+        UpdateLabels()
+    End Sub
+
+
     Private Sub AddPepperWkstCount() Handles Pepper_AddWorksheet.Click
         Stats.Pepper = IncrementPoints(Stats.Pepper, PointsEnum.Worksheet)
         UpdateLabels()
@@ -482,6 +491,11 @@ GetAndReportData:
 
     Private Sub AddPepperBhvrCount() Handles Pepper_AddBehavior.Click
         Stats.Pepper = IncrementPoints(Stats.Pepper, PointsEnum.Behavior)
+        UpdateLabels()
+    End Sub
+
+    Private Sub AddPepperChoreCount() Handles Pepper_ChoresButton.Click
+        Stats.Pepper = IncrementPoints(Stats.Pepper, PointsEnum.Chores)
         UpdateLabels()
     End Sub
 
@@ -618,7 +632,7 @@ GetAndReportData:
         End If
     End Sub
 
-    Private Sub DateChecker_Tick(sender As Object, e As EventArgs)
+    Private Sub DateChecker_Tick(sender As Object, e As EventArgs) Handles DateChecker.Tick
         If Date.Today >= Stats.NextResetDay Then
             NewWeekButton.Enabled = True
         End If

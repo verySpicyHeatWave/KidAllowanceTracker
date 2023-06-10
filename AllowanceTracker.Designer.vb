@@ -53,11 +53,11 @@ Partial Class AllowanceTracker
         NewWeekButton = New Button()
         DateChecker = New Timer(components)
         grpbx_Ruby = New GroupBox()
-        Button1 = New Button()
-        Label1 = New Label()
+        Ruby_ChoresButton = New Button()
+        Ruby_ChoresCount = New Label()
         grpbx_Pepper = New GroupBox()
-        Button2 = New Button()
-        Label2 = New Label()
+        Pepper_ChoresButton = New Button()
+        Pepper_ChoresCount = New Label()
         grpbx_Ruby.SuspendLayout()
         grpbx_Pepper.SuspendLayout()
         SuspendLayout()
@@ -344,12 +344,12 @@ Partial Class AllowanceTracker
         grpbx_Ruby.Controls.Add(Ruby_NameLabel)
         grpbx_Ruby.Controls.Add(Ruby_AddWorksheet)
         grpbx_Ruby.Controls.Add(Ruby_AddBehavior)
-        grpbx_Ruby.Controls.Add(Button1)
+        grpbx_Ruby.Controls.Add(Ruby_ChoresButton)
         grpbx_Ruby.Controls.Add(Ruby_Allowance)
         grpbx_Ruby.Controls.Add(RubyGradesCount)
         grpbx_Ruby.Controls.Add(Ruby_AddGrades)
         grpbx_Ruby.Controls.Add(Ruby_AddBehaviorNote)
-        grpbx_Ruby.Controls.Add(Label1)
+        grpbx_Ruby.Controls.Add(Ruby_ChoresCount)
         grpbx_Ruby.Controls.Add(Ruby_WorksheetCount)
         grpbx_Ruby.Controls.Add(Ruby_BehaviorCount)
         grpbx_Ruby.Location = New Point(12, 59)
@@ -358,38 +358,38 @@ Partial Class AllowanceTracker
         grpbx_Ruby.TabIndex = 23
         grpbx_Ruby.TabStop = False
         ' 
-        ' Button1
+        ' Ruby_ChoresButton
         ' 
-        Button1.Cursor = Cursors.Hand
-        Button1.Image = My.Resources.Resources.BehaviorButton
-        Button1.Location = New Point(147, 76)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(41, 41)
-        Button1.TabIndex = 25
-        Button1.TabStop = False
-        Button1.UseVisualStyleBackColor = True
+        Ruby_ChoresButton.Cursor = Cursors.Hand
+        Ruby_ChoresButton.Image = CType(resources.GetObject("Ruby_ChoresButton.Image"), Image)
+        Ruby_ChoresButton.Location = New Point(147, 76)
+        Ruby_ChoresButton.Name = "Ruby_ChoresButton"
+        Ruby_ChoresButton.Size = New Size(41, 41)
+        Ruby_ChoresButton.TabIndex = 25
+        Ruby_ChoresButton.TabStop = False
+        Ruby_ChoresButton.UseVisualStyleBackColor = True
         ' 
-        ' Label1
+        ' Ruby_ChoresCount
         ' 
-        Label1.Font = New Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point)
-        Label1.Location = New Point(6, 168)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(182, 23)
-        Label1.TabIndex = 27
-        Label1.Text = "Behavior: 0"
-        Label1.TextAlign = ContentAlignment.MiddleCenter
+        Ruby_ChoresCount.Font = New Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point)
+        Ruby_ChoresCount.Location = New Point(6, 168)
+        Ruby_ChoresCount.Name = "Ruby_ChoresCount"
+        Ruby_ChoresCount.Size = New Size(182, 23)
+        Ruby_ChoresCount.TabIndex = 27
+        Ruby_ChoresCount.Text = "Chores: 0"
+        Ruby_ChoresCount.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' grpbx_Pepper
         ' 
         grpbx_Pepper.Controls.Add(Pepper_NameLabel)
-        grpbx_Pepper.Controls.Add(Button2)
+        grpbx_Pepper.Controls.Add(Pepper_ChoresButton)
         grpbx_Pepper.Controls.Add(Pepper_AddWorksheet)
         grpbx_Pepper.Controls.Add(Pepper_AddBehavior)
         grpbx_Pepper.Controls.Add(Pepper_Allowance)
         grpbx_Pepper.Controls.Add(Pepper_AddBehaviorNote)
         grpbx_Pepper.Controls.Add(Pepper_AddGrades)
         grpbx_Pepper.Controls.Add(PepperGradesCount)
-        grpbx_Pepper.Controls.Add(Label2)
+        grpbx_Pepper.Controls.Add(Pepper_ChoresCount)
         grpbx_Pepper.Controls.Add(Pepper_WorksheetCount)
         grpbx_Pepper.Controls.Add(Pepper_BehaviorCount)
         grpbx_Pepper.Location = New Point(212, 59)
@@ -398,26 +398,26 @@ Partial Class AllowanceTracker
         grpbx_Pepper.TabIndex = 24
         grpbx_Pepper.TabStop = False
         ' 
-        ' Button2
+        ' Pepper_ChoresButton
         ' 
-        Button2.Cursor = Cursors.Hand
-        Button2.Image = My.Resources.Resources.BehaviorButton
-        Button2.Location = New Point(147, 76)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(41, 41)
-        Button2.TabIndex = 26
-        Button2.TabStop = False
-        Button2.UseVisualStyleBackColor = True
+        Pepper_ChoresButton.Cursor = Cursors.Hand
+        Pepper_ChoresButton.Image = CType(resources.GetObject("Pepper_ChoresButton.Image"), Image)
+        Pepper_ChoresButton.Location = New Point(147, 76)
+        Pepper_ChoresButton.Name = "Pepper_ChoresButton"
+        Pepper_ChoresButton.Size = New Size(41, 41)
+        Pepper_ChoresButton.TabIndex = 26
+        Pepper_ChoresButton.TabStop = False
+        Pepper_ChoresButton.UseVisualStyleBackColor = True
         ' 
-        ' Label2
+        ' Pepper_ChoresCount
         ' 
-        Label2.Font = New Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point)
-        Label2.Location = New Point(6, 168)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(182, 23)
-        Label2.TabIndex = 28
-        Label2.Text = "Behavior: 0"
-        Label2.TextAlign = ContentAlignment.MiddleCenter
+        Pepper_ChoresCount.Font = New Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point)
+        Pepper_ChoresCount.Location = New Point(6, 168)
+        Pepper_ChoresCount.Name = "Pepper_ChoresCount"
+        Pepper_ChoresCount.Size = New Size(182, 23)
+        Pepper_ChoresCount.TabIndex = 28
+        Pepper_ChoresCount.Text = "Chores: 0"
+        Pepper_ChoresCount.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' AllowanceTracker
         ' 
@@ -473,9 +473,9 @@ Partial Class AllowanceTracker
     Friend WithEvents NewWeekButton As Button
     Friend WithEvents DateChecker As Timer
     Friend WithEvents grpbx_Ruby As GroupBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Label1 As Label
+    Friend WithEvents Ruby_ChoresButton As Button
+    Friend WithEvents Ruby_ChoresCount As Label
     Friend WithEvents grpbx_Pepper As GroupBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Label2 As Label
+    Friend WithEvents Pepper_ChoresButton As Button
+    Friend WithEvents Pepper_ChoresCount As Label
 End Class
