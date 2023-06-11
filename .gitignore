@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/*
+/.vs/KidAllowanceTracker/DesignTimeBuild/.dtbcache.v2
+/.vs/KidAllowanceTracker/FileContentIndex/3fb6be03-73c7-41ee-bd0f-504f476758ac.vsidx
