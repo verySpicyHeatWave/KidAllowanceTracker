@@ -436,6 +436,7 @@ Partial Class AllowanceTracker
         Controls.Add(SettingsButton)
         Controls.Add(SaveButton)
         FormBorderStyle = FormBorderStyle.FixedSingle
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "AllowanceTracker"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Allowance Tracker"

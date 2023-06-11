@@ -428,7 +428,7 @@ GetAndReportData:
 
 #Region "Event Handlers"
 
-    Private Sub FormLoad() Handles Me.Load
+    Private Sub FormLoad() Handles MyBase.Load
         With Stats
             .PepperAllowance = 1
             .RubyAllowance = 1
@@ -614,7 +614,7 @@ GetAndReportData:
 
 
     Private Sub NewWeekButtonClick(sender As Object, e As EventArgs) Handles NewWeekButton.Click
-        If Date.Today > Stats.NextResetDay Then
+        If Date.Today >= Stats.NextResetDay Then
             GetTheResetDays()
             NewWeekButton.Enabled = False
             SaveButton.Enabled = False
