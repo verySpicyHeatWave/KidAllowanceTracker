@@ -112,8 +112,10 @@ Public Class AllowanceTracker
             'Update text boxes
             Ruby_WorksheetCount.Text = "Worksheets: " + .Ruby.Worksheet.ToString
             Ruby_BehaviorCount.Text = "Behavior: " + .Ruby.Behavior.ToString
+            Ruby_ChoresCount.Text = "Chores: " + .Ruby.Chores.ToString
             Pepper_WorksheetCount.Text = "Worksheets: " + .Pepper.Worksheet.ToString
             Pepper_BehaviorCount.Text = "Behavior: " + .Pepper.Behavior.ToString
+            Pepper_ChoresCount.Text = "Chores: " + .Pepper.Chores.ToString
             Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
             Pepper_Allowance.Text = "$" + FormatNumber(.PepperAllowance, 2).ToString
 
@@ -122,40 +124,20 @@ Public Class AllowanceTracker
                 RubyGradesCount.Text = UpdateGradesLabel(.Ruby)
                 RubyGradesCount.ForeColor = Color.Black
                 RubyGradesCount.Font = New Font("Segoe UI", 8)
-                RubyGradesCount.Size = New Size(135, 32)
             Else
                 RubyGradesCount.Text = "No Report Card"
                 RubyGradesCount.ForeColor = Color.Silver
                 RubyGradesCount.Font = New Font("Segoe UI", 11)
-                RubyGradesCount.Size = New Size(135, 32)
             End If
 
             If .Pepper.AGrades + .Pepper.BGrades + .Pepper.CGrades + .Pepper.DGrades + .Pepper.FGrades > 0 Then
                 PepperGradesCount.Text = UpdateGradesLabel(.Pepper)
                 PepperGradesCount.ForeColor = Color.Black
                 PepperGradesCount.Font = New Font("Segoe UI", 8)
-                PepperGradesCount.Size = New Size(135, 32)
             Else
                 PepperGradesCount.Text = "No Report Card"
                 PepperGradesCount.ForeColor = Color.Silver
                 PepperGradesCount.Font = New Font("Segoe UI", 11)
-                PepperGradesCount.Size = New Size(135, 32)
-            End If
-
-            'Set behavior note button visibility
-            Ruby_AddBehaviorNote.Visible = False
-            Ruby_AddBehaviorNote.Enabled = False
-            Pepper_AddBehaviorNote.Visible = False
-            Pepper_AddBehaviorNote.Enabled = False
-
-            If Stats.RubyBehavNote.Split(";").Count < Stats.Ruby.Behavior Then
-                Ruby_AddBehaviorNote.Visible = True
-                Ruby_AddBehaviorNote.Enabled = True
-            End If
-
-            If Stats.PepperBehavNote.Split(";").Count < Stats.Pepper.Behavior Then
-                Pepper_AddBehaviorNote.Visible = True
-                Pepper_AddBehaviorNote.Enabled = True
             End If
 
             'Set tool tip for the behavior notes
@@ -203,29 +185,34 @@ GetAndReportData:
                 FoundData = True
                 Stats.Ruby.Worksheet = CInt(str(1))
                 Stats.Ruby.Behavior = CInt(str(2))
-                Stats.Ruby.AGrades = CInt(str(3))
-                Stats.Ruby.BGrades = CInt(str(4))
-                Stats.Ruby.CGrades = CInt(str(5))
-                Stats.Ruby.DGrades = CInt(str(6))
-                Stats.Ruby.FGrades = CInt(str(7))
-                Stats.RubyAllowance = CDbl(str(8))
-                Stats.RubyBehavNote = str(9)
+                Stats.Ruby.Chores = CInt(str(3))
+                Stats.Ruby.AGrades = CInt(str(4))
+                Stats.Ruby.BGrades = CInt(str(5))
+                Stats.Ruby.CGrades = CInt(str(6))
+                Stats.Ruby.DGrades = CInt(str(7))
+                Stats.Ruby.FGrades = CInt(str(8))
+                Stats.RubyAllowance = CDbl(str(9))
+                Stats.RubyBehavNote = str(10)
 
-                Stats.Pepper.Worksheet = CInt(str(10))
-                Stats.Pepper.Behavior = CInt(str(11))
-                Stats.Pepper.AGrades = CInt(str(12))
-                Stats.Pepper.BGrades = CInt(str(13))
-                Stats.Pepper.CGrades = CInt(str(14))
-                Stats.Pepper.DGrades = CInt(str(15))
-                Stats.Pepper.FGrades = CInt(str(16))
-                Stats.PepperAllowance = CDbl(str(17))
-                Stats.PepperBehavNote = str(18)
+                Stats.Pepper.Worksheet = CInt(str(11))
+                Stats.Pepper.Behavior = CInt(str(12))
+                Stats.Pepper.Chores = CInt(str(13))
+                Stats.Pepper.AGrades = CInt(str(14))
+                Stats.Pepper.BGrades = CInt(str(15))
+                Stats.Pepper.CGrades = CInt(str(16))
+                Stats.Pepper.DGrades = CInt(str(17))
+                Stats.Pepper.FGrades = CInt(str(18))
+                Stats.PepperAllowance = CDbl(str(19))
+                Stats.PepperBehavNote = str(20)
 
             ElseIf str(0).Contains("Behavior") Then
                 AllowanceTracker.Stats.PricePer.Behavior = str(1)
 
             ElseIf str(0).Contains("Worksheet") Then
                 AllowanceTracker.Stats.PricePer.Worksheet = str(1)
+
+            ElseIf str(0).Contains("Chores") Then
+                AllowanceTracker.Stats.PricePer.Chores = str(1)
 
             ElseIf str(0).Contains("Reset") Then
                 If CInt(str(1)) > 6 Or CInt(str(1)) < 0 Then
@@ -264,15 +251,17 @@ GetAndReportData:
 
 
     Private Sub SetToolTips()
-        ToolTipThingy.SetToolTip(SaveButton, "Save")
-        ToolTipThingy.SetToolTip(LoadButton, "Load")
-        ToolTipThingy.SetToolTip(SettingsButton, "Settings")
-        ToolTipThingy.SetToolTip(CloseButton, "Close")
+        ToolTipThingy.SetToolTip(SaveButton, "Save Data")
+        ToolTipThingy.SetToolTip(LoadButton, "Load Data")
+        ToolTipThingy.SetToolTip(SettingsButton, "Settings Window")
+        ToolTipThingy.SetToolTip(CloseButton, "Close App")
         ToolTipThingy.SetToolTip(ckbtn_PasswordLock, "Unlock Password Protection")
         ToolTipThingy.SetToolTip(Ruby_AddBehavior, "Add a Behavior Point for Ruby")
         ToolTipThingy.SetToolTip(Ruby_AddWorksheet, "Add a Worksheet Point for Ruby")
+        ToolTipThingy.SetToolTip(Ruby_ChoresButton, "Add a Chores Point for Ruby")
         ToolTipThingy.SetToolTip(Pepper_AddBehavior, "Add a Behavior Point for Pepper")
         ToolTipThingy.SetToolTip(Pepper_AddWorksheet, "Add a Worksheet Point for Pepper")
+        ToolTipThingy.SetToolTip(Pepper_ChoresButton, "Add a Chores Point for Pepper")
         ToolTipThingy.SetToolTip(Ruby_AddGrades, "Add a report card for Ruby")
         ToolTipThingy.SetToolTip(Pepper_AddGrades, "Add a report card for Pepper")
         ToolTipThingy.SetToolTip(Ruby_AddBehaviorNote, "Add a behavior note for Ruby")
@@ -287,22 +276,29 @@ GetAndReportData:
             Case PointsEnum.Worksheet
                 Child.Worksheet += 1
             Case PointsEnum.Chores
-                'to be determined
+                Child.Chores += 1
 
         End Select
         PlayRandomSound()
 
         Select Case Child.Name
             Case NameEnum.Ruby
+                If PointType = PointsEnum.Behavior Then
+                    Ruby_AddBehaviorNote.Visible = True
+                    Ruby_AddBehaviorNote.Enabled = True
+                End If
                 If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
                 Ruby_WorksheetCount.Focus()
             Case NameEnum.Pepper
+                If PointType = PointsEnum.Behavior Then
+                    Pepper_AddBehaviorNote.Visible = True
+                    Pepper_AddBehaviorNote.Enabled = True
+                End If
                 If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
                 Pepper_WorksheetCount.Focus()
-
-                SaveButton.Enabled = True
-                LoadButton.Enabled = True
         End Select
+        SaveButton.Enabled = True
+        LoadButton.Enabled = True
         Return Child
     End Function
 
@@ -345,6 +341,7 @@ GetAndReportData:
         Response += Baseline
         Response += Child.Worksheet * Prices.Worksheet
         Response += Child.Behavior * Prices.Behavior
+        Response += Child.Chores * Prices.Chores
         Response += Child.AGrades * Prices.AGrades
         Response += Child.BGrades * Prices.BGrades
         Response += Child.CGrades * Prices.CGrades
@@ -440,6 +437,8 @@ GetAndReportData:
             .PasswordLocked = True
             .RubyBehavNote = ""
             .PepperBehavNote = ""
+            .Pepper.Name = NameEnum.Pepper
+            .Ruby.Name = NameEnum.Ruby
             If My.Settings.SaveFile = "nothing" Then
                 .SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
                 My.Settings.SaveFile = .SaveFile
@@ -472,6 +471,12 @@ GetAndReportData:
     End Sub
 
 
+    Private Sub AddRubyChoreCount() Handles Ruby_ChoresButton.Click
+        Stats.Ruby = IncrementPoints(Stats.Ruby, PointsEnum.Chores)
+        UpdateLabels()
+    End Sub
+
+
     Private Sub AddPepperWkstCount() Handles Pepper_AddWorksheet.Click
         Stats.Pepper = IncrementPoints(Stats.Pepper, PointsEnum.Worksheet)
         UpdateLabels()
@@ -480,6 +485,11 @@ GetAndReportData:
 
     Private Sub AddPepperBhvrCount() Handles Pepper_AddBehavior.Click
         Stats.Pepper = IncrementPoints(Stats.Pepper, PointsEnum.Behavior)
+        UpdateLabels()
+    End Sub
+
+    Private Sub AddPepperChoreCount() Handles Pepper_ChoresButton.Click
+        Stats.Pepper = IncrementPoints(Stats.Pepper, PointsEnum.Chores)
         UpdateLabels()
     End Sub
 
@@ -604,7 +614,7 @@ GetAndReportData:
 
 
     Private Sub NewWeekButtonClick(sender As Object, e As EventArgs) Handles NewWeekButton.Click
-        If Date.Today > Stats.NextResetDay Then
+        If Date.Today >= Stats.NextResetDay Then
             GetTheResetDays()
             NewWeekButton.Enabled = False
             SaveButton.Enabled = False
@@ -621,6 +631,7 @@ GetAndReportData:
             NewWeekButton.Enabled = True
         End If
     End Sub
+
 
 #End Region
 
