@@ -22,316 +22,442 @@ Partial Class Settings
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lblLastFri = New System.Windows.Forms.Label()
-        Me.lblNextFri = New System.Windows.Forms.Label()
-        Me.lblLastFridayRead = New System.Windows.Forms.Label()
-        Me.lblNextFridayRead = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtPricePerWkst = New System.Windows.Forms.TextBox()
-        Me.txtPricePerBhvr = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtBaselinePrice = New System.Windows.Forms.TextBox()
-        Me.txt_NewPassword = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.lbl_PasswordSet = New System.Windows.Forms.Label()
-        Me.txt_SaveFilePath = New System.Windows.Forms.TextBox()
-        Me.SaveFileLabel = New System.Windows.Forms.Label()
-        Me.btn_SelectSaveDirectory = New System.Windows.Forms.Button()
-        Me.txtPricePerA = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtPricePerB = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtPricePerC = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtPricePerD = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtPricePerF = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.SuspendLayout()
-        '
-        'lblLastFri
-        '
-        Me.lblLastFri.Location = New System.Drawing.Point(12, 9)
-        Me.lblLastFri.Name = "lblLastFri"
-        Me.lblLastFri.Size = New System.Drawing.Size(100, 15)
-        Me.lblLastFri.TabIndex = 0
-        Me.lblLastFri.Text = "Last Friday:"
-        Me.lblLastFri.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lblNextFri
-        '
-        Me.lblNextFri.Location = New System.Drawing.Point(12, 35)
-        Me.lblNextFri.Name = "lblNextFri"
-        Me.lblNextFri.Size = New System.Drawing.Size(100, 15)
-        Me.lblNextFri.TabIndex = 1
-        Me.lblNextFri.Text = "Next Friday:"
-        Me.lblNextFri.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lblLastFridayRead
-        '
-        Me.lblLastFridayRead.Location = New System.Drawing.Point(135, 9)
-        Me.lblLastFridayRead.Name = "lblLastFridayRead"
-        Me.lblLastFridayRead.Size = New System.Drawing.Size(93, 15)
-        Me.lblLastFridayRead.TabIndex = 3
-        Me.lblLastFridayRead.Text = "Label2"
-        Me.lblLastFridayRead.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lblNextFridayRead
-        '
-        Me.lblNextFridayRead.Location = New System.Drawing.Point(135, 35)
-        Me.lblNextFridayRead.Name = "lblNextFridayRead"
-        Me.lblNextFridayRead.Size = New System.Drawing.Size(93, 15)
-        Me.lblNextFridayRead.TabIndex = 4
-        Me.lblNextFridayRead.Text = "Label1"
-        Me.lblNextFridayRead.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label1
-        '
-        Me.Label1.Location = New System.Drawing.Point(12, 72)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(100, 15)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Worksheet Price:"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label2
-        '
-        Me.Label2.Location = New System.Drawing.Point(12, 101)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(100, 15)
-        Me.Label2.TabIndex = 6
-        Me.Label2.Text = "Behavior Price:"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtPricePerWkst
-        '
-        Me.txtPricePerWkst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPricePerWkst.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPricePerWkst.Location = New System.Drawing.Point(128, 70)
-        Me.txtPricePerWkst.Name = "txtPricePerWkst"
-        Me.txtPricePerWkst.Size = New System.Drawing.Size(141, 23)
-        Me.txtPricePerWkst.TabIndex = 7
-        '
-        'txtPricePerBhvr
-        '
-        Me.txtPricePerBhvr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPricePerBhvr.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPricePerBhvr.Location = New System.Drawing.Point(128, 99)
-        Me.txtPricePerBhvr.Name = "txtPricePerBhvr"
-        Me.txtPricePerBhvr.Size = New System.Drawing.Size(141, 23)
-        Me.txtPricePerBhvr.TabIndex = 8
-        '
-        'Label3
-        '
-        Me.Label3.Location = New System.Drawing.Point(12, 275)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(100, 15)
-        Me.Label3.TabIndex = 9
-        Me.Label3.Text = "Baseline:"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtBaselinePrice
-        '
-        Me.txtBaselinePrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtBaselinePrice.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtBaselinePrice.Location = New System.Drawing.Point(128, 273)
-        Me.txtBaselinePrice.Name = "txtBaselinePrice"
-        Me.txtBaselinePrice.Size = New System.Drawing.Size(141, 23)
-        Me.txtBaselinePrice.TabIndex = 10
-        '
-        'txt_NewPassword
-        '
-        Me.txt_NewPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txt_NewPassword.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txt_NewPassword.Location = New System.Drawing.Point(128, 322)
-        Me.txt_NewPassword.Name = "txt_NewPassword"
-        Me.txt_NewPassword.Size = New System.Drawing.Size(141, 23)
-        Me.txt_NewPassword.TabIndex = 11
-        '
-        'Label4
-        '
-        Me.Label4.Location = New System.Drawing.Point(12, 324)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(100, 15)
-        Me.Label4.TabIndex = 12
-        Me.Label4.Text = "New Password:"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lbl_PasswordSet
-        '
-        Me.lbl_PasswordSet.Location = New System.Drawing.Point(12, 348)
-        Me.lbl_PasswordSet.Name = "lbl_PasswordSet"
-        Me.lbl_PasswordSet.Size = New System.Drawing.Size(100, 15)
-        Me.lbl_PasswordSet.TabIndex = 13
-        Me.lbl_PasswordSet.Text = "Password Is Set!"
-        Me.lbl_PasswordSet.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.lbl_PasswordSet.Visible = False
-        '
-        'txt_SaveFilePath
-        '
-        Me.txt_SaveFilePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txt_SaveFilePath.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txt_SaveFilePath.Location = New System.Drawing.Point(12, 396)
-        Me.txt_SaveFilePath.Name = "txt_SaveFilePath"
-        Me.txt_SaveFilePath.ReadOnly = True
-        Me.txt_SaveFilePath.Size = New System.Drawing.Size(257, 23)
-        Me.txt_SaveFilePath.TabIndex = 14
-        '
-        'SaveFileLabel
-        '
-        Me.SaveFileLabel.Location = New System.Drawing.Point(12, 378)
-        Me.SaveFileLabel.Name = "SaveFileLabel"
-        Me.SaveFileLabel.Size = New System.Drawing.Size(100, 15)
-        Me.SaveFileLabel.TabIndex = 15
-        Me.SaveFileLabel.Text = "Save File:"
-        Me.SaveFileLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'btn_SelectSaveDirectory
-        '
-        Me.btn_SelectSaveDirectory.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_SelectSaveDirectory.Image = Global.KidAllowanceTracker.My.Resources.Resources.SelectFolder
-        Me.btn_SelectSaveDirectory.Location = New System.Drawing.Point(239, 363)
-        Me.btn_SelectSaveDirectory.Name = "btn_SelectSaveDirectory"
-        Me.btn_SelectSaveDirectory.Size = New System.Drawing.Size(30, 30)
-        Me.btn_SelectSaveDirectory.TabIndex = 16
-        Me.btn_SelectSaveDirectory.UseVisualStyleBackColor = True
-        '
-        'txtPricePerA
-        '
-        Me.txtPricePerA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPricePerA.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPricePerA.Location = New System.Drawing.Point(128, 128)
-        Me.txtPricePerA.Name = "txtPricePerA"
-        Me.txtPricePerA.Size = New System.Drawing.Size(141, 23)
-        Me.txtPricePerA.TabIndex = 18
-        '
-        'Label5
-        '
-        Me.Label5.Location = New System.Drawing.Point(12, 130)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(100, 15)
-        Me.Label5.TabIndex = 17
-        Me.Label5.Text = "A Grade Price:"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtPricePerB
-        '
-        Me.txtPricePerB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPricePerB.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPricePerB.Location = New System.Drawing.Point(128, 157)
-        Me.txtPricePerB.Name = "txtPricePerB"
-        Me.txtPricePerB.Size = New System.Drawing.Size(141, 23)
-        Me.txtPricePerB.TabIndex = 20
-        '
-        'Label6
-        '
-        Me.Label6.Location = New System.Drawing.Point(12, 159)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(100, 15)
-        Me.Label6.TabIndex = 19
-        Me.Label6.Text = "B Grade Price:"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtPricePerC
-        '
-        Me.txtPricePerC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPricePerC.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPricePerC.Location = New System.Drawing.Point(128, 186)
-        Me.txtPricePerC.Name = "txtPricePerC"
-        Me.txtPricePerC.Size = New System.Drawing.Size(141, 23)
-        Me.txtPricePerC.TabIndex = 22
-        '
-        'Label7
-        '
-        Me.Label7.Location = New System.Drawing.Point(12, 188)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(100, 15)
-        Me.Label7.TabIndex = 21
-        Me.Label7.Text = "C Grade Price:"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtPricePerD
-        '
-        Me.txtPricePerD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPricePerD.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPricePerD.Location = New System.Drawing.Point(128, 215)
-        Me.txtPricePerD.Name = "txtPricePerD"
-        Me.txtPricePerD.Size = New System.Drawing.Size(141, 23)
-        Me.txtPricePerD.TabIndex = 24
-        '
-        'Label8
-        '
-        Me.Label8.Location = New System.Drawing.Point(12, 217)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(100, 15)
-        Me.Label8.TabIndex = 23
-        Me.Label8.Text = "D Grade Price:"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtPricePerF
-        '
-        Me.txtPricePerF.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPricePerF.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPricePerF.Location = New System.Drawing.Point(128, 244)
-        Me.txtPricePerF.Name = "txtPricePerF"
-        Me.txtPricePerF.Size = New System.Drawing.Size(141, 23)
-        Me.txtPricePerF.TabIndex = 26
-        '
-        'Label9
-        '
-        Me.Label9.Location = New System.Drawing.Point(12, 246)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(100, 15)
-        Me.Label9.TabIndex = 25
-        Me.Label9.Text = "F Grade Price:"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Settings
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(281, 431)
-        Me.Controls.Add(Me.txtPricePerF)
-        Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.txtPricePerD)
-        Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.txtPricePerC)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.txtPricePerB)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.txtPricePerA)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.btn_SelectSaveDirectory)
-        Me.Controls.Add(Me.SaveFileLabel)
-        Me.Controls.Add(Me.txt_SaveFilePath)
-        Me.Controls.Add(Me.lbl_PasswordSet)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.txt_NewPassword)
-        Me.Controls.Add(Me.txtBaselinePrice)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.txtPricePerBhvr)
-        Me.Controls.Add(Me.txtPricePerWkst)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.lblNextFridayRead)
-        Me.Controls.Add(Me.lblLastFridayRead)
-        Me.Controls.Add(Me.lblNextFri)
-        Me.Controls.Add(Me.lblLastFri)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Name = "Settings"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Settings"
-        Me.TopMost = True
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
-
+        lblLastResetDay = New Label()
+        lblNextResetDay = New Label()
+        lblLastResetRead = New Label()
+        lblNextResetRead = New Label()
+        Label1 = New Label()
+        Label2 = New Label()
+        txtPricePerWkst = New TextBox()
+        txtPricePerBhvr = New TextBox()
+        Label3 = New Label()
+        txtBaselinePrice = New TextBox()
+        txt_NewPassword = New TextBox()
+        Label4 = New Label()
+        lbl_PasswordSet = New Label()
+        txt_SaveFilePath = New TextBox()
+        SaveFileLabel = New Label()
+        btn_SelectSaveDirectory = New Button()
+        txtPricePerA = New TextBox()
+        Label5 = New Label()
+        txtPricePerB = New TextBox()
+        Label6 = New Label()
+        txtPricePerC = New TextBox()
+        Label7 = New Label()
+        txtPricePerD = New TextBox()
+        Label8 = New Label()
+        txtPricePerF = New TextBox()
+        Label9 = New Label()
+        cmb_Weekdays = New ComboBox()
+        lblSelectDay = New Label()
+        grpbxResetDay = New GroupBox()
+        grpbx_Prices = New GroupBox()
+        lbl_ChorePrice = New Label()
+        txtPricePerChore = New TextBox()
+        grpbxPassword = New GroupBox()
+        grpbxFileSave = New GroupBox()
+        grpbxResetDay.SuspendLayout()
+        grpbx_Prices.SuspendLayout()
+        grpbxPassword.SuspendLayout()
+        grpbxFileSave.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' lblLastResetDay
+        ' 
+        lblLastResetDay.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lblLastResetDay.Location = New Point(6, 53)
+        lblLastResetDay.Name = "lblLastResetDay"
+        lblLastResetDay.Size = New Size(100, 15)
+        lblLastResetDay.TabIndex = 0
+        lblLastResetDay.Text = "Last Friday:"
+        lblLastResetDay.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' lblNextResetDay
+        ' 
+        lblNextResetDay.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lblNextResetDay.Location = New Point(6, 78)
+        lblNextResetDay.Name = "lblNextResetDay"
+        lblNextResetDay.Size = New Size(100, 15)
+        lblNextResetDay.TabIndex = 1
+        lblNextResetDay.Text = "Next Friday:"
+        lblNextResetDay.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' lblLastResetRead
+        ' 
+        lblLastResetRead.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lblLastResetRead.Location = New Point(129, 53)
+        lblLastResetRead.Name = "lblLastResetRead"
+        lblLastResetRead.Size = New Size(93, 15)
+        lblLastResetRead.TabIndex = 3
+        lblLastResetRead.Text = "Label2"
+        lblLastResetRead.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' lblNextResetRead
+        ' 
+        lblNextResetRead.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lblNextResetRead.Location = New Point(129, 78)
+        lblNextResetRead.Name = "lblNextResetRead"
+        lblNextResetRead.Size = New Size(93, 15)
+        lblNextResetRead.TabIndex = 4
+        lblNextResetRead.Text = "Label1"
+        lblNextResetRead.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' Label1
+        ' 
+        Label1.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        Label1.Location = New Point(6, 30)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(100, 15)
+        Label1.TabIndex = 5
+        Label1.Text = "Worksheet Price:"
+        Label1.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' Label2
+        ' 
+        Label2.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        Label2.Location = New Point(6, 59)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(100, 15)
+        Label2.TabIndex = 6
+        Label2.Text = "Behavior Price:"
+        Label2.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' txtPricePerWkst
+        ' 
+        txtPricePerWkst.BorderStyle = BorderStyle.FixedSingle
+        txtPricePerWkst.Cursor = Cursors.IBeam
+        txtPricePerWkst.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txtPricePerWkst.Location = New Point(122, 28)
+        txtPricePerWkst.Name = "txtPricePerWkst"
+        txtPricePerWkst.Size = New Size(141, 23)
+        txtPricePerWkst.TabIndex = 7
+        ' 
+        ' txtPricePerBhvr
+        ' 
+        txtPricePerBhvr.BorderStyle = BorderStyle.FixedSingle
+        txtPricePerBhvr.Cursor = Cursors.IBeam
+        txtPricePerBhvr.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txtPricePerBhvr.Location = New Point(122, 57)
+        txtPricePerBhvr.Name = "txtPricePerBhvr"
+        txtPricePerBhvr.Size = New Size(141, 23)
+        txtPricePerBhvr.TabIndex = 8
+        ' 
+        ' Label3
+        ' 
+        Label3.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        Label3.Location = New Point(6, 262)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(100, 15)
+        Label3.TabIndex = 9
+        Label3.Text = "Baseline:"
+        Label3.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' txtBaselinePrice
+        ' 
+        txtBaselinePrice.BorderStyle = BorderStyle.FixedSingle
+        txtBaselinePrice.Cursor = Cursors.IBeam
+        txtBaselinePrice.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txtBaselinePrice.Location = New Point(122, 260)
+        txtBaselinePrice.Name = "txtBaselinePrice"
+        txtBaselinePrice.Size = New Size(141, 23)
+        txtBaselinePrice.TabIndex = 10
+        ' 
+        ' txt_NewPassword
+        ' 
+        txt_NewPassword.BorderStyle = BorderStyle.FixedSingle
+        txt_NewPassword.Cursor = Cursors.IBeam
+        txt_NewPassword.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txt_NewPassword.Location = New Point(122, 22)
+        txt_NewPassword.Name = "txt_NewPassword"
+        txt_NewPassword.Size = New Size(141, 23)
+        txt_NewPassword.TabIndex = 11
+        ' 
+        ' Label4
+        ' 
+        Label4.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        Label4.Location = New Point(6, 24)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(100, 15)
+        Label4.TabIndex = 12
+        Label4.Text = "New Password:"
+        Label4.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' lbl_PasswordSet
+        ' 
+        lbl_PasswordSet.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_PasswordSet.Location = New Point(6, 48)
+        lbl_PasswordSet.Name = "lbl_PasswordSet"
+        lbl_PasswordSet.Size = New Size(100, 15)
+        lbl_PasswordSet.TabIndex = 13
+        lbl_PasswordSet.Text = "Password Is Set!"
+        lbl_PasswordSet.TextAlign = ContentAlignment.MiddleRight
+        lbl_PasswordSet.Visible = False
+        ' 
+        ' txt_SaveFilePath
+        ' 
+        txt_SaveFilePath.BorderStyle = BorderStyle.FixedSingle
+        txt_SaveFilePath.Cursor = Cursors.IBeam
+        txt_SaveFilePath.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txt_SaveFilePath.Location = New Point(6, 47)
+        txt_SaveFilePath.Name = "txt_SaveFilePath"
+        txt_SaveFilePath.ReadOnly = True
+        txt_SaveFilePath.Size = New Size(257, 23)
+        txt_SaveFilePath.TabIndex = 14
+        ' 
+        ' SaveFileLabel
+        ' 
+        SaveFileLabel.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        SaveFileLabel.Location = New Point(6, 29)
+        SaveFileLabel.Name = "SaveFileLabel"
+        SaveFileLabel.Size = New Size(100, 15)
+        SaveFileLabel.TabIndex = 15
+        SaveFileLabel.Text = "Save File:"
+        SaveFileLabel.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' btn_SelectSaveDirectory
+        ' 
+        btn_SelectSaveDirectory.Cursor = Cursors.Hand
+        btn_SelectSaveDirectory.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        btn_SelectSaveDirectory.Image = My.Resources.Resources.SelectFolder
+        btn_SelectSaveDirectory.Location = New Point(233, 14)
+        btn_SelectSaveDirectory.Name = "btn_SelectSaveDirectory"
+        btn_SelectSaveDirectory.Size = New Size(30, 30)
+        btn_SelectSaveDirectory.TabIndex = 16
+        btn_SelectSaveDirectory.UseVisualStyleBackColor = True
+        ' 
+        ' txtPricePerA
+        ' 
+        txtPricePerA.BorderStyle = BorderStyle.FixedSingle
+        txtPricePerA.Cursor = Cursors.IBeam
+        txtPricePerA.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txtPricePerA.Location = New Point(122, 115)
+        txtPricePerA.Name = "txtPricePerA"
+        txtPricePerA.Size = New Size(141, 23)
+        txtPricePerA.TabIndex = 18
+        ' 
+        ' Label5
+        ' 
+        Label5.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        Label5.Location = New Point(6, 117)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(100, 15)
+        Label5.TabIndex = 17
+        Label5.Text = "A Grade Price:"
+        Label5.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' txtPricePerB
+        ' 
+        txtPricePerB.BorderStyle = BorderStyle.FixedSingle
+        txtPricePerB.Cursor = Cursors.IBeam
+        txtPricePerB.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txtPricePerB.Location = New Point(122, 144)
+        txtPricePerB.Name = "txtPricePerB"
+        txtPricePerB.Size = New Size(141, 23)
+        txtPricePerB.TabIndex = 20
+        ' 
+        ' Label6
+        ' 
+        Label6.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        Label6.Location = New Point(6, 146)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(100, 15)
+        Label6.TabIndex = 19
+        Label6.Text = "B Grade Price:"
+        Label6.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' txtPricePerC
+        ' 
+        txtPricePerC.BorderStyle = BorderStyle.FixedSingle
+        txtPricePerC.Cursor = Cursors.IBeam
+        txtPricePerC.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txtPricePerC.Location = New Point(122, 173)
+        txtPricePerC.Name = "txtPricePerC"
+        txtPricePerC.Size = New Size(141, 23)
+        txtPricePerC.TabIndex = 22
+        ' 
+        ' Label7
+        ' 
+        Label7.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        Label7.Location = New Point(6, 175)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(100, 15)
+        Label7.TabIndex = 21
+        Label7.Text = "C Grade Price:"
+        Label7.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' txtPricePerD
+        ' 
+        txtPricePerD.BorderStyle = BorderStyle.FixedSingle
+        txtPricePerD.Cursor = Cursors.IBeam
+        txtPricePerD.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txtPricePerD.Location = New Point(122, 202)
+        txtPricePerD.Name = "txtPricePerD"
+        txtPricePerD.Size = New Size(141, 23)
+        txtPricePerD.TabIndex = 24
+        ' 
+        ' Label8
+        ' 
+        Label8.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        Label8.Location = New Point(6, 204)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(100, 15)
+        Label8.TabIndex = 23
+        Label8.Text = "D Grade Price:"
+        Label8.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' txtPricePerF
+        ' 
+        txtPricePerF.BorderStyle = BorderStyle.FixedSingle
+        txtPricePerF.Cursor = Cursors.IBeam
+        txtPricePerF.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txtPricePerF.Location = New Point(122, 231)
+        txtPricePerF.Name = "txtPricePerF"
+        txtPricePerF.Size = New Size(141, 23)
+        txtPricePerF.TabIndex = 26
+        ' 
+        ' Label9
+        ' 
+        Label9.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        Label9.Location = New Point(6, 233)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(100, 15)
+        Label9.TabIndex = 25
+        Label9.Text = "F Grade Price:"
+        Label9.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' cmb_Weekdays
+        ' 
+        cmb_Weekdays.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        cmb_Weekdays.FormattingEnabled = True
+        cmb_Weekdays.Location = New Point(122, 25)
+        cmb_Weekdays.Name = "cmb_Weekdays"
+        cmb_Weekdays.Size = New Size(141, 23)
+        cmb_Weekdays.TabIndex = 27
+        ' 
+        ' lblSelectDay
+        ' 
+        lblSelectDay.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lblSelectDay.Location = New Point(6, 28)
+        lblSelectDay.Name = "lblSelectDay"
+        lblSelectDay.Size = New Size(100, 15)
+        lblSelectDay.TabIndex = 28
+        lblSelectDay.Text = "Week Reset Day:"
+        lblSelectDay.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' grpbxResetDay
+        ' 
+        grpbxResetDay.Controls.Add(lblSelectDay)
+        grpbxResetDay.Controls.Add(lblLastResetDay)
+        grpbxResetDay.Controls.Add(cmb_Weekdays)
+        grpbxResetDay.Controls.Add(lblNextResetDay)
+        grpbxResetDay.Controls.Add(lblLastResetRead)
+        grpbxResetDay.Controls.Add(lblNextResetRead)
+        grpbxResetDay.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        grpbxResetDay.Location = New Point(12, 12)
+        grpbxResetDay.Name = "grpbxResetDay"
+        grpbxResetDay.Size = New Size(279, 104)
+        grpbxResetDay.TabIndex = 29
+        grpbxResetDay.TabStop = False
+        grpbxResetDay.Text = "Weekly Reset Day Settings"' 
+        ' grpbx_Prices
+        ' 
+        grpbx_Prices.Controls.Add(lbl_ChorePrice)
+        grpbx_Prices.Controls.Add(Label1)
+        grpbx_Prices.Controls.Add(Label2)
+        grpbx_Prices.Controls.Add(txtPricePerChore)
+        grpbx_Prices.Controls.Add(txtPricePerF)
+        grpbx_Prices.Controls.Add(txtPricePerWkst)
+        grpbx_Prices.Controls.Add(Label9)
+        grpbx_Prices.Controls.Add(txtPricePerBhvr)
+        grpbx_Prices.Controls.Add(txtPricePerD)
+        grpbx_Prices.Controls.Add(Label3)
+        grpbx_Prices.Controls.Add(Label8)
+        grpbx_Prices.Controls.Add(txtBaselinePrice)
+        grpbx_Prices.Controls.Add(txtPricePerC)
+        grpbx_Prices.Controls.Add(Label5)
+        grpbx_Prices.Controls.Add(Label7)
+        grpbx_Prices.Controls.Add(txtPricePerA)
+        grpbx_Prices.Controls.Add(txtPricePerB)
+        grpbx_Prices.Controls.Add(Label6)
+        grpbx_Prices.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        grpbx_Prices.Location = New Point(12, 122)
+        grpbx_Prices.Name = "grpbx_Prices"
+        grpbx_Prices.Size = New Size(279, 296)
+        grpbx_Prices.TabIndex = 30
+        grpbx_Prices.TabStop = False
+        grpbx_Prices.Text = "Price Settings"' 
+        ' lbl_ChorePrice
+        ' 
+        lbl_ChorePrice.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_ChorePrice.Location = New Point(6, 88)
+        lbl_ChorePrice.Name = "lbl_ChorePrice"
+        lbl_ChorePrice.Size = New Size(100, 15)
+        lbl_ChorePrice.TabIndex = 27
+        lbl_ChorePrice.Text = "Chore Price:"
+        lbl_ChorePrice.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' txtPricePerChore
+        ' 
+        txtPricePerChore.BorderStyle = BorderStyle.FixedSingle
+        txtPricePerChore.Cursor = Cursors.IBeam
+        txtPricePerChore.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        txtPricePerChore.Location = New Point(122, 86)
+        txtPricePerChore.Name = "txtPricePerChore"
+        txtPricePerChore.Size = New Size(141, 23)
+        txtPricePerChore.TabIndex = 28
+        ' 
+        ' grpbxPassword
+        ' 
+        grpbxPassword.Controls.Add(Label4)
+        grpbxPassword.Controls.Add(txt_NewPassword)
+        grpbxPassword.Controls.Add(lbl_PasswordSet)
+        grpbxPassword.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        grpbxPassword.Location = New Point(12, 424)
+        grpbxPassword.Name = "grpbxPassword"
+        grpbxPassword.Size = New Size(279, 75)
+        grpbxPassword.TabIndex = 31
+        grpbxPassword.TabStop = False
+        grpbxPassword.Text = "Password Reset"' 
+        ' grpbxFileSave
+        ' 
+        grpbxFileSave.Controls.Add(txt_SaveFilePath)
+        grpbxFileSave.Controls.Add(SaveFileLabel)
+        grpbxFileSave.Controls.Add(btn_SelectSaveDirectory)
+        grpbxFileSave.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        grpbxFileSave.Location = New Point(12, 505)
+        grpbxFileSave.Name = "grpbxFileSave"
+        grpbxFileSave.Size = New Size(279, 80)
+        grpbxFileSave.TabIndex = 32
+        grpbxFileSave.TabStop = False
+        grpbxFileSave.Text = "File Save Location"' 
+        ' Settings
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(302, 608)
+        Controls.Add(grpbxFileSave)
+        Controls.Add(grpbxPassword)
+        Controls.Add(grpbx_Prices)
+        Controls.Add(grpbxResetDay)
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        Name = "Settings"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Settings"
+        TopMost = True
+        grpbxResetDay.ResumeLayout(False)
+        grpbx_Prices.ResumeLayout(False)
+        grpbx_Prices.PerformLayout()
+        grpbxPassword.ResumeLayout(False)
+        grpbxPassword.PerformLayout()
+        grpbxFileSave.ResumeLayout(False)
+        grpbxFileSave.PerformLayout()
+        ResumeLayout(False)
     End Sub
 
-    Friend WithEvents lblLastFri As Label
-    Friend WithEvents lblNextFri As Label
-    Friend WithEvents lblLastFridayRead As Label
-    Friend WithEvents lblNextFridayRead As Label
+    Friend WithEvents lblLastResetDay As Label
+    Friend WithEvents lblNextResetDay As Label
+    Friend WithEvents lblLastResetRead As Label
+    Friend WithEvents lblNextResetRead As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtPricePerWkst As TextBox
@@ -354,4 +480,12 @@ Partial Class Settings
     Friend WithEvents Label8 As Label
     Friend WithEvents txtPricePerF As TextBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents cmb_Weekdays As ComboBox
+    Friend WithEvents lblSelectDay As Label
+    Friend WithEvents grpbxResetDay As GroupBox
+    Friend WithEvents grpbx_Prices As GroupBox
+    Friend WithEvents lbl_ChorePrice As Label
+    Friend WithEvents txtPricePerChore As TextBox
+    Friend WithEvents grpbxPassword As GroupBox
+    Friend WithEvents grpbxFileSave As GroupBox
 End Class

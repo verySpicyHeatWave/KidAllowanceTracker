@@ -1,18 +1,33 @@
-﻿Imports System.Media
+﻿Imports System.IO
+Imports System.Media
 
 Public Class AllowanceTracker
 
 
 #Region "Variables"
 
+    Enum NameEnum
+        Ruby
+        Pepper
+        Other
+    End Enum
+
+    Enum PointsEnum
+        Worksheet
+        Behavior
+        Chores
+    End Enum
+
     Structure PricesStructure
-        Dim Worksheet As Double
-        Dim Behavior As Double
-        Dim AGrades As Double
-        Dim BGrades As Double
-        Dim CGrades As Double
-        Dim DGrades As Double
-        Dim FGrades As Double
+        Dim Worksheet As Single
+        Dim Behavior As Single
+        Dim Chores As Single
+        Dim AGrades As Single
+        Dim BGrades As Single
+        Dim CGrades As Single
+        Dim DGrades As Single
+        Dim FGrades As Single
+        Dim Name As NameEnum
     End Structure
 
 
@@ -21,16 +36,17 @@ Public Class AllowanceTracker
         Dim Ruby As PricesStructure
         Dim Pepper As PricesStructure
 
-        Dim BaselinePay As Double
+        Dim BaselinePay As Single
 
         Dim RubyBehavNote As String
         Dim PepperBehavNote As String
 
-        Dim PepperAllowance As Double
-        Dim RubyAllowance As Double
+        Dim PepperAllowance As Single
+        Dim RubyAllowance As Single
 
-        Dim NextFriday As Date
-        Dim LastFriday As Date
+        Dim NextResetDay As Date
+        Dim LastResetDay As Date
+        Dim ResetDay As DayOfWeek
 
         Dim SaveFile As String
         Dim Password As String
@@ -42,81 +58,91 @@ Public Class AllowanceTracker
             BlankString = ""
             RubyBehavNote = BlankString
             PepperBehavNote = BlankString
+            PricePer.Name = NameEnum.Other
+            Ruby.Name = NameEnum.Ruby
+            Pepper.Name = NameEnum.Pepper
         End Sub
+
     End Structure
 
     Public Shared Stats As DataFileStructure
     Dim Sound As New SoundPlayer
+    Dim Points As PointsEnum
 
 #End Region
 
 
 #Region "Subroutines"
 
-    Private Sub GetTheFridays()
-        Dim DaysUntilNextFriday As Int32 = Math.Abs((DayOfWeek.Friday - Today.DayOfWeek + 7) Mod 7)
-        Dim DaysFromLastFriday As Int32 = DaysUntilNextFriday - 7
-        stats.NextFriday = Date.Today.AddDays(DaysUntilNextFriday)
-        stats.LastFriday = Date.Today.AddDays(DaysFromLastFriday)
+    Public Shared Sub GetTheResetDays()
+        CheckIfFileExists(Stats.SaveFile)
+
+        Dim reader As New StreamReader(Stats.SaveFile)
+        Try
+            Dim buffer() As String
+            Do While Not reader.EndOfStream
+                buffer = Split(reader.ReadLine(), ",")
+                If buffer(0).Contains("Reset") Then
+                    Stats.ResetDay = buffer(1)
+                    reader.Close()
+                    Exit Do
+                End If
+            Loop
+            reader.Close()
+        Catch ex As Exception
+            reader.Close()
+            MessageBox.Show("Could not find reset day!", "Error!")
+            Stats.NoExceptions = False
+        End Try
+
+        Dim DaysUntilNextReset As Int32 = Math.Abs((Stats.ResetDay - Today.DayOfWeek + 7) Mod 7)
+        If DaysUntilNextReset = 0 Then DaysUntilNextReset = 7 'If no days until next reset, then the next reset should be next week
+        Dim DaysFromLastReset As Int32 = DaysUntilNextReset - 7
+        Stats.NextResetDay = Date.Today.AddDays(DaysUntilNextReset)
+        Stats.LastResetDay = Date.Today.AddDays(DaysFromLastReset)
     End Sub
 
 
     Public Sub UpdateLabels()
         With Stats
 
-            Ruby_WorksheetCount.Text = "Worksheets: " + .Ruby.Worksheet.ToString
-            Ruby_BehaviorCount.Text = "Behavior: " + .Ruby.Behavior.ToString
-            Pepper_WorksheetCount.Text = "Worksheets: " + .Pepper.Worksheet.ToString
-            Pepper_BehaviorCount.Text = "Behavior: " + .Pepper.Behavior.ToString
-
             .RubyAllowance = CalculateAllowance(.Ruby, .PricePer, .BaselinePay)
             .PepperAllowance = CalculateAllowance(.Pepper, .PricePer, .BaselinePay)
 
+            'Update text boxes
+            Ruby_WorksheetCount.Text = "Worksheets: " + .Ruby.Worksheet.ToString
+            Ruby_BehaviorCount.Text = "Behavior: " + .Ruby.Behavior.ToString
+            Ruby_ChoresCount.Text = "Chores: " + .Ruby.Chores.ToString
+            Pepper_WorksheetCount.Text = "Worksheets: " + .Pepper.Worksheet.ToString
+            Pepper_BehaviorCount.Text = "Behavior: " + .Pepper.Behavior.ToString
+            Pepper_ChoresCount.Text = "Chores: " + .Pepper.Chores.ToString
+            Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
+            Pepper_Allowance.Text = "$" + FormatNumber(.PepperAllowance, 2).ToString
+
+            'Update the grades text box
             If .Ruby.AGrades + .Ruby.BGrades + .Ruby.CGrades + .Ruby.DGrades + .Ruby.FGrades > 0 Then
                 RubyGradesCount.Text = UpdateGradesLabel(.Ruby)
                 RubyGradesCount.ForeColor = Color.Black
-                RubyGradesCount.Font = New Font("Segoe UI", 9)
-                RubyGradesCount.Size = New Size(135, 32)
+                RubyGradesCount.Font = New Font("Segoe UI", 8)
             Else
                 RubyGradesCount.Text = "No Report Card"
                 RubyGradesCount.ForeColor = Color.Silver
                 RubyGradesCount.Font = New Font("Segoe UI", 11)
-                RubyGradesCount.Size = New Size(135, 32)
             End If
 
             If .Pepper.AGrades + .Pepper.BGrades + .Pepper.CGrades + .Pepper.DGrades + .Pepper.FGrades > 0 Then
                 PepperGradesCount.Text = UpdateGradesLabel(.Pepper)
                 PepperGradesCount.ForeColor = Color.Black
-                PepperGradesCount.Font = New Font("Segoe UI", 9)
-                PepperGradesCount.Size = New Size(135, 32)
+                PepperGradesCount.Font = New Font("Segoe UI", 8)
             Else
                 PepperGradesCount.Text = "No Report Card"
                 PepperGradesCount.ForeColor = Color.Silver
                 PepperGradesCount.Font = New Font("Segoe UI", 11)
-                PepperGradesCount.Size = New Size(135, 32)
             End If
 
-            Ruby_Allowance.Text = "$" + FormatNumber(.RubyAllowance, 2).ToString
-            Pepper_Allowance.Text = "$" + FormatNumber(.PepperAllowance, 2).ToString
-
-            Ruby_AddBehaviorNote.Visible = False
-            Ruby_AddBehaviorNote.Enabled = False
-            Pepper_AddBehaviorNote.Visible = False
-            Pepper_AddBehaviorNote.Enabled = False
-
-            If Stats.RubyBehavNote.Split(";").Count < Stats.Ruby.Behavior Then
-                Ruby_AddBehaviorNote.Visible = True
-                Ruby_AddBehaviorNote.Enabled = True
-            End If
-
-            If Stats.PepperBehavNote.Split(";").Count < Stats.Pepper.Behavior Then
-                Pepper_AddBehaviorNote.Visible = True
-                Pepper_AddBehaviorNote.Enabled = True
-            End If
-
+            'Set tool tip for the behavior notes
             ToolTipThingy.SetToolTip(Ruby_BehaviorCount, Replace(Stats.RubyBehavNote, ";", vbCrLf))
             ToolTipThingy.SetToolTip(Pepper_BehaviorCount, Replace(Stats.PepperBehavNote, ";", vbCrLf))
-
         End With
     End Sub
 
@@ -142,46 +168,57 @@ Public Class AllowanceTracker
 
     Private Sub ReportTheCSVData(Optional lastFriday As Boolean = True)
         If lastFriday = True Then
-            Dim Friday As Date = AllowanceTracker.stats.LastFriday
+            Dim Friday As Date = AllowanceTracker.Stats.LastResetDay
         Else
-            Dim Friday As Date = AllowanceTracker.stats.NextFriday
+            Dim Friday As Date = AllowanceTracker.Stats.NextResetDay
         End If
 
 GetAndReportData:
-        Dim AllData As List(Of String) = ReadCSVFile(stats.SaveFile)
-        If stats.NoExceptions = False Then Me.Close()
+        Dim AllData As List(Of String) = ReadCSVFile(Stats.SaveFile)
+        If Stats.NoExceptions = False Then Me.Close()
         Dim FoundData As Boolean = False
         Dim str() As String
 
         For i = 0 To AllData.Count - 1
             str = AllData(i).Split(","c)
-            If str(0).Contains(Stats.LastFriday.ToShortDateString) Or str(0).Contains(Date.Today.ToShortDateString) Then
+            If str(0).Contains(Stats.LastResetDay.ToShortDateString) Or str(0).Contains(Date.Today.ToShortDateString) Then
                 FoundData = True
                 Stats.Ruby.Worksheet = CInt(str(1))
                 Stats.Ruby.Behavior = CInt(str(2))
-                Stats.Ruby.AGrades = CInt(str(3))
-                Stats.Ruby.BGrades = CInt(str(4))
-                Stats.Ruby.CGrades = CInt(str(5))
-                Stats.Ruby.DGrades = CInt(str(6))
-                Stats.Ruby.FGrades = CInt(str(7))
-                Stats.RubyAllowance = CDbl(str(8))
-                Stats.RubyBehavNote = str(9)
+                Stats.Ruby.Chores = CInt(str(3))
+                Stats.Ruby.AGrades = CInt(str(4))
+                Stats.Ruby.BGrades = CInt(str(5))
+                Stats.Ruby.CGrades = CInt(str(6))
+                Stats.Ruby.DGrades = CInt(str(7))
+                Stats.Ruby.FGrades = CInt(str(8))
+                Stats.RubyAllowance = CDbl(str(9))
+                Stats.RubyBehavNote = str(10)
 
-                Stats.Pepper.Worksheet = CInt(str(10))
-                Stats.Pepper.Behavior = CInt(str(11))
-                Stats.Pepper.AGrades = CInt(str(12))
-                Stats.Pepper.BGrades = CInt(str(13))
-                Stats.Pepper.CGrades = CInt(str(14))
-                Stats.Pepper.DGrades = CInt(str(15))
-                Stats.Pepper.FGrades = CInt(str(16))
-                Stats.PepperAllowance = CDbl(str(17))
-                Stats.PepperBehavNote = str(18)
+                Stats.Pepper.Worksheet = CInt(str(11))
+                Stats.Pepper.Behavior = CInt(str(12))
+                Stats.Pepper.Chores = CInt(str(13))
+                Stats.Pepper.AGrades = CInt(str(14))
+                Stats.Pepper.BGrades = CInt(str(15))
+                Stats.Pepper.CGrades = CInt(str(16))
+                Stats.Pepper.DGrades = CInt(str(17))
+                Stats.Pepper.FGrades = CInt(str(18))
+                Stats.PepperAllowance = CDbl(str(19))
+                Stats.PepperBehavNote = str(20)
 
             ElseIf str(0).Contains("Behavior") Then
                 AllowanceTracker.Stats.PricePer.Behavior = str(1)
 
             ElseIf str(0).Contains("Worksheet") Then
                 AllowanceTracker.Stats.PricePer.Worksheet = str(1)
+
+            ElseIf str(0).Contains("Chores") Then
+                AllowanceTracker.Stats.PricePer.Chores = str(1)
+
+            ElseIf str(0).Contains("Reset") Then
+                If CInt(str(1)) > 6 Or CInt(str(1)) < 0 Then
+                    str(1) = "6"
+                End If
+                AllowanceTracker.Stats.ResetDay = CInt(str(1))
 
             ElseIf str(0).Contains("A's") Then
                 AllowanceTracker.Stats.PricePer.AGrades = str(1)
@@ -205,10 +242,65 @@ GetAndReportData:
         Next
 
         If FoundData = True Then Exit Sub
-        WriteToCSVFile(stats.SaveFile, True)
+
+        'If the current week wasn't found in the csv data then create a new week and write it to the csv file
+        WriteToCSVFile(Stats.SaveFile, True)
         MessageBox.Show("A new week has been generated.", "New Week")
         GoTo GetAndReportData
     End Sub
+
+
+    Private Sub SetToolTips()
+        ToolTipThingy.SetToolTip(SaveButton, "Save Data")
+        ToolTipThingy.SetToolTip(LoadButton, "Load Data")
+        ToolTipThingy.SetToolTip(SettingsButton, "Settings Window")
+        ToolTipThingy.SetToolTip(CloseButton, "Close App")
+        ToolTipThingy.SetToolTip(ckbtn_PasswordLock, "Unlock Password Protection")
+        ToolTipThingy.SetToolTip(Ruby_AddBehavior, "Add a Behavior Point for Ruby")
+        ToolTipThingy.SetToolTip(Ruby_AddWorksheet, "Add a Worksheet Point for Ruby")
+        ToolTipThingy.SetToolTip(Ruby_ChoresButton, "Add a Chores Point for Ruby")
+        ToolTipThingy.SetToolTip(Pepper_AddBehavior, "Add a Behavior Point for Pepper")
+        ToolTipThingy.SetToolTip(Pepper_AddWorksheet, "Add a Worksheet Point for Pepper")
+        ToolTipThingy.SetToolTip(Pepper_ChoresButton, "Add a Chores Point for Pepper")
+        ToolTipThingy.SetToolTip(Ruby_AddGrades, "Add a report card for Ruby")
+        ToolTipThingy.SetToolTip(Pepper_AddGrades, "Add a report card for Pepper")
+        ToolTipThingy.SetToolTip(Ruby_AddBehaviorNote, "Add a behavior note for Ruby")
+        ToolTipThingy.SetToolTip(Pepper_AddBehaviorNote, "Add a behavior note for Pepper")
+    End Sub
+
+
+    Private Function IncrementPoints(Child As PricesStructure, PointType As PointsEnum) As PricesStructure
+        Select Case PointType
+            Case PointsEnum.Behavior
+                Child.Behavior += 1
+            Case PointsEnum.Worksheet
+                Child.Worksheet += 1
+            Case PointsEnum.Chores
+                Child.Chores += 1
+
+        End Select
+        PlayRandomSound()
+
+        Select Case Child.Name
+            Case NameEnum.Ruby
+                If PointType = PointsEnum.Behavior Then
+                    Ruby_AddBehaviorNote.Visible = True
+                    Ruby_AddBehaviorNote.Enabled = True
+                End If
+                If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
+                Ruby_WorksheetCount.Focus()
+            Case NameEnum.Pepper
+                If PointType = PointsEnum.Behavior Then
+                    Pepper_AddBehaviorNote.Visible = True
+                    Pepper_AddBehaviorNote.Enabled = True
+                End If
+                If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
+                Pepper_WorksheetCount.Focus()
+        End Select
+        SaveButton.Enabled = True
+        LoadButton.Enabled = True
+        Return Child
+    End Function
 
 
     Private Sub PlayRandomSound()
@@ -249,6 +341,7 @@ GetAndReportData:
         Response += Baseline
         Response += Child.Worksheet * Prices.Worksheet
         Response += Child.Behavior * Prices.Behavior
+        Response += Child.Chores * Prices.Chores
         Response += Child.AGrades * Prices.AGrades
         Response += Child.BGrades * Prices.BGrades
         Response += Child.CGrades * Prices.CGrades
@@ -287,6 +380,49 @@ GetAndReportData:
         Return Response
     End Function
 
+
+    Private Function AddBehaviorNote(sender As Object, notestring As String, behaviorcount As Integer, childname As String) As String
+        notestring += ";"
+        Dim tempstring() As String = notestring.Split(";")
+        ReDim Preserve tempstring(behaviorcount - 1)
+
+        For i = 1 To behaviorcount
+            Dim CommentContainsCommas = True
+            If Not tempstring(i - 1) = "" Then Continue For
+            Dim newnote As String = ""
+
+            Do While CommentContainsCommas
+                newnote = InputBox("Please add a note about what " + childname + "'s good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
+                If newnote.Contains(",") Or newnote.Contains(";") Then
+                    CommentContainsCommas = True
+                    MessageBox.Show("Comment cannot contain a comma or semicolon. Please fix this.")
+                Else
+                    CommentContainsCommas = False
+                End If
+            Loop
+            If newnote = "" Then
+                notestring += ";"
+                Continue For
+            End If
+            notestring += Date.Today.ToShortDateString + ": "
+            notestring += newnote
+            notestring += ";"
+        Next
+        notestring = notestring.TrimEnd(";")
+        notestring = notestring.TrimStart(";")
+
+        tempstring = notestring.Split(";")
+        Dim commentcount As Integer = 0
+        For i = 0 To tempstring.Count - 1
+            If Not tempstring(i) = "" Then commentcount += 1
+        Next
+        If commentcount = behaviorcount Then
+            sender.Enabled = False
+            sender.Visible = False
+        End If
+        Return notestring
+    End Function
+
 #End Region
 
 
@@ -301,7 +437,8 @@ GetAndReportData:
             .PasswordLocked = True
             .RubyBehavNote = ""
             .PepperBehavNote = ""
-
+            .Pepper.Name = NameEnum.Pepper
+            .Ruby.Name = NameEnum.Ruby
             If My.Settings.SaveFile = "nothing" Then
                 .SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
                 My.Settings.SaveFile = .SaveFile
@@ -309,81 +446,51 @@ GetAndReportData:
                 .SaveFile = My.Settings.SaveFile
             End If
         End With
-
-        GetTheFridays()
-        ReportTheCSVData()
-        UpdateLabels()
-
         Me.Icon = My.Resources.Balloon_Heart
-
         SaveButton.Enabled = False
         LoadButton.Enabled = False
-        If Date.Today < Stats.NextFriday Or Date.Today = Stats.NextFriday Then NewWeekButton.Enabled = False
+        If Date.Today < Stats.NextResetDay Or Date.Today = Stats.NextResetDay Then NewWeekButton.Enabled = False
 
-        ToolTipThingy.SetToolTip(SaveButton, "Save")
-        ToolTipThingy.SetToolTip(LoadButton, "Load")
-        ToolTipThingy.SetToolTip(SettingsButton, "Settings")
-        ToolTipThingy.SetToolTip(CloseButton, "Close")
-        ToolTipThingy.SetToolTip(ckbtn_PasswordLock, "Unlock Password Protection")
-        ToolTipThingy.SetToolTip(Ruby_AddBehavior, "Add a Behavior Point for Ruby")
-        ToolTipThingy.SetToolTip(Ruby_AddWorksheet, "Add a Worksheet Point for Ruby")
-        ToolTipThingy.SetToolTip(Pepper_AddBehavior, "Add a Behavior Point for Pepper")
-        ToolTipThingy.SetToolTip(Pepper_AddWorksheet, "Add a Worksheet Point for Pepper")
-        ToolTipThingy.SetToolTip(Ruby_AddGrades, "Add a report card for Ruby")
-        ToolTipThingy.SetToolTip(Pepper_AddGrades, "Add a report card for Pepper")
-        ToolTipThingy.SetToolTip(Ruby_AddBehaviorNote, "Add a behavior note for Ruby")
-        ToolTipThingy.SetToolTip(Pepper_AddBehaviorNote, "Add a behavior note for Pepper")
-
+        GetTheResetDays()
+        ReportTheCSVData()
+        UpdateLabels()
+        SetToolTips()
         DateChecker.Start()
-
     End Sub
 
 
     Private Sub AddRubyWkstCount() Handles Ruby_AddWorksheet.Click
-        Stats.Ruby.Worksheet += 1
+        Stats.Ruby = IncrementPoints(Stats.Ruby, PointsEnum.Worksheet)
         UpdateLabels()
-        PlayRandomSound()
-        If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
-        SaveButton.Enabled = True
-        LoadButton.Enabled = True
-        Ruby_WorksheetCount.Focus()
     End Sub
 
 
     Private Sub AddRubyBhvrCount() Handles Ruby_AddBehavior.Click
-        Stats.Ruby.Behavior += 1
+        Stats.Ruby = IncrementPoints(Stats.Ruby, PointsEnum.Behavior)
         UpdateLabels()
-        PlayRandomSound()
-        If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
-        SaveButton.Enabled = True
-        LoadButton.Enabled = True
-        Ruby_AddBehaviorNote.Enabled = True
-        Ruby_AddBehaviorNote.Visible = True
-        Ruby_WorksheetCount.Focus()
+    End Sub
+
+
+    Private Sub AddRubyChoreCount() Handles Ruby_ChoresButton.Click
+        Stats.Ruby = IncrementPoints(Stats.Ruby, PointsEnum.Chores)
+        UpdateLabels()
     End Sub
 
 
     Private Sub AddPepperWkstCount() Handles Pepper_AddWorksheet.Click
-        Stats.Pepper.Worksheet += 1
+        Stats.Pepper = IncrementPoints(Stats.Pepper, PointsEnum.Worksheet)
         UpdateLabels()
-        PlayRandomSound()
-        If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
-        SaveButton.Enabled = True
-        LoadButton.Enabled = True
-        Ruby_WorksheetCount.Focus()
     End Sub
 
 
     Private Sub AddPepperBhvrCount() Handles Pepper_AddBehavior.Click
-        Stats.Pepper.Behavior += 1
+        Stats.Pepper = IncrementPoints(Stats.Pepper, PointsEnum.Behavior)
         UpdateLabels()
-        PlayRandomSound()
-        If Not PepperRainbowWorker.IsBusy Then PepperRainbowWorker.RunWorkerAsync()
-        SaveButton.Enabled = True
-        LoadButton.Enabled = True
-        Pepper_AddBehaviorNote.Enabled = True
-        Pepper_AddBehaviorNote.Visible = True
-        Ruby_WorksheetCount.Focus()
+    End Sub
+
+    Private Sub AddPepperChoreCount() Handles Pepper_ChoresButton.Click
+        Stats.Pepper = IncrementPoints(Stats.Pepper, PointsEnum.Chores)
+        UpdateLabels()
     End Sub
 
 
@@ -403,7 +510,7 @@ GetAndReportData:
         If Stats.PasswordLocked = True Then
             If Not PasswordIsCorrect() Then Exit Sub
         End If
-        GetTheFridays()
+        GetTheResetDays()
         ReportTheCSVData()
         UpdateLabels()
         SaveButton.Enabled = False
@@ -468,7 +575,6 @@ GetAndReportData:
         Dim RubyGradesForm As New GradesForm("Ruby")
         RubyGradesForm.ShowDialog()
         RubyGradesForm.Dispose()
-
         UpdateLabels()
         PlayRandomSound()
         If Not RubyRainbowWorker.IsBusy Then RubyRainbowWorker.RunWorkerAsync()
@@ -507,51 +613,9 @@ GetAndReportData:
     End Sub
 
 
-    Private Function AddBehaviorNote(sender As Object, notestring As String, behaviorcount As Integer, childname As String) As String
-        notestring += ";"
-        Dim tempstring() As String = notestring.Split(";")
-        ReDim Preserve tempstring(behaviorcount - 1)
-
-        For i = 1 To behaviorcount
-            Dim CommentContainsCommas = True
-            If Not tempstring(i - 1) = "" Then Continue For
-            Dim newnote As String = ""
-
-            Do While CommentContainsCommas
-                newnote = InputBox("Please add a note about what " + childname + "'s good behavior was for point number " + i.ToString + ".", "Add Behavior Notes")
-                If newnote.Contains(",") Or newnote.Contains(";") Then
-                    CommentContainsCommas = True
-                    MessageBox.Show("Comment cannot contain a comma or semicolon. Please fix this.")
-                Else
-                    CommentContainsCommas = False
-                End If
-            Loop
-            If newnote = "" Then
-                notestring += ";"
-                Continue For
-            End If
-            notestring += Date.Today.ToShortDateString + ": "
-            notestring += newnote
-            notestring += ";"
-        Next
-        notestring = notestring.TrimEnd(";")
-        notestring = notestring.TrimStart(";")
-
-        tempstring = notestring.Split(";")
-        Dim commentcount As Integer = 0
-        For i = 0 To tempstring.Count - 1
-            If Not tempstring(i) = "" Then commentcount += 1
-        Next
-        If commentcount = behaviorcount Then
-            sender.Enabled = False
-            sender.Visible = False
-        End If
-        Return notestring
-    End Function
-
     Private Sub NewWeekButtonClick(sender As Object, e As EventArgs) Handles NewWeekButton.Click
-        If Date.Today > Stats.NextFriday Then
-            GetTheFridays()
+        If Date.Today >= Stats.NextResetDay Then
+            GetTheResetDays()
             NewWeekButton.Enabled = False
             SaveButton.Enabled = False
             LoadButton.Enabled = False
@@ -563,12 +627,11 @@ GetAndReportData:
     End Sub
 
     Private Sub DateChecker_Tick(sender As Object, e As EventArgs) Handles DateChecker.Tick
-        If Date.Today > Stats.NextFriday Then
-            'GetTheFridays() 'this is actually breaking the function by updating the Fridays before creating a new week in the CSV. ONLY update on button click or startup!
+        If Date.Today >= Stats.NextResetDay Then
             NewWeekButton.Enabled = True
         End If
-
     End Sub
+
 
 #End Region
 

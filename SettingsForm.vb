@@ -3,11 +3,12 @@ Imports System.IO.Packaging
 
 Public Class Settings
 
-    Private Sub SettingsLoad() Handles Me.Load
-        lblLastFridayRead.Text = AllowanceTracker.stats.LastFriday.ToShortDateString
-        lblNextFridayRead.Text = AllowanceTracker.stats.NextFriday.ToShortDateString
+    Private Sub SettingsLoad() Handles MyBase.Load
+
+        'Populate the text boxes
         txtPricePerWkst.Text = AllowanceTracker.Stats.PricePer.Worksheet.ToString
         txtPricePerBhvr.Text = AllowanceTracker.Stats.PricePer.Behavior.ToString
+        txtPricePerChore.Text = AllowanceTracker.Stats.PricePer.Chores.ToString
         txtPricePerA.Text = AllowanceTracker.Stats.PricePer.AGrades.ToString
         txtPricePerB.Text = AllowanceTracker.Stats.PricePer.BGrades.ToString
         txtPricePerC.Text = AllowanceTracker.Stats.PricePer.CGrades.ToString
@@ -15,8 +16,10 @@ Public Class Settings
         txtPricePerF.Text = AllowanceTracker.Stats.PricePer.FGrades.ToString
         txtBaselinePrice.Text = AllowanceTracker.Stats.BaselinePay.ToString
 
+        'Format the text boxes
         txtPricePerWkst.Text = FormatNumber(CDbl(txtPricePerWkst.Text), 2).ToString
         txtPricePerBhvr.Text = FormatNumber(CDbl(txtPricePerBhvr.Text), 2).ToString
+        txtPricePerChore.Text = FormatNumber(CDbl(txtPricePerChore.Text), 2).ToString
         txtPricePerA.Text = FormatNumber(CDbl(txtPricePerA.Text), 2).ToString
         txtPricePerB.Text = FormatNumber(CDbl(txtPricePerB.Text), 2).ToString
         txtPricePerC.Text = FormatNumber(CDbl(txtPricePerC.Text), 2).ToString
@@ -24,20 +27,42 @@ Public Class Settings
         txtPricePerF.Text = FormatNumber(CDbl(txtPricePerF.Text), 2).ToString
         txtBaselinePrice.Text = FormatNumber(CDbl(txtBaselinePrice.Text), 2).ToString
 
+        GetDaysOfWeek()
+
         txt_SaveFilePath.Text = My.Settings.SaveFile
         Me.Icon = My.Resources.Settings
     End Sub
 
 
+    Private Sub GetDaysOfWeek()
+
+        cmb_Weekdays.Items.Clear()
+        For Each day As DayOfWeek In System.Enum.GetValues(GetType(DayOfWeek))
+            cmb_Weekdays.Items.Add(day)
+        Next
+
+        cmb_Weekdays.SelectedIndex = AllowanceTracker.Stats.ResetDay
+
+        lblLastResetDay.Text = "Last " + AllowanceTracker.Stats.ResetDay.ToString
+        lblNextResetDay.Text = "Next " + AllowanceTracker.Stats.ResetDay.ToString
+        lblLastResetRead.Text = AllowanceTracker.Stats.LastResetDay.ToShortDateString
+        lblNextResetRead.Text = AllowanceTracker.Stats.NextResetDay.ToShortDateString
+
+        'writing the dayofweek.day writes the NUMBER which will correspond with the index of the cmb
+
+
+    End Sub
+
     Private Function UpdatePrices(txt As TextBox) As Double
         If Not IsNumeric(txt.Text) Then
             MessageBox.Show("You must enter a number here!", "Error!")
             txt.Text = "1"
-        Else
-            txt.Text = FormatNumber(CDbl(txt.Text), 2).ToString
+            Return 1
         End If
 
+        txt.Text = FormatNumber(CDbl(txt.Text), 2).ToString
         Return CDbl(txt.Text.ToString)
+
     End Function
 
 
@@ -48,6 +73,11 @@ Public Class Settings
 
     Private Sub UpdatePricePerBehavior() Handles txtPricePerBhvr.Leave
         AllowanceTracker.Stats.PricePer.Behavior = UpdatePrices(txtPricePerBhvr)
+    End Sub
+
+
+    Private Sub UpdatePricePerChore() Handles txtPricePerChore.Leave
+        AllowanceTracker.Stats.PricePer.Chores = UpdatePrices(txtPricePerChore)
     End Sub
 
 
@@ -80,13 +110,22 @@ Public Class Settings
         AllowanceTracker.Stats.BaselinePay = UpdatePrices(txtBaselinePrice)
     End Sub
 
+    Private Sub UpdateResetDay() Handles cmb_Weekdays.SelectedIndexChanged
+        AllowanceTracker.Stats.ResetDay = cmb_Weekdays.SelectedIndex
+        AllowanceTracker.GetTheResetDays()
+        lblLastResetDay.Text = "Last " + AllowanceTracker.Stats.ResetDay.ToString
+        lblNextResetDay.Text = "Next " + AllowanceTracker.Stats.ResetDay.ToString
+        lblLastResetRead.Text = AllowanceTracker.Stats.LastResetDay.ToShortDateString
+        lblNextResetRead.Text = AllowanceTracker.Stats.NextResetDay.ToShortDateString
+    End Sub
+
 
     Private Sub ChangePassword(sender As Object, e As KeyPressEventArgs) Handles txt_NewPassword.KeyPress
         If e.KeyChar <> Chr(13) Then Exit Sub
         Dim answer As DialogResult = MessageBox.Show("Are you sure you want to change your password?", "Password Change?", MessageBoxButtons.YesNo)
         If answer = DialogResult.Yes Then
             My.Settings.Password = txt_NewPassword.Text
-            AllowanceTracker.stats.Password = My.Settings.Password
+            AllowanceTracker.Stats.Password = My.Settings.Password
             txt_NewPassword.Text = ""
             lbl_PasswordSet.Visible = True
         End If
@@ -97,16 +136,17 @@ Public Class Settings
     End Sub
 
 
-    Private Sub ClosingTheForm() Handles Me.Closed
+    Private Sub ClosingTheForm() Handles MyBase.Closed
         UpdatePricePerWorksheet()
         UpdatePricePerBehavior()
+        UpdatePricePerChore()
         UpdateBaselinePrice()
         UpdateAGradePrice()
         UpdateBGradePrice()
         UpdateCGradePrice()
         UpdateDGradePrice()
         UpdatefGradePrice()
-        WriteToCSVFile(AllowanceTracker.stats.SaveFile)
+        WriteToCSVFile(AllowanceTracker.Stats.SaveFile)
         AllowanceTracker.UpdateLabels()
     End Sub
 

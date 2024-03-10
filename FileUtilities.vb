@@ -1,9 +1,31 @@
-﻿Imports System.IO
+﻿Imports System.Diagnostics.Eventing
+Imports System.IO
 Imports System.Security.Principal
 
 Module FileUtilities
 
     Public Function ReadCSVFile(savefile As String) As List(Of String)
+        CheckIfFileExists(savefile)
+
+        Dim resp As New List(Of String)
+        Dim reader As New StreamReader(savefile)
+
+        Try
+            Do While Not Reader.EndOfStream
+                resp.Add(Reader.ReadLine())
+            Loop
+            Reader.Close()
+        Catch ex As Exception
+            MessageBox.Show("There was a problem:" + vbCrLf + vbCrLf + ex.Message, "Error!")
+            AllowanceTracker.Stats.NoExceptions = False
+            Reader.close()
+        End Try
+
+        Return resp
+    End Function
+
+
+    Public Sub CheckIfFileExists(savefile As String, Optional newweek As Boolean = True)
         If Not System.IO.File.Exists(savefile) Then
             Dim answer As DialogResult = MessageBox.Show("The save file was not found in the set location. Would you like to try and find it?", "Find the file?", MessageBoxButtons.YesNo)
             If answer = DialogResult.Yes Then
@@ -15,25 +37,10 @@ Module FileUtilities
                 End If
             Else
                 MessageBox.Show("A save file was not found. A new one will be generated.")
-                CreateNewCSVFile(AllowanceTracker.stats.SaveFile)
+                CreateNewCSVFile(AllowanceTracker.Stats.SaveFile)
             End If
         End If
-
-        Dim resp As New List(Of String)
-
-        Try
-            Dim reader As New StreamReader(savefile)
-            Do While Not reader.EndOfStream
-                resp.Add(reader.ReadLine())
-            Loop
-            reader.Close()
-        Catch ex As Exception
-            MessageBox.Show("There was a problem:" + vbCrLf + vbCrLf + ex.Message, "Error!")
-            AllowanceTracker.stats.NoExceptions = False
-        End Try
-
-        Return resp
-    End Function
+    End Sub
 
 
     Public Sub WriteToCSVFile(file As String, Optional AddNewWeek As Boolean = False)
@@ -44,9 +51,10 @@ Module FileUtilities
         Dim NewData As String = ""
 
         With AllowanceTracker.Stats
-            NewData += .LastFriday.ToShortDateString + ","
+            NewData += .LastResetDay.ToShortDateString + ","
             NewData += .Ruby.Worksheet.ToString + ","
             NewData += .Ruby.Behavior.ToString + ","
+            NewData += .Ruby.Chores.ToString + ","
             NewData += .Ruby.AGrades.ToString + ","
             NewData += .Ruby.BGrades.ToString + ","
             NewData += .Ruby.CGrades.ToString + ","
@@ -56,6 +64,7 @@ Module FileUtilities
             NewData += .RubyBehavNote + ","
             NewData += .Pepper.Worksheet.ToString + ","
             NewData += .Pepper.Behavior.ToString + ","
+            NewData += .Pepper.Chores.ToString + ","
             NewData += .Pepper.AGrades.ToString + ","
             NewData += .Pepper.BGrades.ToString + ","
             NewData += .Pepper.CGrades.ToString + ","
@@ -65,16 +74,19 @@ Module FileUtilities
             NewData += .PepperBehavNote + ","
         End With
 
+        Dim writer As New StreamWriter(file, False)
+
         Try
-            Dim writer As New StreamWriter(file, False)
             For i = 0 To alldata.Count - 1
                 str = alldata(i).Split(","c)
-                If str(0).Contains(AllowanceTracker.stats.LastFriday.ToShortDateString) Then
+                If str(0).Contains(AllowanceTracker.Stats.LastResetDay.ToShortDateString) Then
                     writer.WriteLine(NewData)
                 ElseIf str(0).Contains("Behavior") Then
                     writer.WriteLine("Behavior," + AllowanceTracker.Stats.PricePer.Behavior.ToString)
                 ElseIf str(0).Contains("Worksheet") Then
                     writer.WriteLine("Worksheet," + AllowanceTracker.Stats.PricePer.Worksheet.ToString)
+                ElseIf str(0).Contains("Chores") Then
+                    writer.WriteLine("Chores," + AllowanceTracker.Stats.PricePer.Chores.ToString)
                 ElseIf str(0).Contains("A's") Then
                     writer.WriteLine("A's," + AllowanceTracker.Stats.PricePer.AGrades.ToString)
                 ElseIf str(0).Contains("B's") Then
@@ -85,18 +97,21 @@ Module FileUtilities
                     writer.WriteLine("D's," + AllowanceTracker.Stats.PricePer.DGrades.ToString)
                 ElseIf str(0).Contains("F's") Then
                     writer.WriteLine("F's," + AllowanceTracker.Stats.PricePer.FGrades.ToString)
+                ElseIf str(0).Contains("Reset") Then
+                    writer.WriteLine("Reset Days," + CInt(AllowanceTracker.Stats.ResetDay).ToString)
                 Else
                     writer.WriteLine(alldata(i))
                 End If
             Next
             If AddNewWeek = True Then
-                writer.Write(AllowanceTracker.Stats.LastFriday.ToShortDateString + ",0,0,0,0,0,0,0,")
+                writer.Write(AllowanceTracker.Stats.LastResetDay.ToShortDateString + ",0,0,0,0,0,0,0,0,")
                 writer.Write(AllowanceTracker.Stats.BaselinePay.ToString)
-                writer.Write(",,0,0,0,0,0,0,0,")
+                writer.Write(",,0,0,0,0,0,0,0,0,")
                 writer.Write(AllowanceTracker.Stats.BaselinePay.ToString + ",")
             End If
             writer.Close()
         Catch ex As Exception
+            writer.Close()
             MessageBox.Show("There was a problem:" + vbCrLf + vbCrLf + ex.Message, "Error!")
             AllowanceTracker.stats.NoExceptions = False
         End Try
@@ -104,48 +119,36 @@ Module FileUtilities
 
 
     Public Sub CreateNewCSVFile(savefile As String)
-        Dim headerstring As String = "Date (Friday),RubyWorksheets,PepperWorksheets,RubyBehavior,PepperBehavior,RubyAllowance,PepperAllowance"
-        Dim lastmon As String = AllowanceTracker.stats.LastFriday
+        Dim headerstring As String = GetHeaderString()
+        Dim LastResetDay As String = AllowanceTracker.Stats.LastResetDay.ToShortDateString
 
         Dim filestream As FileStream = File.Create(savefile)
         filestream.Close()
+        Dim writer As New StreamWriter(savefile)
 
         Try
-            Dim writer As New StreamWriter(savefile)
+            'Write the config settings
             writer.WriteLine("Prices")
             writer.WriteLine("Worksheets,0.5")
             writer.WriteLine("Behavior,1")
+            writer.WriteLine("Chores,1")
             writer.WriteLine("Baseline,1")
             writer.WriteLine("A's,4")
             writer.WriteLine("B's,2")
             writer.WriteLine("C's,1")
             writer.WriteLine("D's,0")
             writer.WriteLine("F's,0")
+            writer.WriteLine("Reset Day, 6")
             writer.WriteLine("")
-            writer.Write("Date (Friday),")
-            writer.Write("Ruby Worksheets,")
-            writer.Write("Ruby Behavior,")
-            writer.Write("Ruby A Grades,")
-            writer.Write("Ruby B Grades,")
-            writer.Write("Ruby C Grades,")
-            writer.Write("Ruby D Grades,")
-            writer.Write("Ruby F Grades,")
-            writer.Write("Ruby Allowance,")
-            writer.Write("Ruby Behavior Notes,")
-            writer.Write("Pepper Worksheets,")
-            writer.Write("Pepper Behavior,")
-            writer.Write("Pepper A Grades,")
-            writer.Write("Pepper B Grades,")
-            writer.Write("Pepper C Grades,")
-            writer.Write("Pepper D Grades,")
-            writer.Write("Pepper F Grades,")
-            writer.Write("Pepper Allowance,")
-            writer.WriteLine("Pepper Behavior Notes,")
-            writer.WriteLine(lastmon + ",0,0,0,0,0,0,0,1,,0,0,0,0,0,0,0,1,")
+
+            'Write the header string and first line of data
+            writer.WriteLine(headerstring)
+            'writer.WriteLine(LastResetDay + ",0,0,0,0,0,0,0,1,,0,0,0,0,0,0,0,1,") 'Add a zero before each "1" for chores
             writer.Close()
         Catch ex As Exception
+            writer.Close()
             MessageBox.Show("There was a problem:" + vbCrLf + vbCrLf + ex.Message, "Error!")
-            AllowanceTracker.stats.NoExceptions = False
+            AllowanceTracker.Stats.NoExceptions = False
         End Try
     End Sub
 
@@ -153,6 +156,33 @@ Module FileUtilities
     Public Function GetRandom(Min As Integer, Max As Integer) As Integer
         Static Generator As System.Random = New System.Random()
         Return Generator.Next(Min, Max)
+    End Function
+
+    Public Function GetHeaderString() As String
+        Dim resp As String = ""
+        resp += "Date,"
+        resp += "Ruby Worksheets,"
+        resp += "Ruby Behavior,"
+        resp += "Ruby Chores,"
+        resp += "Ruby A Grades,"
+        resp += "Ruby B Grades,"
+        resp += "Ruby C Grades,"
+        resp += "Ruby D Grades,"
+        resp += "Ruby F Grades,"
+        resp += "Ruby Allowance,"
+        resp += "Ruby Behavior Note,"
+        resp += "Pepper Worksheets,"
+        resp += "Pepper Behavior,"
+        resp += "Pepper Chores,"
+        resp += "Pepper A Grades,"
+        resp += "Pepper B Grades,"
+        resp += "Pepper C Grades,"
+        resp += "Pepper D Grades,"
+        resp += "Pepper F Grades,"
+        resp += "Pepper Allowance,"
+        resp += "Pepper Behavior Note"
+
+        Return resp
     End Function
 
 End Module
