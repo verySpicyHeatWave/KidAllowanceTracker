@@ -15,3 +15,5 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = KidAllowanceTracker
 build_property.ProjectDir = C:\Users\smash\Desktop\Dad's Stuff\Coding\Git Working Repos\KidAllowanceTracker\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
