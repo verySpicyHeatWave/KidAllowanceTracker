@@ -430,6 +430,7 @@ GetAndReportData:
 
     Private Sub FormLoad() Handles MyBase.Load
         With Stats
+            .BaselinePay = 1
             .PepperAllowance = 1
             .RubyAllowance = 1
             .Password = My.Settings.Password
@@ -440,7 +441,7 @@ GetAndReportData:
             .Pepper.Name = NameEnum.Pepper
             .Ruby.Name = NameEnum.Ruby
             If My.Settings.SaveFile = "nothing" Then
-                .SaveFile = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\KidBehaviorLog.csv"
+                .SaveFile = AppContext.BaseDirectory + "\KidBehaviorLog.csv"
                 My.Settings.SaveFile = .SaveFile
             Else
                 .SaveFile = My.Settings.SaveFile

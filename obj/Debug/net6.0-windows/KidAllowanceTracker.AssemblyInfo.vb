@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("KidAllowanceTracker"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa9339d508b59cff074e6b4c2bd453d5b53525c9"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f6a673282f15b997883e1700ed74391622ad534"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("KidAllowanceTracker"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("KidAllowanceTracker"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
